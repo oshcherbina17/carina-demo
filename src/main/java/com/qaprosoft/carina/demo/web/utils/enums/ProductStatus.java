@@ -1,6 +1,6 @@
 package com.qaprosoft.carina.demo.web.utils.enums;
 
-public enum ProductStatusEnum {
+public enum ProductStatus {
     AVAILABLE("Є в наявності"),
     OVER("Закінчується"),
     FINISHED("Закінчився"),
@@ -10,7 +10,7 @@ public enum ProductStatusEnum {
     private String sortType;
 
 
-    ProductStatusEnum(String sortType) {
+    ProductStatus(String sortType) {
         this.sortType = sortType;
 
     }

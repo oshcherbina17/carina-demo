@@ -1,10 +1,14 @@
 package com.qaprosoft.carina.demo.web.gui.common;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public class HouseholdGoodsPageBase extends AbstractPage {
+import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.web.utils.enums.FurnitureSubcategory;
+
+public abstract class HouseholdGoodsPageBase extends AbstractPage {
     public HouseholdGoodsPageBase(WebDriver driver) {
         super(driver);
     }
+
+    public abstract AbstractPage clickOnCategoriesLink(FurnitureSubcategory furniture);
 }

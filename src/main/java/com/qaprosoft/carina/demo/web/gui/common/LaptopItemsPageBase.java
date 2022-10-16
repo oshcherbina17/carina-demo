@@ -1,7 +1,10 @@
 package com.qaprosoft.carina.demo.web.gui.common;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
+
+import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.web.components.Basket;
+
 
 public abstract class LaptopItemsPageBase extends AbstractPage {
     public LaptopItemsPageBase(WebDriver driver) {
@@ -12,7 +15,5 @@ public abstract class LaptopItemsPageBase extends AbstractPage {
 
     public abstract void clickOnBuyButton();
 
-    public abstract String getSumPriceText();
-
-    public abstract OrderPageBase clickOnOrderButton();
+     public abstract Basket getBasketMenu();
 }

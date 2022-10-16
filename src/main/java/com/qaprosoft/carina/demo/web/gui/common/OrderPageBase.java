@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.web.gui.common;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import org.openqa.selenium.WebDriver;
 
 public abstract class OrderPageBase extends AbstractPage {
 

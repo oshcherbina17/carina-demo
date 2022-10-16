@@ -1,9 +1,11 @@
 package com.qaprosoft.carina.demo.web.gui.common;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.web.utils.enums.ProductStatusEnum;
-import com.qaprosoft.carina.demo.web.utils.enums.SortDropdownEnum;
 import org.openqa.selenium.WebDriver;
+
+import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.web.utils.enums.ProductStatus;
+import com.qaprosoft.carina.demo.web.utils.enums.SortDropdown;
+
 
 public abstract class TabletsPageBase extends AbstractPage {
 
@@ -13,18 +15,15 @@ public abstract class TabletsPageBase extends AbstractPage {
 
     public abstract void selectBrand(String brand);
 
-
     public abstract void selectRAM(String memory);
 
-    public abstract void selectStateCheckBox(ProductStatusEnum productStatusEnum);
+    public abstract void selectStateCheckBox(ProductStatus productStatus);
 
-    public abstract void sortDropdownMenu(SortDropdownEnum sortDropdownEnum);
+    public abstract void sortDropdownMenu(SortDropdown sortDropdown);
 
     public abstract boolean sortLowToHighPrice();
 
     public abstract String getTabletTitleText(int index);
-
-/*    public abstract void clickOnBasketIcon(int index);*/
 
     public abstract void clickOnBasketIcon(int index);
 

@@ -1,16 +1,15 @@
 package com.qaprosoft.carina.demo;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.qaprosoft.carina.demo.web.components.Basket;
+import com.qaprosoft.carina.demo.web.utils.enums.*;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.web.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.common.*;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
-import com.qaprosoft.carina.demo.web.utils.enums.DevicesEnum;
-import com.qaprosoft.carina.demo.web.utils.enums.MenuCategoryEnum;
-import com.qaprosoft.carina.demo.web.utils.enums.ProductStatusEnum;
-import com.qaprosoft.carina.demo.web.utils.enums.SortDropdownEnum;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class RozetkaWebTest implements IAbstractTest {
 
@@ -26,17 +25,21 @@ public class RozetkaWebTest implements IAbstractTest {
 
     private final String FILTER_NAME = "Кавоварки";
 
+    private final String ELECTRIC_TYPE = "Електричний";
+
+    private final String COLOR = "Білий";
+
     @Test
     @MethodOwner(owner = "olga")
     public void testVerifyCheckBrandAndSortLowToHigh() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        LaptopsAndComputersPageBase laptopsAndComputersPageBase = (LaptopsAndComputersPageBase) homePage.clickOnCategoryMenu(MenuCategoryEnum.LAPTOPS_COMPUTERS);
-        TabletsPageBase tabletsPageBase = (TabletsPageBase) laptopsAndComputersPageBase.clickOnCategoriesLink(DevicesEnum.TABLETS);
+        LaptopsAndPCPageBase laptopsAndPCPageBase = (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
+        TabletsPageBase tabletsPageBase = (TabletsPageBase) laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
         tabletsPageBase.selectBrand(BRAND_APPLE);
         tabletsPageBase.selectBrand(RAM);
-        tabletsPageBase.selectStateCheckBox(ProductStatusEnum.AVAILABLE);
-        tabletsPageBase.sortDropdownMenu(SortDropdownEnum.LOW_TO_HIGH);
+        tabletsPageBase.selectStateCheckBox(ProductStatus.AVAILABLE);
+        tabletsPageBase.sortDropdownMenu(SortDropdown.LOW_TO_HIGH);
         Assert.assertTrue(tabletsPageBase.sortLowToHighPrice(), "Price not sorted ");
         tabletsPageBase.clickOnBasketIcon(2);
         Assert.assertTrue(tabletsPageBase.addedItemsCounterIsPresent(), "Added Items Counter not exist");
@@ -47,18 +50,19 @@ public class RozetkaWebTest implements IAbstractTest {
     public void testVerifyBrandCheckTitleAndSum() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        SmartphonesTvElectronicsPageBase smartphonesTvElectronicsPageBase = (SmartphonesTvElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategoryEnum.SMARTPHONES_TV_ELECTRONICS);
-        TabletsPageBase tabletsPageBase = (TabletsPageBase) smartphonesTvElectronicsPageBase.clickOnCategoriesLink(DevicesEnum.TABLETS);
+        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.SMARTPHONES_TV_ELECTRONICS);
+        TabletsPageBase tabletsPageBase = (TabletsPageBase) phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.TABLETS);
         tabletsPageBase.selectBrand(BRAND_LENOVO);
         tabletsPageBase.selectBrand(RAM);
-        tabletsPageBase.sortDropdownMenu(SortDropdownEnum.NEW);
+        tabletsPageBase.sortDropdownMenu(SortDropdown.NEW);
         String deviceTitleText = tabletsPageBase.getTabletTitleText(0);
         LaptopItemsPageBase laptopItemsPageBase = tabletsPageBase.clickOnLaptopDevice(0);
         String productTitleText = laptopItemsPageBase.getProductTitleText();
         Assert.assertEquals(productTitleText, deviceTitleText, "Texts are not equals");
         laptopItemsPageBase.clickOnBuyButton();
-        String sumPrice = laptopItemsPageBase.getSumPriceText();
-        OrderPageBase orderPageBase = laptopItemsPageBase.clickOnOrderButton();
+        Basket basket = laptopItemsPageBase.getBasketMenu();
+        String sumPrice = basket.getSumPriceText();
+        OrderPageBase orderPageBase = basket.clickOnOrderButton();
         String paymentSum = orderPageBase.getPaymentSumText();
         Assert.assertEquals(paymentSum, sumPrice, "Sum are not equals");
     }
@@ -79,5 +83,25 @@ public class RozetkaWebTest implements IAbstractTest {
         coffeeMachinePageBase.clickOnAddedCompareBtn();
         ComparisonPageBase comparisonPageBase = coffeeMachinePageBase.clickOnProductType();
         Assert.assertTrue(comparisonPageBase.allParameterBtnIsPresent(), "All Parameter button isn't present");
+    }
+
+    @Test
+    @MethodOwner(owner = "olga")
+    public void testVerifyFiltersAndCheckReviewsForDate() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        HeaderMenu headerMenu = homePage.getHeader();
+        Assert.assertTrue(headerMenu.isCatalogButtonPresent(), "Catalog button isn't presented");
+        headerMenu.clickOnCatalogButton();
+        HouseholdGoodsPageBase householdGoodsPageBase = (HouseholdGoodsPageBase) headerMenu.clickOnCategoryMenu(MenuCategory.HOUSEHOLD_GOODS);
+        PCTablesPageBase pcTablesPageBase = (PCTablesPageBase) householdGoodsPageBase.clickOnCategoriesLink(FurnitureSubcategory.PC_TABLES);
+        pcTablesPageBase.selectRegulate(ELECTRIC_TYPE);
+        pcTablesPageBase.selectRegulate(COLOR);
+        TableItemsPageBase tableItemsPageBase = pcTablesPageBase.clickOnProductTitle(1);
+        Assert.assertTrue(tableItemsPageBase.isChosenColorCorrect(COLOR), "Color is not equals the chosen color");
+        tableItemsPageBase.clickOnTab(ProductTabs.REVIEWS);
+        tableItemsPageBase.selectDropdownOption(SortDropdown.DATE);
+        Assert.assertTrue(tableItemsPageBase.isOpinionsSortedByDate(), "List isn't sorted by date");
+
     }
 }

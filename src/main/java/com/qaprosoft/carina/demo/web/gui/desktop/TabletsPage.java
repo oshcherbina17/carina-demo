@@ -1,21 +1,21 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopItemsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.TabletsPageBase;
-import com.qaprosoft.carina.demo.web.utils.enums.ProductStatusEnum;
-import com.qaprosoft.carina.demo.web.utils.enums.SortDropdownEnum;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
+import com.qaprosoft.carina.demo.web.utils.enums.ProductStatus;
+import com.qaprosoft.carina.demo.web.utils.enums.SortDropdown;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = TabletsPageBase.class)
 public class TabletsPage extends TabletsPageBase {
 
     @FindBy(xpath = "//a[@data-id='%s']")
-    private ExtendedWebElement universalBrandCheckbox;
+    private ExtendedWebElement universalCheckbox;
 
     @FindBy(xpath = "//option[@class='ng-star-inserted' and contains(.,'%s')]")
     private ExtendedWebElement universalDropdownMenu;
@@ -23,20 +23,14 @@ public class TabletsPage extends TabletsPageBase {
     @FindBy(xpath = "//span[@class='goods-tile__price-value']")
     private List<ExtendedWebElement> priceList;
 
-    @FindBy(xpath = "//span[@class='sidebar-block__toggle-title' and contains(.,' Оперативна')]/../following-sibling::*[@class='sidebar-block__inner ng-star-inserted']/*/*/*/*/*/*/*/*/a[@data-id='%s']")
-    private ExtendedWebElement RAMCheckbox;
-
     @FindBy(xpath = "//span[@class='goods-tile__title']")
     private List<ExtendedWebElement> titleDeviceList;
 
-    @FindBy(xpath = "//button[@class='buy-button goods-tile__buy-button ng-star-inserted']")
+    @FindBy(xpath = "//button[contains(@class, 'goods-tile__buy-button')]")
     private List<ExtendedWebElement> basketIcon;
 
-    @FindBy(xpath = "//span[@class='counter counter--green ng-star-inserted']")
+    @FindBy(xpath = "//span[contains(@class, 'counter counter--green')]")
     private ExtendedWebElement addedItemsCounter;
-
-    @FindBy(xpath = "//a[@data-id='%s']")
-    private ExtendedWebElement stateCheckBox;
 
     public TabletsPage(WebDriver driver) {
         super(driver);
@@ -45,22 +39,22 @@ public class TabletsPage extends TabletsPageBase {
 
     @Override
     public void selectBrand(String brand) {
-        universalBrandCheckbox.format(brand).click();
+        universalCheckbox.format(brand).click();
     }
 
     @Override
     public void selectRAM(String memory) {
-        universalBrandCheckbox.format(memory).click();
+        universalCheckbox.format(memory).click();
     }
 
     @Override
-    public void selectStateCheckBox(ProductStatusEnum productStatusEnum) {
-        stateCheckBox.format(productStatusEnum.getSortType()).click();
+    public void selectStateCheckBox(ProductStatus productStatus) {
+        universalCheckbox.format(productStatus.getSortType()).click();
     }
 
     @Override
-    public void sortDropdownMenu(SortDropdownEnum sortDropdownEnum) {
-        universalDropdownMenu.format(sortDropdownEnum.getSortType()).click();
+    public void sortDropdownMenu(SortDropdown sortDropdown) {
+        universalDropdownMenu.format(sortDropdown.getSortType()).click();
     }
 
     @Override
@@ -90,7 +84,6 @@ public class TabletsPage extends TabletsPageBase {
     public boolean addedItemsCounterIsPresent() {
         return addedItemsCounter.isElementPresent();
     }
-
 
     @Override
     public LaptopItemsPageBase clickOnLaptopDevice(int index) {
