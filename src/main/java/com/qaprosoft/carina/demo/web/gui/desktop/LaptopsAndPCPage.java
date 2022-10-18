@@ -7,7 +7,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopsAndPCPageBase;
-import com.qaprosoft.carina.demo.web.utils.enums.Devices;
+import com.qaprosoft.carina.demo.web.enums.Devices;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = LaptopsAndPCPageBase.class)
 public class LaptopsAndPCPage extends LaptopsAndPCPageBase {

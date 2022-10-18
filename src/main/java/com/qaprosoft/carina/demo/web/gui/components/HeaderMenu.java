@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.web.components;
+package com.qaprosoft.carina.demo.web.gui.components;
 
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.gui.common.CoffeeMachinePageBase;
-import com.qaprosoft.carina.demo.web.utils.enums.MenuCategory;
+import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
 

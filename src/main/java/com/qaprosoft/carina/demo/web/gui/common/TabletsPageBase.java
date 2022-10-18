@@ -3,8 +3,8 @@ package com.qaprosoft.carina.demo.web.gui.common;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.web.utils.enums.ProductStatus;
-import com.qaprosoft.carina.demo.web.utils.enums.SortDropdown;
+import com.qaprosoft.carina.demo.web.enums.ProductStatus;
+import com.qaprosoft.carina.demo.web.enums.SortDropdown;
 
 
 public abstract class TabletsPageBase extends AbstractPage {

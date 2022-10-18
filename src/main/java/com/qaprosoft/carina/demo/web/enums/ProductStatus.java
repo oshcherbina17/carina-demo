@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.web.utils.enums;
+package com.qaprosoft.carina.demo.web.enums;
 
 public enum ProductStatus {
     AVAILABLE("Є в наявності"),

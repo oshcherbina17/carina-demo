@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.web.utils.enums;
+package com.qaprosoft.carina.demo.web.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.web.gui.common.HouseholdGoodsPageBase;

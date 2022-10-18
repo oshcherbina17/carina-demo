@@ -1,4 +1,5 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
+
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -8,8 +9,8 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopItemsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.TabletsPageBase;
-import com.qaprosoft.carina.demo.web.utils.enums.ProductStatus;
-import com.qaprosoft.carina.demo.web.utils.enums.SortDropdown;
+import com.qaprosoft.carina.demo.web.enums.ProductStatus;
+import com.qaprosoft.carina.demo.web.enums.SortDropdown;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = TabletsPageBase.class)
 public class TabletsPage extends TabletsPageBase {
@@ -31,6 +32,9 @@ public class TabletsPage extends TabletsPageBase {
 
     @FindBy(xpath = "//span[contains(@class, 'counter counter--green')]")
     private ExtendedWebElement addedItemsCounter;
+
+    @FindBy(xpath = "//h1[contains(@class, 'catalog-heading')]")
+    private ExtendedWebElement deviceTitleText;
 
     public TabletsPage(WebDriver driver) {
         super(driver);

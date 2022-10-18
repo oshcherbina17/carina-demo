@@ -1,16 +1,15 @@
-package com.qaprosoft.carina.demo.web.utils.enums;
+package com.qaprosoft.carina.demo.web.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.web.gui.common.PCTablesPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.TabletsPageBase;
 
-public enum FurnitureSubcategory {
-
-    PC_TABLES("Столи з регулюванням по висоті", PCTablesPageBase.class);
+public enum Devices {
+    TABLETS("Планшети",TabletsPageBase.class);
 
     private String namePage;
     private Class<? extends AbstractPage> pageClass;
 
-    FurnitureSubcategory(String namePage, Class<? extends AbstractPage> pageClass) {
+    Devices(String namePage, Class<? extends AbstractPage> pageClass) {
         this.namePage = namePage;
         this.pageClass = pageClass;
     }

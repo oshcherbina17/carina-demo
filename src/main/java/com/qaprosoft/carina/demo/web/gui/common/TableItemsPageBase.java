@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.demo.web.utils.enums.ProductTabs;
-import com.qaprosoft.carina.demo.web.utils.enums.SortDropdown;
+import com.qaprosoft.carina.demo.web.enums.ProductTabs;
+import com.qaprosoft.carina.demo.web.enums.SortDropdown;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 
 public abstract class TableItemsPageBase extends AbstractPage {

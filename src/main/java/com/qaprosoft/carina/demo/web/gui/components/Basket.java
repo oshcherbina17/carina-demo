@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.web.components;
+package com.qaprosoft.carina.demo.web.gui.components;
 
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +27,7 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
     public Basket(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
+
     public OrderPageBase clickOnOrderButton() {
         toOrderBtn.click();
         return initPage(getDriver(), OrderPageBase.class);

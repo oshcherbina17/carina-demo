@@ -6,9 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.web.components.HeaderMenu;
+import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.common.HomePageBase;
-import com.qaprosoft.carina.demo.web.utils.enums.MenuCategory;
+import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
@@ -18,7 +18,6 @@ public class HomePage extends HomePageBase {
 
     @FindBy(xpath = "//div[@class='header-layout']")
     private HeaderMenu headerMenu;
-
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -32,4 +31,5 @@ public class HomePage extends HomePageBase {
     public HeaderMenu getHeader() {
         return headerMenu;
     }
+
 }

@@ -4,11 +4,11 @@ import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 
-public abstract class OrderPageBase extends AbstractPage {
+public abstract class ContactsPageBase extends AbstractPage {
 
-    public OrderPageBase(WebDriver driver) {
+    public ContactsPageBase(WebDriver driver) {
         super(driver);
     }
 
-    public abstract String getPaymentSumText();
+    public abstract boolean isAddressListPresent(int index);
 }

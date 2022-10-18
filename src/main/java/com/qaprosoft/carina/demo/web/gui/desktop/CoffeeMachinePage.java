@@ -61,7 +61,6 @@ public class CoffeeMachinePage extends CoffeeMachinePageBase {
 
     @Override
     public void clickOnCompareIcon(int index) {
-        System.out.println("hhh");
         compareBtn.get(index).click();
     }
 

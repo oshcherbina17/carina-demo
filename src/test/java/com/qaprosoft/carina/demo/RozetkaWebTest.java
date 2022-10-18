@@ -1,21 +1,25 @@
 package com.qaprosoft.carina.demo;
 
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.demo.web.components.Basket;
-import com.qaprosoft.carina.demo.web.utils.enums.*;
+import com.qaprosoft.carina.demo.web.gui.components.Basket;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.web.components.HeaderMenu;
+import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.common.*;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
+import com.qaprosoft.carina.demo.web.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.web.enums.*;
 
 public class RozetkaWebTest implements IAbstractTest {
 
     private final String BRAND_APPLE = "Apple";
 
     private final String BRAND_LENOVO = "Lenovo";
+
+    private final String DEVICE_TYPE = "Стилуси";
 
     private final String BRAND_DELONGHI = "Delonghi";
 
@@ -102,6 +106,19 @@ public class RozetkaWebTest implements IAbstractTest {
         tableItemsPageBase.clickOnTab(ProductTabs.REVIEWS);
         tableItemsPageBase.selectDropdownOption(SortDropdown.DATE);
         Assert.assertTrue(tableItemsPageBase.isOpinionsSortedByDate(), "List isn't sorted by date");
+    }
 
+    @Test
+    @MethodOwner(owner = "olga")
+    public void testVerifyDeviceTypeAndCheckFooterMenu() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.SMARTPHONES_TV_ELECTRONICS);
+        AppleBrandPageBase appleBrandPageBase = phonesAndElectronicsPageBase.clickOnBrandLink(0);
+        Assert.assertTrue(appleBrandPageBase.isDeviceTypePresent(DEVICE_TYPE),"Device type isn't presented");
+        FooterMenu footerMenu = appleBrandPageBase.getFooterMenu();
+        Assert.assertTrue(footerMenu.isSocialIconPresent(SocialLinks.TELEGRAM), "Social icon isn't presented");
+        ContactsPageBase contactsPageBase = footerMenu.clickOnFooterLink(FooterLinks.CONTACTS);
+        Assert.assertTrue(contactsPageBase.isAddressListPresent(0), "Address list aren't presented");
     }
 }

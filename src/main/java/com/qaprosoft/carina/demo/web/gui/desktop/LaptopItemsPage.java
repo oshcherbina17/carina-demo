@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopItemsPageBase;
-import com.qaprosoft.carina.demo.web.components.Basket;
+import com.qaprosoft.carina.demo.web.gui.components.Basket;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = LaptopItemsPageBase.class)
 public class LaptopItemsPage extends LaptopItemsPageBase {
