@@ -2,9 +2,11 @@ package com.qaprosoft.carina.demo.web.gui.desktop;
 
 import java.util.List;
 
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -41,27 +43,25 @@ public class CoffeeMachinePage extends CoffeeMachinePageBase {
     }
 
     @Override
-    public void productNameFilterClick(String productName) {
-        productNameFilter.format(productName).click();
+    public void productNameFilterClick(FilterType filterType) {
+        productNameFilter.format(filterType.getType()).click();
     }
 
     @Override
-    public boolean isTitleTextContainsProductType(String product) {
-        boolean res = false;
-        for (ExtendedWebElement type : titleProductList) {
-            res = (StringUtils.containsIgnoreCase(type.getText(), product));
-        }
-        return res;
+    public boolean isTitleTextContainsProductType(FilterType filterType) {
+        return  titleProductList.stream().allMatch((type)->StringUtils.containsIgnoreCase(type.getText(),filterType.getType()));
     }
 
     @Override
-    public void selectBrand(String brand) {
-        universalBrandCheckbox.format(brand).click();
+    public void selectBrand(FilterType filterType) {
+        universalBrandCheckbox.format(filterType.getType()).click();
     }
 
     @Override
     public void clickOnCompareIcon(int index) {
+        compareBtn.get(index).sendKeys(Keys.UP);
         compareBtn.get(index).click();
+
     }
 
     @Override

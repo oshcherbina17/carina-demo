@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.web.gui.common;
 
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
@@ -13,9 +14,9 @@ public abstract class TabletsPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void selectBrand(String brand);
+    public abstract void selectBrand(FilterType filterType);
 
-    public abstract void selectRAM(String memory);
+    public abstract void selectRAM(FilterType filterType);
 
     public abstract void selectStateCheckBox(ProductStatus productStatus);
 

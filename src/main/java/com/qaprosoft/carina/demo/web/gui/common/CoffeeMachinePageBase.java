@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.web.gui.common;
 
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
@@ -11,11 +12,11 @@ public abstract class CoffeeMachinePageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void productNameFilterClick(String productName);
+    public abstract void productNameFilterClick(FilterType filterType);
 
-    public abstract boolean isTitleTextContainsProductType(String product);
+    public abstract boolean isTitleTextContainsProductType(FilterType filterType);
 
-    public abstract void selectBrand(String brand);
+    public abstract void selectBrand(FilterType filterType);
 
     public abstract void clickOnCompareIcon(int index);
 

@@ -1,20 +1,22 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
 import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.web.gui.common.CoffeeMachinePageBase;
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
+import com.qaprosoft.carina.demo.web.gui.common.CoffeeMachinePageBase;
+import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
 
     @FindBy(xpath = "//button[@class='header__button ng-tns-c94-1']")
-    private ExtendedWebElement burgerMenu;
+    private ExtendedWebElement hamburgerMenuBtn;
 
     @FindBy(xpath = "//input[contains(@class, 'search-form__input')]")
     private ExtendedWebElement searchInput;
@@ -25,6 +27,12 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(xpath = "//a[contains(@class, 'js-menu-categories__link') and contains(.,'Товари для дому')]")
     private ExtendedWebElement universalCategoryMenu;
 
+    @FindBy(xpath = "//span[contains(@class,'lang__link--active') and contains(.,'UA')]")
+    private ExtendedWebElement languageUA;
+
+    @FindBy(xpath = "//div[contains(@class, 'side-menu drawer-content')]")
+    private HamburgerMenu hamburgerMenu;
+
     @FindBy(id = "fat-menu")
     private ExtendedWebElement catalogBtn;
 
@@ -32,14 +40,20 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
         super(driver, searchContext);
     }
 
-    public CoffeeMachinePageBase searchProductItems(String productName) {
-        searchInput.type(productName);
+    public CoffeeMachinePageBase searchProductItems(FilterType filterType) {
+        searchInput.type(filterType.getType());
         searchBtn.click();
         return initPage(getDriver(), CoffeeMachinePageBase.class);
     }
 
+    public SearchPageBase searchItems(FilterType filterType) {
+        searchInput.type(filterType.getType());
+        searchBtn.click();
+        return initPage(getDriver(), SearchPageBase.class);
+    }
+
     public boolean isCatalogButtonPresent() {
-       return catalogBtn.isElementPresent();
+        return catalogBtn.isElementPresent();
     }
 
     public void clickOnCatalogButton() {
@@ -49,5 +63,21 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     public AbstractPage clickOnCategoryMenu(MenuCategory menuCategory) {
         universalCategoryMenu.format(menuCategory.getNamePage()).click();
         return initPage(getDriver(), menuCategory.getPageClass());
+    }
+
+    public boolean isHamburgerMenuPresent() {
+        return hamburgerMenuBtn.isElementPresent();
+    }
+
+    public HamburgerMenu getHeader() {
+        return hamburgerMenu;
+    }
+
+    public void clickOnHamburgerMenu() {
+        hamburgerMenuBtn.click();
+    }
+
+    public String getLanguageText() {
+        return languageUA.getText().replace(" ", "");
     }
 }

@@ -2,15 +2,17 @@ package com.qaprosoft.carina.demo.web.gui.desktop;
 
 import java.util.List;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.web.gui.common.LaptopItemsPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.TabletsPageBase;
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import com.qaprosoft.carina.demo.web.enums.SortDropdown;
+import com.qaprosoft.carina.demo.web.gui.common.LaptopItemsPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.TabletsPageBase;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = TabletsPageBase.class)
 public class TabletsPage extends TabletsPageBase {
@@ -42,13 +44,13 @@ public class TabletsPage extends TabletsPageBase {
     }
 
     @Override
-    public void selectBrand(String brand) {
-        universalCheckbox.format(brand).click();
+    public void selectBrand(FilterType filterType) {
+        universalCheckbox.format(filterType.getType()).click();
     }
 
     @Override
-    public void selectRAM(String memory) {
-        universalCheckbox.format(memory).click();
+    public void selectRAM(FilterType filterType) {
+        universalCheckbox.format(filterType.getType()).click();
     }
 
     @Override
@@ -76,11 +78,13 @@ public class TabletsPage extends TabletsPageBase {
 
     @Override
     public String getTabletTitleText(int index) {
+        basketIcon.get(index).sendKeys(Keys.UP);
         return titleDeviceList.get(index).getText();
     }
 
     @Override
     public void clickOnBasketIcon(int index) {
+        basketIcon.get(index).sendKeys(Keys.UP);
         basketIcon.get(index).click();
     }
 

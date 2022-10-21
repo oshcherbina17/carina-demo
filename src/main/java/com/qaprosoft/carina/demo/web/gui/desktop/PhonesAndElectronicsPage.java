@@ -1,15 +1,13 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
-import java.util.List;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.web.gui.common.PhonesAndElectronicsPageBase;
 import com.qaprosoft.carina.demo.web.enums.Devices;
+import com.qaprosoft.carina.demo.web.gui.common.PhonesAndElectronicsPageBase;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = PhonesAndElectronicsPageBase.class)
 public class PhonesAndElectronicsPage extends PhonesAndElectronicsPageBase {
@@ -17,8 +15,8 @@ public class PhonesAndElectronicsPage extends PhonesAndElectronicsPageBase {
     @FindBy(xpath = "//a[contains(@class,'tile-cats__heading_type_center') and contains(.,' %s ')]")
     private ExtendedWebElement universalCategoriesMenu;
 
-    @FindBy(xpath = "//a[contains(@class, 'portal-brands__item')]//img[@class='  ng-lazyloaded']")
-    private List<ExtendedWebElement> brandsLink;
+    @FindBy(xpath = "//img[contains(@src, 'apple.jpg')]")
+    private ExtendedWebElement appleBrandsLink;
 
 
     public PhonesAndElectronicsPage(WebDriver driver) {
@@ -33,8 +31,8 @@ public class PhonesAndElectronicsPage extends PhonesAndElectronicsPageBase {
     }
 
     @Override
-    public AppleBrandPage clickOnBrandLink(int index) {
-        brandsLink.get(index).click();
+    public AppleBrandPage clickOnBrandLink() {
+        appleBrandsLink.click();
         return new AppleBrandPage(getDriver());
     }
 }

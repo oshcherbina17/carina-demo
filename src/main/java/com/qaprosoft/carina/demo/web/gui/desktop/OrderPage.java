@@ -1,7 +1,8 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -20,6 +21,7 @@ public class OrderPage extends OrderPageBase {
 
     @Override
     public String getPaymentSumText() {
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(toPaymentSum.getBy()), 5);
         return String.valueOf(toPaymentSum.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", ""));
     }
 }

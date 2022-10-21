@@ -7,8 +7,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.openqa.selenium.WebDriver;
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -43,12 +45,13 @@ public class TableItemsPage extends TableItemsPageBase {
 
     @Override
     public void selectDropdownOption(SortDropdown sortDropdown) {
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(universalDropdownMenu.format(sortDropdown.getSortType()).getBy()),5);
         universalDropdownMenu.format(sortDropdown.getSortType()).click();
     }
 
     @Override
-    public boolean isChosenColorCorrect(String color) {
-        return chosenColor.getText().contains(color);
+    public boolean isChosenColorCorrect(FilterType filterType) {
+        return chosenColor.getText().contains(filterType.getType());
     }
 
     @Override

@@ -1,12 +1,14 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
-import org.openqa.selenium.WebDriver;
+import com.qaprosoft.carina.demo.web.enums.AppleDevices;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.demo.web.gui.common.AppleBrandPageBase;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.web.gui.common.AppleBrandPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.FooterMenu;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = AppleBrandPageBase.class)
@@ -14,6 +16,9 @@ public class AppleBrandPage extends AppleBrandPageBase {
 
     @FindBy(xpath = "//a[contains(@class, 'tile-cats__heading') and contains(.,'%s')]")
     private ExtendedWebElement universalDeviceTypeLink;
+
+    @FindBy(xpath = "//a[contains(@class, 'tile-cats__heading') and contains(.,'Стилуси')]")
+    private ExtendedWebElement stylusTypeLink;
 
     @FindBy(xpath = "//footer[(@class='footer')]")
     private FooterMenu footerMenu;
@@ -23,9 +28,10 @@ public class AppleBrandPage extends AppleBrandPageBase {
     }
 
     @Override
-    public boolean isDeviceTypePresent(String device) {
-        waitUntil(ExpectedConditions.visibilityOfElementLocated(universalDeviceTypeLink.format(device).getBy()),5);
-        return universalDeviceTypeLink.format(device).isElementPresent();
+    public boolean isDeviceTypePresent(AppleDevices appleDevices) {
+        stylusTypeLink.sendKeys(Keys.DOWN);
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(universalDeviceTypeLink.format(appleDevices.getDevice()).getBy()), 5);
+        return universalDeviceTypeLink.format(appleDevices.getDevice()).isElementPresent();
     }
 
     @Override
