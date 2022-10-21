@@ -157,7 +157,7 @@ public class RozetkaWebTest implements IAbstractTest {
     @Test(description = "User can add different items to basket. Check if basket not empty." +
             "And can delete all items in basket.")
     @MethodOwner(owner = "oshcherbina")
-    public void testVerify() {
+    public void testVerifyAddAndDeleteItemsFromBasket() { //
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
@@ -166,14 +166,14 @@ public class RozetkaWebTest implements IAbstractTest {
         searchPageBase.clickOnBasketIcon(1);
         searchPageBase.clickOnBasketButton();
         Basket basket = searchPageBase.getBasketMenu();
-        Assert.assertFalse(basket.getCardStatus(),"Basket is empty");
+        Assert.assertFalse(basket.getCardStatus(), "Basket is empty");
         basket.clickOnContinueBuyButton();
         searchPageBase.clickOnBasketIcon(8);
         searchPageBase.clickOnBasketButton();
         searchPageBase.getBasketMenu();
-        Assert.assertEquals(basket.getSizeTitleText(),2,"The size list are equals");
+        Assert.assertEquals(basket.getSizeTitleText(), 2, "The size list are equals");
         basket.deleteItemsFromBasket(1);
         basket.deleteItemsFromBasket(0);
-        Assert.assertTrue(basket.getCardStatus(),"Basket isn't empty");
+        Assert.assertTrue(basket.getCardStatus(), "Basket isn't empty");
     }
 }
