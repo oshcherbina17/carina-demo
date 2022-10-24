@@ -6,6 +6,7 @@ public enum SocialLinks {
     YOUTUBE("YouTube"),
     INSTAGRAM("Instagram"),
     VIBER("Viber"),
+    GOOGLE("Google"),
     TELEGRAM("Telegram");
 
     private String icon;

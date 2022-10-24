@@ -69,7 +69,7 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
         return hamburgerMenuBtn.isElementPresent();
     }
 
-    public HamburgerMenu getHeader() {
+    public HamburgerMenu getHamburgerMenu() {
         return hamburgerMenu;
     }
 

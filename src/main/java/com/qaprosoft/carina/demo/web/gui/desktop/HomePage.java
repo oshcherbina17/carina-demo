@@ -8,6 +8,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
+import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
 import com.qaprosoft.carina.demo.web.gui.common.HomePageBase;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
@@ -19,6 +20,11 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//span[@class='exponea-close-cross']")
     private ExtendedWebElement closePopupBtn;
 
+    @FindBy(xpath = "//button[contains(@class,'button--navy button--small')]")
+    private ExtendedWebElement loginBtn;
+
+    @FindBy(xpath = "//div[contains(@class,'modal__holder modal__holder_show_animation')]")
+    private LoginForm loginForm;
     @FindBy(xpath = "//div[@class='header-layout']")
     private HeaderMenu headerMenu;
 
@@ -35,8 +41,15 @@ public class HomePage extends HomePageBase {
         return headerMenu;
     }
 
+    public LoginForm getLoginForm() {
+        return loginForm;
+    }
+
     public void clickOnClosePopupButton(){
         closePopupBtn.clickIfPresent(2);
     }
 
+    public void clickOnLoginButton(){
+        loginBtn.click();
+    }
 }

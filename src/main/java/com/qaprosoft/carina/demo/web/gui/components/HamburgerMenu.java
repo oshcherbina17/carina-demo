@@ -22,6 +22,7 @@ public class HamburgerMenu extends AbstractUIObject implements ICustomTypePageFa
     @FindBy(xpath = "//li//button[@id= 'fat-menu']")
     private ExtendedWebElement catalogBtn;
 
+
     public HamburgerMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
@@ -41,4 +42,6 @@ public class HamburgerMenu extends AbstractUIObject implements ICustomTypePageFa
     public String getLanguageTextFromHamburgerMenu() {
         return languageUA.getText().replace(" ", "");
     }
+
+
 }

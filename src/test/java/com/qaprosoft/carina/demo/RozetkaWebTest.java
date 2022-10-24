@@ -1,15 +1,14 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.demo.web.enums.AppleDevices;
-import com.qaprosoft.carina.demo.web.enums.FilterType;
-import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
-import com.qaprosoft.carina.demo.web.gui.components.HamburgerMenu;
+import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.demo.web.enums.AppleDevices;
 import com.qaprosoft.carina.demo.web.enums.Devices;
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.FooterLinks;
 import com.qaprosoft.carina.demo.web.enums.FurnitureSubcategory;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
@@ -27,10 +26,12 @@ import com.qaprosoft.carina.demo.web.gui.common.LaptopsAndPCPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.OrderPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.PCTablesPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.PhonesAndElectronicsPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.TableItemsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.TabletsPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.Basket;
 import com.qaprosoft.carina.demo.web.gui.components.FooterMenu;
+import com.qaprosoft.carina.demo.web.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
 
@@ -146,7 +147,7 @@ public class RozetkaWebTest implements IAbstractTest {
         String textLanguage = headerMenu.getLanguageText();
         Assert.assertTrue(headerMenu.isHamburgerMenuPresent(), "Hamburger Menu isn't presented");
         headerMenu.clickOnHamburgerMenu();
-        HamburgerMenu hamburgerMenu = headerMenu.getHeader();
+        HamburgerMenu hamburgerMenu = headerMenu.getHamburgerMenu();
         Assert.assertTrue(hamburgerMenu.isLoginButtonPresent(), "Login Button isn't presented");
         Assert.assertTrue(hamburgerMenu.isCatalogButtonPresent(), "Catalog isn't presented");
         Assert.assertTrue(hamburgerMenu.isBasketButtonPresent(), "Basket Button isn't presented");
@@ -157,7 +158,7 @@ public class RozetkaWebTest implements IAbstractTest {
     @Test(description = "User can add different items to basket. Check if basket not empty." +
             "And can delete all items in basket.")
     @MethodOwner(owner = "oshcherbina")
-    public void testVerifyAddAndDeleteItemsFromBasket() { //
+    public void testVerifyAddAndDeleteItemsFromBasket() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
@@ -175,5 +176,20 @@ public class RozetkaWebTest implements IAbstractTest {
         basket.deleteItemsFromBasket(1);
         basket.deleteItemsFromBasket(0);
         Assert.assertTrue(basket.getCardStatus(), "Basket isn't empty");
+    }
+
+    @Test(description = "User can check if login form is opened and all input fields are presented.") //
+    @MethodOwner(owner = "oshcherbina")
+    public void testVerify() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        homePage.clickOnClosePopupButton();
+        homePage.clickOnLoginButton();
+        LoginForm loginForm = homePage.getLoginForm();
+        Assert.assertTrue(loginForm.isEmailInputPresent(), "Email input isn't presented");
+        Assert.assertTrue(loginForm.isPasswordInputPresent(), "Password input isn't presented");
+        Assert.assertTrue(loginForm.isSignInButtonPresent(), "Sign In Button isn't presented");
+        Assert.assertTrue(loginForm.isSocialButtonPresent(SocialLinks.FACEBOOK), "Facebook Button isn't presented");
+        Assert.assertTrue(loginForm.isSocialButtonPresent(SocialLinks.GOOGLE), "Google Button isn't presented");
     }
 }
