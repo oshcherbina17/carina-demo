@@ -46,7 +46,7 @@ public class HomePage extends HomePageBase {
     }
 
     public void clickOnClosePopupButton(){
-        closePopupBtn.clickIfPresent(2);
+        closePopupBtn.click();
     }
 
     public void clickOnLoginButton(){

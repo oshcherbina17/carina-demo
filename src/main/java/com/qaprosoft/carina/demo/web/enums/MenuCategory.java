@@ -7,7 +7,7 @@ import com.qaprosoft.carina.demo.web.gui.common.PhonesAndElectronicsPageBase;
 
 public enum MenuCategory {
     LAPTOPS_COMPUTERS("Ноутбуки та комп’ютери", LaptopsAndPCPageBase.class),
-    SMARTPHONES_TV_ELECTRONICS("Смартфони, ТВ і електроніка", PhonesAndElectronicsPageBase.class),
+    PHONES_TV_ELECTRONICS("Смартфони, ТВ і електроніка", PhonesAndElectronicsPageBase.class),
     HOUSEHOLD_GOODS("Товари для дому", HouseholdGoodsPageBase.class);
 
     private String namePage;

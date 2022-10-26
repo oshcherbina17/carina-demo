@@ -1,0 +1,86 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Carina Demo Tests - Rozetka Web" parallel="methods">
+
+    <parameter name="suiteOwner" value="oshcherbina"/>
+
+    <test name="Check brand and sort low to high test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testVerifyCheckBrandAndSortLowToHigh"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify brand check title and sum test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testVerifyBrandCheckTitleAndSum"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify product and compare items test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testVerifyProductAndCompareItems"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify filters and check reviews for date test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testVerifyFiltersAndCheckReviewsForDate"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify device type and check footer menu test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testVerifyDeviceTypeAndCheckFooterMenu"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify hamburger menu test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testVerifyHamburgerMenu"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Add and delete items from basket test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testVerifyAddAndDeleteItemsFromBasket"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify login form test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testVerifyLoginForm"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

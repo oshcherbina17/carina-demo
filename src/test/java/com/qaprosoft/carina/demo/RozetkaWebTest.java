@@ -1,11 +1,12 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
+
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.web.enums.AppleDevices;
 import com.qaprosoft.carina.demo.web.enums.Devices;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
@@ -33,12 +34,12 @@ import com.qaprosoft.carina.demo.web.gui.components.Basket;
 import com.qaprosoft.carina.demo.web.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.web.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
+import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
 
 public class RozetkaWebTest implements IAbstractTest {
 
-    @Test(description = "User can add different filters for products. Sort dropdown menu and check if products" +
-            " add to basket.")
+    @Test(description = "User can add filters for products, sort dropdown menu and check if products add to basket.")
     @MethodOwner(owner = "oshcherbina")
     public void testVerifyCheckBrandAndSortLowToHigh() {
         HomePage homePage = new HomePage(getDriver());
@@ -51,24 +52,23 @@ public class RozetkaWebTest implements IAbstractTest {
         tabletsPageBase.selectStateCheckBox(ProductStatus.AVAILABLE);
         tabletsPageBase.sortDropdownMenu(SortDropdown.LOW_TO_HIGH);
         Assert.assertTrue(tabletsPageBase.sortLowToHighPrice(), "Price not sorted ");
-        tabletsPageBase.clickOnBasketIcon(2);
+        tabletsPageBase.clickOnBasketIcon(Integer.valueOf(R.TESTDATA.get("indexTwo")));
         Assert.assertTrue(tabletsPageBase.addedItemsCounterIsPresent(), "Added Items Counter not exist");
     }
 
-    @Test(description = "User can add different filters for products. Check if device title" +
-            " equals chosen product title. Check if sum price of product equals sum chosen product in basket.")
+    @Test(description = "User can add filters for products. Check if device title and sum equals chosen product.")
     @MethodOwner(owner = "oshcherbina")
     public void testVerifyBrandCheckTitleAndSum() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.SMARTPHONES_TV_ELECTRONICS);
+        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         TabletsPageBase tabletsPageBase = (TabletsPageBase) phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.TABLETS);
         tabletsPageBase.selectBrand(FilterType.BRAND_LENOVO);
         tabletsPageBase.selectRAM(FilterType.RAM);
         tabletsPageBase.sortDropdownMenu(SortDropdown.NEW);
-        String deviceTitleText = tabletsPageBase.getTabletTitleText(0);
-        LaptopItemsPageBase laptopItemsPageBase = tabletsPageBase.clickOnLaptopDevice(0);
+        String deviceTitleText = tabletsPageBase.getTabletTitleText(Integer.valueOf(R.TESTDATA.get("indexZero")));
+        LaptopItemsPageBase laptopItemsPageBase = tabletsPageBase.clickOnLaptopDevice(Integer.valueOf(R.TESTDATA.get("indexZero")));
         String productTitleText = laptopItemsPageBase.getProductTitleText();
         Assert.assertEquals(productTitleText, deviceTitleText, "Texts are not equals");
         laptopItemsPageBase.clickOnBuyButton();
@@ -79,8 +79,7 @@ public class RozetkaWebTest implements IAbstractTest {
         Assert.assertEquals(paymentSum, sumPrice, "Sum are not equals");
     }
 
-    @Test(description = "User can type in search input field different name of products . Add filters and compare" +
-            " two different products.")
+    @Test(description = "User can type in search field name of products. Add filters and compare two different products.")
     @MethodOwner(owner = "oshcherbina")
     public void testVerifyProductAndCompareItems() {
         HomePage homePage = new HomePage(getDriver());
@@ -91,16 +90,15 @@ public class RozetkaWebTest implements IAbstractTest {
         coffeeMachinePageBase.productNameFilterClick(FilterType.FILTER_COFFEE_MACHINE);
         Assert.assertTrue(coffeeMachinePageBase.isTitleTextContainsProductType(FilterType.COFFEE_MACHINE), "Title text don't contains this product");
         coffeeMachinePageBase.selectBrand(FilterType.BRAND_DELONGHI);
-        coffeeMachinePageBase.clickOnCompareIcon(0);
-        coffeeMachinePageBase.clickOnCompareIcon(2);
+        coffeeMachinePageBase.clickOnCompareIcon(Integer.valueOf(R.TESTDATA.get("indexZero")));
+        coffeeMachinePageBase.clickOnCompareIcon(Integer.valueOf(R.TESTDATA.get("indexTwo")));
         Assert.assertTrue(coffeeMachinePageBase.addedItemsCompareCounterIsPresent(), "Added Items Counter isn't present");
         coffeeMachinePageBase.clickOnAddedCompareBtn();
         ComparisonPageBase comparisonPageBase = coffeeMachinePageBase.clickOnProductType();
         Assert.assertTrue(comparisonPageBase.allParameterBtnIsPresent(), "All Parameter button isn't present");
     }
 
-    @Test(description = "User can add different filters for products. Check if chosen filter color add. And " +
-            "check reviews which sorted by date.")
+    @Test(description = "User can add filters for products. Check if color add. And check reviews which sorted by date.")
     @MethodOwner(owner = "oshcherbina")
     public void testVerifyFiltersAndCheckReviewsForDate() {
         HomePage homePage = new HomePage(getDriver());
@@ -113,31 +111,29 @@ public class RozetkaWebTest implements IAbstractTest {
         PCTablesPageBase pcTablesPageBase = (PCTablesPageBase) householdGoodsPageBase.clickOnCategoriesLink(FurnitureSubcategory.PC_TABLES);
         pcTablesPageBase.selectRegulate(FilterType.ELECTRIC_TYPE);
         pcTablesPageBase.selectColor(FilterType.COLOR);
-        TableItemsPageBase tableItemsPageBase = pcTablesPageBase.clickOnProductTitle(4);
+        TableItemsPageBase tableItemsPageBase = pcTablesPageBase.clickOnProductTitle(Integer.valueOf(R.TESTDATA.get("indexFour")));
         Assert.assertTrue(tableItemsPageBase.isChosenColorCorrect(FilterType.COLOR), "Color is not equals the chosen color");
         tableItemsPageBase.clickOnTab(ProductTabs.REVIEWS);
         tableItemsPageBase.selectDropdownOption(SortDropdown.DATE);
         Assert.assertTrue(tableItemsPageBase.isOpinionsSortedByDate(), "List isn't sorted by date");
     }
 
-    @Test(description = "User can check chosen device type. And check if footer menu contains different social icon." +
-            " And move to contact page and chose delivery addresses.")
+    @Test(description = "User can check device type and check if footer menu contains social icon. And move to contact page, check addresses.")
     @MethodOwner(owner = "oshcherbina")
     public void testVerifyDeviceTypeAndCheckFooterMenu() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.SMARTPHONES_TV_ELECTRONICS);
+        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         AppleBrandPageBase appleBrandPageBase = phonesAndElectronicsPageBase.clickOnBrandLink();
         Assert.assertTrue(appleBrandPageBase.isDeviceTypePresent(AppleDevices.STYLUS), "Device type isn't presented");
         FooterMenu footerMenu = appleBrandPageBase.getFooterMenu();
         Assert.assertTrue(footerMenu.isSocialIconPresent(SocialLinks.TELEGRAM), "Social icon isn't presented");
         ContactsPageBase contactsPageBase = footerMenu.clickOnFooterLink(FooterLinks.CONTACTS);
-        Assert.assertTrue(contactsPageBase.isAddressListPresent(0), "Address list aren't presented");
+        Assert.assertTrue(contactsPageBase.isAddressListPresent(Integer.valueOf(R.TESTDATA.get("indexZero"))), "Address list aren't presented");
     }
 
-    @Test(description = "User can check if different buttons present on Hamburger Menu. And compare the language" +
-            "that its are equals.")
+    @Test(description = "User can check if buttons present on Hamburger Menu. And compare the language that its are equals.")
     @MethodOwner(owner = "oshcherbina")
     public void testVerifyHamburgerMenu() {
         HomePage homePage = new HomePage(getDriver());
@@ -155,8 +151,7 @@ public class RozetkaWebTest implements IAbstractTest {
         Assert.assertEquals(textLanguageFromHamburger, textLanguage, "Language texts are not equals");
     }
 
-    @Test(description = "User can add different items to basket. Check if basket not empty." +
-            "And can delete all items in basket.")
+    @Test(description = "User can add items to basket. Check if basket not empty. And can delete all items in basket.")
     @MethodOwner(owner = "oshcherbina")
     public void testVerifyAddAndDeleteItemsFromBasket() {
         HomePage homePage = new HomePage(getDriver());
@@ -164,25 +159,25 @@ public class RozetkaWebTest implements IAbstractTest {
         homePage.clickOnClosePopupButton();
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase = headerMenu.searchItems(FilterType.SEARCH_BRIT);
-        searchPageBase.clickOnBasketIcon(1);
+        searchPageBase.clickAddToBackButton(Integer.valueOf(R.TESTDATA.get("indexOne")));
         searchPageBase.clickOnBasketButton();
         Basket basket = searchPageBase.getBasketMenu();
         Assert.assertFalse(basket.getCardStatus(), "Basket is empty");
         basket.clickOnContinueBuyButton();
-        searchPageBase.clickOnBasketIcon(8);
+        searchPageBase.clickAddToBackButton(Integer.valueOf(R.TESTDATA.get("indexEight")));
         searchPageBase.clickOnBasketButton();
-        searchPageBase.getBasketMenu();
-        Assert.assertEquals(basket.getSizeTitleText(), 2, "The size list are equals");
-        basket.deleteItemsFromBasket(1);
-        basket.deleteItemsFromBasket(0);
+        int itemsSize = 2;
+        Assert.assertEquals(basket.getSizeTitleText(), itemsSize, "The size list are equals");
+        basket.deleteItemsFromBasket();
         Assert.assertTrue(basket.getCardStatus(), "Basket isn't empty");
     }
 
     @Test(description = "User can check if login form is opened and all input fields are presented.") //
     @MethodOwner(owner = "oshcherbina")
-    public void testVerify() {
+    public void testVerifyLoginForm() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         homePage.clickOnLoginButton();
         LoginForm loginForm = homePage.getLoginForm();

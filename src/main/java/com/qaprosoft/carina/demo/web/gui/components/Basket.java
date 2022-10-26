@@ -67,9 +67,16 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
         return cardStatus.isElementPresent();
     }
 
-    public void deleteItemsFromBasket(int index) {
-        itemsOptionBtn.get(index).click();
-        itemsDeleteBtn.click();
+    public void deleteItemsFromBasket() {
+        while (!cardStatus.isElementPresent()) {
+            for (int i = 0; i < itemsTitleText.size(); i++) {
+                if (itemsTitleText.get(i).isElementPresent()) {
+                    itemsOptionBtn.get(i).click();
+                    itemsDeleteBtn.click();
+                }
+            }
+        }
     }
+
 
 }
