@@ -15,7 +15,7 @@ import com.qaprosoft.carina.demo.web.gui.components.Basket;
 public class SearchPage extends SearchPageBase {
 
     @FindBy(xpath = "//button[contains(@class, 'goods-tile__buy-button')]")
-    private List<ExtendedWebElement> addToBackBtn;
+    private List<ExtendedWebElement> addToBagBtn;
 
     @FindBy(xpath = "//button[contains(@class,'header__button--active')]")
     private ExtendedWebElement basketBtn;
@@ -32,9 +32,9 @@ public class SearchPage extends SearchPageBase {
     }
 
     @Override
-    public void clickAddToBackButton(int index) {
+    public void clickAddToBagButton(int index) {
         waitUntil(ExpectedConditions.titleContains("Brit"), 5);
-        addToBackBtn.get(index).click();
+        addToBagBtn.get(index).click();
     }
 
     @Override

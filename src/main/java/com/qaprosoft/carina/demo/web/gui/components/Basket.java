@@ -78,5 +78,4 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
         }
     }
 
-
 }

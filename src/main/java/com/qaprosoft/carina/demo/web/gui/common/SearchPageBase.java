@@ -11,7 +11,7 @@ public abstract class SearchPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void clickAddToBackButton(int index);
+    public abstract void clickAddToBagButton(int index);
 
     public abstract void clickOnBasketButton();
 

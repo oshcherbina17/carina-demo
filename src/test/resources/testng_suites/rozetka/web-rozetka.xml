@@ -1,7 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="Carina Demo Tests - Rozetka Web" parallel="methods">
-
-    <parameter name="suiteOwner" value="oshcherbina"/>
+<suite verbose="1" name="Carina Demo Tests - Rozetka Web" parallel="tests" thread-count="4">
 
     <test name="Check brand and sort low to high test">
         <classes>
