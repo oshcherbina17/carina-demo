@@ -36,13 +36,6 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.zebrunner</groupId>
-			<artifactId>agent-testng</artifactId>
-			<version>1.8.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>com.qaprosoft</groupId>
 			<artifactId>carina-core</artifactId>
 			<version>${carina-core_version}</version>
@@ -81,6 +74,13 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.3.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zebrunner</groupId>
+			<artifactId>agent-testng</artifactId>
+			<version>1.8.1</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
