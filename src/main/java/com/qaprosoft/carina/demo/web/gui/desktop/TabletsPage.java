@@ -78,13 +78,13 @@ public class TabletsPage extends TabletsPageBase {
 
     @Override
     public String getTabletTitleText(int index) {
-        basketIcon.get(index).sendKeys(Keys.UP);
+        basketIcon.get(index).sendKeys(Keys.PAGE_UP);
         return titleDeviceList.get(index).getText();
     }
 
     @Override
     public void clickOnBasketIcon(int index) {
-        basketIcon.get(index).sendKeys(Keys.UP);
+        basketIcon.get(index).sendKeys(Keys.PAGE_UP);
         basketIcon.get(index).click();
     }
 

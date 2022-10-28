@@ -41,7 +41,7 @@ public class PCTablesPage extends PCTablesPageBase {
 
     @Override
     public TableItemsPageBase clickOnProductTitle(int index) {
-        basketIcon.get(index).sendKeys(Keys.UP);
+        basketIcon.get(index).sendKeys(Keys.PAGE_UP);
         titleProductList.get(index).click();
         return initPage(getDriver(), TableItemsPageBase.class);
     }

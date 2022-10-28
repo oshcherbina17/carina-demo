@@ -23,11 +23,11 @@
         </classes>
     </test>
 
-    <test name="Verify product and compare items test">
+    <test name="Compare products test">
         <classes>
             <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
                 <methods>
-                    <include name="testVerifyProductAndCompareItems"/>
+                    <include name="testCompareProducts"/>
                 </methods>
             </class>
         </classes>
@@ -67,7 +67,7 @@
         <classes>
             <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
                 <methods>
-                    <include name="testVerifyAddAndDeleteItemsFromBasket"/>
+                    <include name="testAddAndDeleteItemsFromBasket"/>
                 </methods>
             </class>
         </classes>

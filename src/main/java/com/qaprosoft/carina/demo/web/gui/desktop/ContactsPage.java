@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.web.gui.desktop;
 
 import java.util.List;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,7 @@ public class ContactsPage extends ContactsPageBase {
 
     @Override
     public boolean isAddressListPresent(int index) {
+        addressList.get(index).sendKeys(Keys.DOWN);
         waitUntil(ExpectedConditions.visibilityOfElementLocated(addressList.get(index).getBy()),5);
         return addressList.get(index).isElementPresent();
     }

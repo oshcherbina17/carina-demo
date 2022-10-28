@@ -55,7 +55,7 @@ public class RozetkaWebTest implements IAbstractTest {
         tabletsPageBase.selectRAM(FilterType.RAM);
         tabletsPageBase.sortDropdownMenu(SortDropdown.LOW_TO_HIGH);
         Assert.assertTrue(tabletsPageBase.sortLowToHighPrice(), "Price not sorted ");
-        tabletsPageBase.clickOnBasketIcon(INDEX_TWO);
+        tabletsPageBase.clickOnBasketIcon(INDEX_ONE);
         Assert.assertTrue(tabletsPageBase.addedItemsCounterIsPresent(), "Added Items Counter not exist");
     }
 
@@ -86,7 +86,7 @@ public class RozetkaWebTest implements IAbstractTest {
     @Test(description = "User can type in search field name of products. Add filters and compare two different products.")
     @MethodOwner(owner = "oshcherbina")
     @TestLabel(name = "feature", value = {"web"})
-    public void testVerifyProductAndCompareItems() {
+    public void testCompareProducts() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
@@ -162,7 +162,7 @@ public class RozetkaWebTest implements IAbstractTest {
     @Test(description = "User can add items to basket. Check if basket not empty. And can delete all items in basket.")
     @MethodOwner(owner = "oshcherbina")
     @TestLabel(name = "feature", value = {"web"})
-    public void testVerifyAddAndDeleteItemsFromBasket() {
+    public void testAddAndDeleteItemsFromBasket() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
