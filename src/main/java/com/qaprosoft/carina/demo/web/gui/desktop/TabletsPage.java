@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.web.gui.desktop;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
@@ -37,6 +38,9 @@ public class TabletsPage extends TabletsPageBase {
 
     @FindBy(xpath = "//h1[contains(@class, 'catalog-heading')]")
     private ExtendedWebElement deviceTitleText;
+
+    @FindBy(xpath = "//a[@class='goods-tile__heading ng-star-inserted']")
+    private List<ExtendedWebElement> searchBrandList;
 
     public TabletsPage(WebDriver driver) {
         super(driver);
@@ -84,7 +88,6 @@ public class TabletsPage extends TabletsPageBase {
 
     @Override
     public void clickOnBasketIcon(int index) {
-        basketIcon.get(index).sendKeys(Keys.PAGE_UP);
         basketIcon.get(index).click();
     }
 
@@ -97,5 +100,11 @@ public class TabletsPage extends TabletsPageBase {
     public LaptopItemsPageBase clickOnLaptopDevice(int index) {
         titleDeviceList.get(index).click();
         return initPage(getDriver(), LaptopItemsPageBase.class);
+    }
+
+    @Override
+    public boolean checkChosenBrand(int index, String brandName) {
+        basketIcon.get(index).sendKeys(Keys.PAGE_UP);
+        return searchBrandList.stream().allMatch((model) -> StringUtils.containsIgnoreCase(model.getText(), brandName));
     }
 }
