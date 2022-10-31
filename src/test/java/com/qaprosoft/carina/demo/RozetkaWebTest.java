@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
@@ -37,15 +38,15 @@ import com.zebrunner.agent.core.annotation.TestLabel;
 
 public class RozetkaWebTest implements IAbstractTest {
 
-    final int INDEX_ZERO=0;
+    final int INDEX_ZERO = 0;
     final int INDEX_ONE = 1;
-    final int INDEX_TWO=2;
-    final int INDEX_FOUR=4;
+    final int INDEX_TWO = 2;
+    final int INDEX_FOUR = 4;
 
-    @Test(description = "User can add filters for products, sort dropdown menu and check if products add to basket.")
+    @Test(description = "User can add filters for products.")
     @MethodOwner(owner = "oshcherbina")
     @TestLabel(name = "feature", value = {"web"})
-    public void testVerifyCheckBrandAndSortLowToHigh() {
+    public void testVerifyCheckBrand() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
@@ -53,6 +54,20 @@ public class RozetkaWebTest implements IAbstractTest {
         TabletsPageBase tabletsPageBase = (TabletsPageBase) laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
         tabletsPageBase.selectBrand(FilterType.BRAND_APPLE);
         tabletsPageBase.selectRAM(FilterType.RAM);
+        tabletsPageBase.selectStateCheckBox(ProductStatus.AVAILABLE);
+        Assert.assertTrue(tabletsPageBase.checkChosenBrand(INDEX_ZERO, FilterType.BRAND_APPLE.getType()));
+    }
+
+    @Test(description = "User can sort dropdown menu and check if products add to basket.")
+    @MethodOwner(owner = "oshcherbina")
+    @TestLabel(name = "feature", value = {"web"})
+    public void testSortLowToHigh() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        homePage.clickOnClosePopupButton();
+        LaptopsAndPCPageBase laptopsAndPCPageBase = (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
+        TabletsPageBase tabletsPageBase = (TabletsPageBase) laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
+        tabletsPageBase.selectBrand(FilterType.BRAND_APPLE);
         tabletsPageBase.sortDropdownMenu(SortDropdown.LOW_TO_HIGH);
         Assert.assertTrue(tabletsPageBase.sortLowToHighPrice(), "Price not sorted ");
         tabletsPageBase.clickOnBasketIcon(INDEX_ONE);
@@ -103,10 +118,10 @@ public class RozetkaWebTest implements IAbstractTest {
         Assert.assertTrue(comparisonPageBase.allParameterBtnIsPresent(), "All Parameter button isn't present");
     }
 
-    @Test(description = "User can add filters for products. Check if color add. And check reviews which sorted by date.")
+    @Test(description = "User can add filters for products. And check reviews which sorted by date.")
     @MethodOwner(owner = "oshcherbina")
     @TestLabel(name = "feature", value = {"web"})
-    public void testVerifyFiltersAndCheckReviewsForDate() {
+    public void testCheckReviewsForDate() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
@@ -116,18 +131,16 @@ public class RozetkaWebTest implements IAbstractTest {
         HouseholdGoodsPageBase householdGoodsPageBase = (HouseholdGoodsPageBase) headerMenu.clickOnCategoryMenu(MenuCategory.HOUSEHOLD_GOODS);
         PCTablesPageBase pcTablesPageBase = (PCTablesPageBase) householdGoodsPageBase.clickOnCategoriesLink(FurnitureSubcategory.PC_TABLES);
         pcTablesPageBase.selectRegulate(FilterType.ELECTRIC_TYPE);
-        pcTablesPageBase.selectColor(FilterType.COLOR);
-        TableItemsPageBase tableItemsPageBase = pcTablesPageBase.clickOnProductTitle(INDEX_FOUR);
-        Assert.assertTrue(tableItemsPageBase.isChosenColorCorrect(FilterType.COLOR), "Color is not equals the chosen color");
+        TableItemsPageBase tableItemsPageBase = pcTablesPageBase.clickOnProductTitle(INDEX_ONE);
         tableItemsPageBase.clickOnTab(ProductTabs.REVIEWS);
         tableItemsPageBase.selectDropdownOption(SortDropdown.DATE);
         Assert.assertTrue(tableItemsPageBase.isOpinionsSortedByDate(), "List isn't sorted by date");
     }
 
-    @Test(description = "User can check device type and check if footer menu contains social icon. And move to contact page, check addresses.")
+    @Test(description = "User can check device type,check if footer menu contains social icon. Check delivery addresses.")
     @MethodOwner(owner = "oshcherbina")
     @TestLabel(name = "feature", value = {"web"})
-    public void testVerifyDeviceTypeAndCheckFooterMenu() {
+    public void testCheckDeviceTypeAndFooterMenu() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
@@ -136,6 +149,7 @@ public class RozetkaWebTest implements IAbstractTest {
         Assert.assertTrue(appleBrandPageBase.isDeviceTypePresent(AppleDevices.STYLUS), "Device type isn't presented");
         FooterMenu footerMenu = appleBrandPageBase.getFooterMenu();
         Assert.assertTrue(footerMenu.isSocialIconPresent(SocialLinks.TELEGRAM), "Social icon isn't presented");
+        Assert.assertTrue(footerMenu.isFooterLinksPresent(FooterLinks.CONTACTS), "Footer link isn't presented");
         ContactsPageBase contactsPageBase = footerMenu.clickOnFooterLink(FooterLinks.CONTACTS);
         Assert.assertTrue(contactsPageBase.isAddressListPresent(INDEX_ZERO), "Address list aren't presented");
     }
