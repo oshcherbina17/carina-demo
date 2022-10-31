@@ -3,11 +3,21 @@
 
     <parameter name="suiteOwner" value="oshcherbina"/>
 
-    <test name="Check brand and sort low to high test">
+    <test name="Check brand test">
         <classes>
             <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
                 <methods>
-                    <include name="testVerifyCheckBrandAndSortLowToHigh"/>
+                    <include name="testVerifyCheckBrand"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Check sort low to high test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+                <methods>
+                    <include name="testSortLowToHigh"/>
                 </methods>
             </class>
         </classes>
@@ -33,21 +43,21 @@
         </classes>
     </test>
 
-    <test name="Verify filters and check reviews for date test">
+    <test name="Check reviews for date test">
         <classes>
             <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
                 <methods>
-                    <include name="testVerifyFiltersAndCheckReviewsForDate"/>
+                    <include name="testCheckReviewsForDate"/>
                 </methods>
             </class>
         </classes>
     </test>
 
-    <test name="Verify device type and check footer menu test">
+    <test name="Check device type and footer menu test">
         <classes>
             <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
                 <methods>
-                    <include name="testVerifyDeviceTypeAndCheckFooterMenu"/>
+                    <include name="testCheckDeviceTypeAndFooterMenu"/>
                 </methods>
             </class>
         </classes>
