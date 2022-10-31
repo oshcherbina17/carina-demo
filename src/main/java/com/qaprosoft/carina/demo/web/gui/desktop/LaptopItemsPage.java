@@ -1,6 +1,8 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
@@ -30,7 +32,7 @@ public class LaptopItemsPage extends LaptopItemsPageBase {
     }
 
     @Override
-    public void clickOnBuyButton(){
+    public void clickOnBuyButton() {
         buyBtn.click();
     }
 

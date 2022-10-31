@@ -1,7 +1,9 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -31,11 +33,17 @@ public class FooterMenu extends AbstractUIObject implements ICustomTypePageFacto
     }
 
     public boolean isSocialIconPresent(SocialLinks socialLinks) {
+        universalSocialIcon.format(socialLinks.getIcon()).sendKeys(Keys.DOWN);
         return universalSocialIcon.format(socialLinks.getIcon()).isElementPresent();
+    }
+
+    public boolean isFooterLinksPresent(FooterLinks footerLinks) {
+        return universalFooterLink.format(footerLinks.getLink()).isElementPresent();
     }
 
     public ContactsPageBase clickOnFooterLink(FooterLinks footerLinks) {
         universalFooterLink.format(footerLinks.getLink()).click();
+        waitUntil(ExpectedConditions.titleContains("Пункти самовивозу та повернення"),5);
         return initPage(getDriver(), ContactsPageBase.class);
     }
 }

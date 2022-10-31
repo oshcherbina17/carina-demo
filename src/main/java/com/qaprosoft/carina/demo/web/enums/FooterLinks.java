@@ -12,7 +12,6 @@ public enum FooterLinks {
 
     FooterLinks(String link) {
         this.link = link;
-
     }
 
     public String getLink() {
