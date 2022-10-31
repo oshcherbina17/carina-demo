@@ -1,9 +1,9 @@
 package com.qaprosoft.carina.demo.web.gui.common;
 
-import com.qaprosoft.carina.demo.web.enums.FilterType;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import com.qaprosoft.carina.demo.web.enums.SortDropdown;
 
@@ -31,4 +31,6 @@ public abstract class TabletsPageBase extends AbstractPage {
     public abstract boolean addedItemsCounterIsPresent();
 
     public abstract LaptopItemsPageBase clickOnLaptopDevice(int index);
+
+    public abstract boolean checkChosenBrand(int index, String brandName);
 }
