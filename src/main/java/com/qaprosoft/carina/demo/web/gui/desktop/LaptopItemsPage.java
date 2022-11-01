@@ -1,6 +1,5 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
@@ -34,6 +33,12 @@ public class LaptopItemsPage extends LaptopItemsPageBase {
     @Override
     public void clickOnBuyButton() {
         buyBtn.click();
+    }
+
+    @Override
+    public void moveToTitleText() {
+        productTitleText.hover();
+        waitUntil(ExpectedConditions.visibilityOfElementLocated(productTitleText.getBy()), 2);
     }
 
     @Override

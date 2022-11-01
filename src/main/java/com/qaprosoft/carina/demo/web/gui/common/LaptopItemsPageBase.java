@@ -15,5 +15,7 @@ public abstract class LaptopItemsPageBase extends AbstractPage {
 
     public abstract void clickOnBuyButton();
 
-     public abstract Basket getBasketMenu();
+    public abstract void moveToTitleText();
+
+    public abstract Basket getBasketMenu();
 }

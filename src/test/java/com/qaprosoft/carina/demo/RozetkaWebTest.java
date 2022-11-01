@@ -88,6 +88,7 @@ public class RozetkaWebTest implements IAbstractTest {
         tabletsPageBase.sortDropdownMenu(SortDropdown.NEW);
         String deviceTitleText = tabletsPageBase.getTabletTitleText(INDEX_ZERO);
         LaptopItemsPageBase laptopItemsPageBase = tabletsPageBase.clickOnLaptopDevice(INDEX_ZERO);
+        laptopItemsPageBase.moveToTitleText();
         String productTitleText = laptopItemsPageBase.getProductTitleText();
         Assert.assertEquals(productTitleText, deviceTitleText, "Texts are not equals");
         laptopItemsPageBase.clickOnBuyButton();
