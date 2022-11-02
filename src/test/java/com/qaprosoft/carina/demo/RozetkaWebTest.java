@@ -92,11 +92,8 @@ public class RozetkaWebTest implements IAbstractTest {
         laptopItemsPageBase.clickOnBuyButton();
         Basket basket = laptopItemsPageBase.getBasketMenu();
         String sumPrice = basket.getSumPriceText();
-        Assert.assertTrue(basket.isToOrderBtnPresent(),"Button isn't Presented");
-        OrderPageBase orderPageBase = basket.clickOnOrderButton();
-        String param = "Разом";
-        String paymentSum = orderPageBase.getPaymentSumText(param);
-        Assert.assertEquals(paymentSum, sumPrice, "Sum are not equals");
+        String itemsSum = basket.getItemPriceText();
+        Assert.assertEquals(itemsSum, sumPrice, "Sum are not equals");
     }
 
     @Test(description = "User can type in search field name of products. Add filters and compare two different products.")
@@ -188,8 +185,6 @@ public class RozetkaWebTest implements IAbstractTest {
         searchPageBase.clickOnBasketButton();
         Basket basket = searchPageBase.getBasketMenu();
         Assert.assertFalse(basket.getCardStatus(), "Basket is empty");
-        int itemsSize = 2;
-        Assert.assertEquals(basket.getSizeTitleText(), itemsSize, "The size list are equals");
         basket.deleteItemsFromBasket();
         Assert.assertTrue(basket.getCardStatus(), "Basket isn't empty");
     }

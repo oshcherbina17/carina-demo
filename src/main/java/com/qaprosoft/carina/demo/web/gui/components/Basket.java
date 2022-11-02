@@ -32,6 +32,9 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
     @FindBy(xpath = "//div[@class='cart-receipt__sum-price']//span[1]")
     private ExtendedWebElement sumPrice;
 
+    @FindBy(xpath = "//p[@data-testid='cost']")
+    private ExtendedWebElement itemPrice;
+
     @FindBy(xpath = "//h4[@class='cart-dummy__heading']")
     private ExtendedWebElement cardStatus;
 
@@ -48,23 +51,17 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
         super(driver, searchContext);
     }
 
-    public boolean isToOrderBtnPresent() {
-        return toOrderBtn.isElementPresent();
-    }
-
-    public OrderPageBase clickOnOrderButton() {
-        toOrderBtn.click();
-        return initPage(getDriver(), OrderPageBase.class);
-    }
-
     public String getSumPriceText() {
         return sumPrice.getText();
+    }
+
+    public String getItemPriceText() {
+        return itemPrice.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", "");
     }
 
     public Integer getSizeTitleText() {
         return itemsTitleText.size();
     }
-
 
     public boolean getCardStatus() {
         return cardStatus.isElementPresent();
