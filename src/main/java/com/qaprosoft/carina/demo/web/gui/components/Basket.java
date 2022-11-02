@@ -54,7 +54,6 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
 
     public OrderPageBase clickOnOrderButton() {
         toOrderBtn.click();
-       // waitUntil(ExpectedConditions.titleContains("Разом"), 5);
         return initPage(getDriver(), OrderPageBase.class);
     }
 
@@ -66,10 +65,6 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
         return itemsTitleText.size();
     }
 
-    public SearchPageBase clickOnContinueBuyButton() {
-        continueBuyBtn.click();
-        return initPage(getDriver(), SearchPageBase.class);
-    }
 
     public boolean getCardStatus() {
         return cardStatus.isElementPresent();

@@ -41,7 +41,6 @@ public class RozetkaWebTest implements IAbstractTest {
     final int INDEX_ZERO = 0;
     final int INDEX_ONE = 1;
     final int INDEX_TWO = 2;
-    final int INDEX_FOUR = 4;
 
     @Test(description = "User can add filters for products.")
     @MethodOwner(owner = "oshcherbina")
@@ -185,12 +184,10 @@ public class RozetkaWebTest implements IAbstractTest {
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase = headerMenu.searchItems(FilterType.SEARCH_BRIT);
         searchPageBase.clickAddToBagButton(INDEX_ONE);
+        searchPageBase.clickAddToBagButton(INDEX_TWO);
         searchPageBase.clickOnBasketButton();
         Basket basket = searchPageBase.getBasketMenu();
         Assert.assertFalse(basket.getCardStatus(), "Basket is empty");
-        basket.clickOnContinueBuyButton();
-        searchPageBase.clickAddToBagButton(INDEX_FOUR);
-        searchPageBase.clickOnBasketButton();
         int itemsSize = 2;
         Assert.assertEquals(basket.getSizeTitleText(), itemsSize, "The size list are equals");
         basket.deleteItemsFromBasket();
