@@ -2,6 +2,8 @@ package com.qaprosoft.carina.demo.web.gui.components;
 
 import java.util.List;
 
+import com.qaprosoft.carina.demo.web.enums.AppleDevices;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +13,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.gui.common.OrderPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
 
@@ -45,8 +48,13 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
         super(driver, searchContext);
     }
 
+    public boolean isToOrderBtnPresent() {
+        return toOrderBtn.isElementPresent();
+    }
+
     public OrderPageBase clickOnOrderButton() {
         toOrderBtn.click();
+       // waitUntil(ExpectedConditions.titleContains("Разом"), 5);
         return initPage(getDriver(), OrderPageBase.class);
     }
 

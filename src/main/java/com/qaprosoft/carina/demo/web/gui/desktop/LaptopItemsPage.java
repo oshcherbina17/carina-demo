@@ -23,8 +23,8 @@ public class LaptopItemsPage extends LaptopItemsPageBase {
 
     @FindBy(xpath = "//div[contains(@class, 'modal__holder--large')]")
     private Basket basket;
-    @FindBy(xpath = "//div[contains(@class, 'modal__holder--large')]")
-    private ExtendedWebElement basket1;
+    @FindBy(xpath = "//div[contains(@class, 'modal__holder')]")
+    private ExtendedWebElement basketModal;
 
     @FindBy(xpath = "//h3[@class='modal__heading']")
     private ExtendedWebElement basketTitle;
@@ -41,7 +41,7 @@ public class LaptopItemsPage extends LaptopItemsPageBase {
     @Override
     public void clickOnBuyButton() {
         buyBtn.click();
-        if (!basket1.isElementPresent()){
+        if (!basketModal.isElementPresent()){
             basketItemBtn.click();
         }
     }

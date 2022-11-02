@@ -21,7 +21,7 @@ public class OrderPage extends OrderPageBase {
 
     @Override
     public String getPaymentSumText(String param) {
-        waitUntil(ExpectedConditions.titleContains(param), 15);
+        waitUntil(ExpectedConditions.titleContains(param), 10);
         return String.valueOf(toPaymentSum.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", ""));
     }
 }

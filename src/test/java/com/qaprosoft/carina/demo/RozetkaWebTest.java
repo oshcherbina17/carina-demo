@@ -93,6 +93,7 @@ public class RozetkaWebTest implements IAbstractTest {
         laptopItemsPageBase.clickOnBuyButton();
         Basket basket = laptopItemsPageBase.getBasketMenu();
         String sumPrice = basket.getSumPriceText();
+        Assert.assertTrue(basket.isToOrderBtnPresent(),"Button isn't Presented");
         OrderPageBase orderPageBase = basket.clickOnOrderButton();
         String param = "Разом";
         String paymentSum = orderPageBase.getPaymentSumText(param);
