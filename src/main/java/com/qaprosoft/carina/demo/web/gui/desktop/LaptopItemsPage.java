@@ -18,8 +18,16 @@ public class LaptopItemsPage extends LaptopItemsPageBase {
     @FindBy(xpath = "//span[text()=' Купити ']")
     private ExtendedWebElement buyBtn;
 
+    @FindBy(xpath = "//span[text()=' В кошику ']")
+    private ExtendedWebElement basketItemBtn;
+
     @FindBy(xpath = "//div[contains(@class, 'modal__holder--large')]")
     private Basket basket;
+    @FindBy(xpath = "//div[contains(@class, 'modal__holder--large')]")
+    private ExtendedWebElement basket1;
+
+    @FindBy(xpath = "//h3[@class='modal__heading']")
+    private ExtendedWebElement basketTitle;
 
     public LaptopItemsPage(WebDriver driver) {
         super(driver);
@@ -33,6 +41,9 @@ public class LaptopItemsPage extends LaptopItemsPageBase {
     @Override
     public void clickOnBuyButton() {
         buyBtn.click();
+        if (!basket1.isElementPresent()){
+            basketItemBtn.click();
+        }
     }
 
     @Override

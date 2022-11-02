@@ -84,7 +84,6 @@ public class RozetkaWebTest implements IAbstractTest {
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         TabletsPageBase tabletsPageBase = (TabletsPageBase) phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.TABLETS);
         tabletsPageBase.selectBrand(FilterType.BRAND_LENOVO);
-        tabletsPageBase.selectRAM(FilterType.RAM);
         tabletsPageBase.sortDropdownMenu(SortDropdown.NEW);
         String deviceTitleText = tabletsPageBase.getTabletTitleText(INDEX_ZERO);
         LaptopItemsPageBase laptopItemsPageBase = tabletsPageBase.clickOnLaptopDevice(INDEX_ZERO);
@@ -95,7 +94,8 @@ public class RozetkaWebTest implements IAbstractTest {
         Basket basket = laptopItemsPageBase.getBasketMenu();
         String sumPrice = basket.getSumPriceText();
         OrderPageBase orderPageBase = basket.clickOnOrderButton();
-        String paymentSum = orderPageBase.getPaymentSumText();
+        String param = "Разом";
+        String paymentSum = orderPageBase.getPaymentSumText(param);
         Assert.assertEquals(paymentSum, sumPrice, "Sum are not equals");
     }
 

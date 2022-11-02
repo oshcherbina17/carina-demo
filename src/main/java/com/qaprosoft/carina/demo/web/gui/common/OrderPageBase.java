@@ -10,5 +10,5 @@ public abstract class OrderPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract String getPaymentSumText();
+    public abstract String getPaymentSumText(String param);
 }

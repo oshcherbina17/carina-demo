@@ -20,8 +20,8 @@ public class OrderPage extends OrderPageBase {
     }
 
     @Override
-    public String getPaymentSumText() {
-        waitUntil(ExpectedConditions.visibilityOfElementLocated(toPaymentSum.getBy()), 10);
+    public String getPaymentSumText(String param) {
+        waitUntil(ExpectedConditions.titleContains(param), 15);
         return String.valueOf(toPaymentSum.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", ""));
     }
 }
