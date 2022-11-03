@@ -21,8 +21,12 @@ public class LaptopItemsPage extends LaptopItemsPageBase {
     @FindBy(xpath = "//span[text()=' В кошику ']")
     private ExtendedWebElement basketItemBtn;
 
+    @FindBy(xpath = "//button[contains(@class,'header__button--active')]")
+    private ExtendedWebElement basketBtn;
+
     @FindBy(xpath = "//div[contains(@class, 'modal__holder--large')]")
     private Basket basket;
+
     @FindBy(xpath = "//div[contains(@class, 'modal__holder')]")
     private ExtendedWebElement basketModal;
 
@@ -41,8 +45,8 @@ public class LaptopItemsPage extends LaptopItemsPageBase {
     @Override
     public void clickOnBuyButton() {
         buyBtn.click();
-        if (!basketModal.isElementPresent()){
-            basketItemBtn.click();
+        if (!basketModal.isElementPresent(2)){
+            basketBtn.click();
         }
     }
 

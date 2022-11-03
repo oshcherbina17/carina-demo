@@ -22,7 +22,6 @@ import com.qaprosoft.carina.demo.web.gui.common.ContactsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.HouseholdGoodsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopItemsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopsAndPCPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.OrderPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.PCTablesPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.PhonesAndElectronicsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
@@ -34,17 +33,14 @@ import com.qaprosoft.carina.demo.web.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
-import com.zebrunner.agent.core.annotation.TestLabel;
 
 public class RozetkaWebTest implements IAbstractTest {
-
     final int INDEX_ZERO = 0;
     final int INDEX_ONE = 1;
     final int INDEX_TWO = 2;
 
     @Test(description = "User can add filters for products.")
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testVerifyCheckBrand() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -59,7 +55,6 @@ public class RozetkaWebTest implements IAbstractTest {
 
     @Test(description = "User can sort dropdown menu and check if products add to basket.")
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testSortLowToHigh() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -75,7 +70,6 @@ public class RozetkaWebTest implements IAbstractTest {
 
     @Test(description = "User can add filters for products. Check if device title and sum equals chosen product.")
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testVerifyBrandCheckTitleAndSum() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -98,7 +92,6 @@ public class RozetkaWebTest implements IAbstractTest {
 
     @Test(description = "User can type in search field name of products. Add filters and compare two different products.")
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testCompareProducts() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -118,7 +111,6 @@ public class RozetkaWebTest implements IAbstractTest {
 
     @Test(description = "User can add filters for products. And check reviews which sorted by date.")
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testCheckReviewsForDate() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -137,7 +129,6 @@ public class RozetkaWebTest implements IAbstractTest {
 
     @Test(description = "User can check device type,check if footer menu contains social icon. Check delivery addresses.")
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testCheckDeviceTypeAndFooterMenu() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -154,7 +145,6 @@ public class RozetkaWebTest implements IAbstractTest {
 
     @Test(description = "User can check if buttons present on Hamburger Menu. And compare the language that its are equals.")
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testVerifyHamburgerMenu() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -173,7 +163,6 @@ public class RozetkaWebTest implements IAbstractTest {
 
     @Test(description = "User can add items to basket. Check if basket not empty. And can delete all items in basket.")
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testAddAndDeleteItemsFromBasket() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
@@ -191,7 +180,6 @@ public class RozetkaWebTest implements IAbstractTest {
 
     @Test(description = "User can check if login form is opened and all input fields are presented.") //
     @MethodOwner(owner = "oshcherbina")
-    @TestLabel(name = "feature", value = {"web"})
     public void testVerifyLoginForm() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();

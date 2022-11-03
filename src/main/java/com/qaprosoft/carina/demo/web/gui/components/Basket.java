@@ -2,8 +2,6 @@ package com.qaprosoft.carina.demo.web.gui.components;
 
 import java.util.List;
 
-import com.qaprosoft.carina.demo.web.enums.AppleDevices;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
@@ -11,9 +9,6 @@ import org.openqa.selenium.WebDriver;
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.web.gui.common.OrderPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
 
@@ -34,7 +29,6 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
 
     @FindBy(xpath = "//p[@data-testid='cost']")
     private ExtendedWebElement itemPrice;
-
     @FindBy(xpath = "//h4[@class='cart-dummy__heading']")
     private ExtendedWebElement cardStatus;
 
@@ -42,7 +36,7 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
     private List<ExtendedWebElement> itemsTitleText;
 
     @FindBy(xpath = "//button[contains(@class,'popup-menu__toggle--context')]")
-    private List<ExtendedWebElement> itemsOptionBtn;
+    private ExtendedWebElement itemsOptionBtn;
 
     @FindBy(xpath = "//button[contains(@class,'context-menu-actions__button')]")
     private ExtendedWebElement itemsDeleteBtn;
@@ -59,10 +53,6 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
         return itemPrice.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", "");
     }
 
-    public Integer getSizeTitleText() {
-        return itemsTitleText.size();
-    }
-
     public boolean getCardStatus() {
         return cardStatus.isElementPresent();
     }
@@ -70,10 +60,8 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
     public void deleteItemsFromBasket() {
         while (!cardStatus.isElementPresent()) {
             for (int i = 0; i < itemsTitleText.size(); i++) {
-                if (itemsTitleText.get(i).isElementPresent()) {
-                    itemsOptionBtn.get(i).click();
+                    itemsOptionBtn.click();
                     itemsDeleteBtn.click();
-                }
             }
         }
     }
