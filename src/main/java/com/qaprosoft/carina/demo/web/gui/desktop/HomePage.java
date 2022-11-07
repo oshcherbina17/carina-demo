@@ -28,6 +28,9 @@ public class HomePage extends HomePageBase {
     @FindBy(xpath = "//div[@class='header-layout']")
     private HeaderMenu headerMenu;
 
+    @FindBy(xpath = "//div[@class='header-layout']")
+    private ExtendedWebElement header;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -52,4 +55,10 @@ public class HomePage extends HomePageBase {
     public void clickOnLoginButton(){
         loginBtn.click();
     }
+
+    public boolean isHeaderPresent() {
+        return header.isPresent();
+    }
+
+
 }

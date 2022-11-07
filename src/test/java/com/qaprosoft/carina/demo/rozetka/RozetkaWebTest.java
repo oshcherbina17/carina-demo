@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo;
+package com.qaprosoft.carina.demo.rozetka;
 
 import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import org.testng.annotations.Test;

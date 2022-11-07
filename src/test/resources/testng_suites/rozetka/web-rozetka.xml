@@ -5,7 +5,7 @@
 
     <test name="Check brand test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testVerifyCheckBrand"/>
                 </methods>
@@ -15,7 +15,7 @@
 
     <test name="Check sort low to high test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testSortLowToHigh"/>
                 </methods>
@@ -25,7 +25,7 @@
 
     <test name="Verify brand check title and sum test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testVerifyBrandCheckTitleAndSum"/>
                 </methods>
@@ -35,7 +35,7 @@
 
     <test name="Compare products test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testCompareProducts"/>
                 </methods>
@@ -45,7 +45,7 @@
 
     <test name="Check reviews for date test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testCheckReviewsForDate"/>
                 </methods>
@@ -55,7 +55,7 @@
 
     <test name="Check device type and footer menu test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testCheckDeviceTypeAndFooterMenu"/>
                 </methods>
@@ -65,7 +65,7 @@
 
     <test name="Verify hamburger menu test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testVerifyHamburgerMenu"/>
                 </methods>
@@ -75,7 +75,7 @@
 
     <test name="Add and delete items from basket test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testAddAndDeleteItemsFromBasket"/>
                 </methods>
@@ -85,7 +85,7 @@
 
     <test name="Verify login form test">
         <classes>
-            <class name="com.qaprosoft.carina.demo.RozetkaWebTest">
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
                 <methods>
                     <include name="testVerifyLoginForm"/>
                 </methods>

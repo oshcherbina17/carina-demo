@@ -36,6 +36,15 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(id = "fat-menu")
     private ExtendedWebElement catalogBtn;
 
+    @FindBy(xpath = "//li[contains(@class,'user')]/*/button[contains(@class,'button')]")
+    private ExtendedWebElement loginBtn;
+
+    @FindBy(xpath = "//li[contains(@class,'user')]/*/a[contains(@class,'header__button')]")
+    private ExtendedWebElement orderBtn;
+
+    @FindBy(xpath = "//div[contains(@class,'modal__holder modal__holder_show_animation')]")
+    private LoginForm loginForm;
+
     public HeaderMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
@@ -54,6 +63,19 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
 
     public boolean isCatalogButtonPresent() {
         return catalogBtn.isElementPresent();
+    }
+
+    public boolean isLoginIconPresent() {
+        return loginBtn.isElementPresent();
+    }
+
+    public boolean isOrderButtonPresent() {
+        return orderBtn.isPresent();
+    }
+
+    public LoginForm openLoginField() {
+        loginBtn.click();
+        return loginForm;
     }
 
     public void clickOnCatalogButton() {

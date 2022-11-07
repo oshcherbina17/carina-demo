@@ -18,7 +18,6 @@ public class PhonesAndElectronicsPage extends PhonesAndElectronicsPageBase {
     @FindBy(xpath = "//img[contains(@src, 'apple.jpg')]")
     private ExtendedWebElement appleBrandsLink;
 
-
     public PhonesAndElectronicsPage(WebDriver driver) {
         super(driver);
         setPageURL("telefony-tv-i-ehlektronika/c4627949/");
