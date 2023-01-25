@@ -35,6 +35,6 @@ public class RozetkaPDPTest implements IAbstractTest {
         Assert.assertTrue(photoModal.isPhotoSliderPresent(INDEX_ZERO), "Photo modal isn't presented");
         photoModal.clickOnSlider();
         photoModal.clickOnModalCloseButton();
-
     }
+
 }

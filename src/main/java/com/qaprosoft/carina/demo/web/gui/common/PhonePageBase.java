@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
+import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 
 public abstract class PhonePageBase extends AbstractPage {
     public PhonePageBase(WebDriver driver) {
@@ -12,5 +13,12 @@ public abstract class PhonePageBase extends AbstractPage {
 
     public abstract void selectBrand(FilterType filterType);
 
+
+    public abstract void setSortingPrice(String param, int price);
+
+    public abstract void selectStateCheckBox(ProductStatus productStatus);
+
     public abstract PhoneItemsPageBase clickOnProductTitle(int index);
+
+    public abstract boolean checkBrandInDescription(FilterType filterType, int index);
 }

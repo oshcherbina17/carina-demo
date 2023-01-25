@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.Basket;
 
@@ -19,6 +21,12 @@ public class SearchPage extends SearchPageBase {
 
     @FindBy(xpath = "//button[contains(@class,'header__button--active')]")
     private ExtendedWebElement basketBtn;
+
+    @FindBy(xpath = "//h1[contains(@class,'catalog-heading')]")
+    private ExtendedWebElement pageTitleText;
+
+    @FindBy(xpath = "//span[contains(@class, 'categories-filter__link-title') and contains(.,'%s')]")
+    private ExtendedWebElement productNameFilter;
 
     @FindBy(xpath = "//div[contains(@class, 'modal__holder--large')]")
     private Basket basket;
@@ -45,5 +53,24 @@ public class SearchPage extends SearchPageBase {
     @Override
     public Basket getBasketMenu() {
         return basket;
+    }
+
+    @Override
+    public String getPageTitleText() {
+        return pageTitleText.getText().replace("«", "").replace("»", "");
+    }
+
+    @Override
+    public List<String> getProductsText() {
+        List<String> productsText = new ArrayList<>();
+        for (ExtendedWebElement webElement : productTitleText) {
+            productsText.add(webElement.getText().toLowerCase());
+        }
+        return productsText;
+    }
+
+    @Override
+    public void productNameFilterClick(FilterType filterType) {
+        productNameFilter.format(filterType.getType()).click();
     }
 }

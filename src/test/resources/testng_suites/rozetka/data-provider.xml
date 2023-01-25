@@ -1,0 +1,38 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Carina Demo Tests - RozetkaPLPTest" verbose="1" thread-count="3" parallel="tests">
+
+
+    <test name="Searching Xiaomi">
+        <parameter name="phoneSearch" value="Xiaomi"/>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="verifySearchingProcess"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Searching Nokia">
+        <parameter name="phoneSearch" value="Nokia"/>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="verifySearchingProcess"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Searching Samsung">
+        <parameter name="phoneSearch" value="Samsung"/>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="verifySearchingProcess"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

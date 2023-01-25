@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.web.enums;
 
 public enum FilterType {
     FILTER_COFFEE_MACHINE("Кавоварки"),
+    FILTER_HEADPHONES("Навушники"),
     ELECTRIC_TYPE("Електричний"),
     COLOR("Білий"),
     RAM("8 ГБ"),
@@ -9,6 +10,7 @@ public enum FilterType {
     COFFEE_MACHINE("Кавомашина"),
     BRAND_APPLE("Apple"),
     BRAND_LENOVO("Lenovo"),
+    BRAND_SIGMA("Sigma"),
     BRAND_DELONGHI("Delonghi"),
 
     SEARCH_BRIT("brit");

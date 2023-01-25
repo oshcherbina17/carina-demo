@@ -13,6 +13,8 @@ import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 import com.qaprosoft.carina.demo.web.gui.common.CoffeeMachinePageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 
+import java.util.List;
+
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
 
     @FindBy(xpath = "//button[@class='header__button ng-tns-c94-1']")
@@ -57,6 +59,12 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
 
     public SearchPageBase searchItems(FilterType filterType) {
         searchInput.type(filterType.getType());
+        searchBtn.click();
+        return initPage(getDriver(), SearchPageBase.class);
+    }
+
+    public SearchPageBase searchBrand(String param) {
+        searchInput.type(param);
         searchBtn.click();
         return initPage(getDriver(), SearchPageBase.class);
     }
