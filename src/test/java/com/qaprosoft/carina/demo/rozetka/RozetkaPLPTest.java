@@ -66,6 +66,8 @@ public class RozetkaPLPTest implements IAbstractTest {
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase = headerMenu.searchBrand(BRAND_NAME);
         searchPageBase.productNameFilterClick(FilterType.FILTER_HEADPHONES);
+        Assert.assertTrue(searchPageBase.checkSubcategoryTitleText(FilterType.FILTER_HEADPHONES.getType()),
+                "Titles subcategory are not equals");
         Assert.assertEquals(searchPageBase.getPageTitleText().toLowerCase(), BRAND_NAME.toLowerCase(),
                 "Titles are not equals");
         Assert.assertTrue(searchPageBase.getProductsText().stream().allMatch(item -> item.contains(BRAND_NAME.toLowerCase())),
@@ -85,5 +87,23 @@ public class RozetkaPLPTest implements IAbstractTest {
                 "Titles are not equals");
         Assert.assertTrue(searchPageBase.getProductsText().stream().allMatch(item -> item.contains(search.toLowerCase())),
                 "Search result is not as required");
+    }
+
+    @Test(dataProvider = "DataProvider")
+    @XlsDataSourceParameters(path = "xls/price.xlsx", sheet = "price", dsUid = "TUID", dsArgs = "min_price, max_price")
+    public void testFilterPhonesByPrice(String min_price, String max_price) {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        homePage.clickOnClosePopupButton();
+        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
+                (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
+        Assert.assertTrue(phonesAndElectronicsPageBase.isPageOpened(), "Category page is not opened");
+        PhonePageBase phonePageBase = (PhonePageBase) phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.PHONES);
+        Assert.assertTrue(phonePageBase.isPageOpened(), "Phone page is not opened");
+        Assert.assertTrue(Integer.parseInt(min_price) >= 123, "Minimum price is less than the minimum given price");
+        Assert.assertTrue(Integer.parseInt(max_price) <= 492408, "Maximum price is large than the maximum given price");
+        Assert.assertFalse(Integer.parseInt(min_price) > Integer.parseInt(max_price), "Incorrect min and max values");
+        phonePageBase.filterProductsByPrice("min", "max", min_price, max_price);
+        Assert.assertTrue(phonePageBase.verifyPriceLimits(min_price, max_price), "Products not filtered by price");
     }
 }

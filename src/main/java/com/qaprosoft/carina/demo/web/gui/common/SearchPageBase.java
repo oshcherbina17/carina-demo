@@ -1,12 +1,12 @@
 package com.qaprosoft.carina.demo.web.gui.common;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.gui.components.Basket;
-
-import java.util.List;
 
 public abstract class SearchPageBase extends AbstractPage {
 
@@ -25,4 +25,6 @@ public abstract class SearchPageBase extends AbstractPage {
     public abstract List<String> getProductsText();
 
     public abstract void productNameFilterClick(FilterType filterType);
+
+    public abstract boolean checkSubcategoryTitleText(String subcategory);
 }

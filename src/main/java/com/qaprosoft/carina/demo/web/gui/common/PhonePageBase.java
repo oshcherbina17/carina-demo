@@ -21,4 +21,8 @@ public abstract class PhonePageBase extends AbstractPage {
     public abstract PhoneItemsPageBase clickOnProductTitle(int index);
 
     public abstract boolean checkBrandInDescription(FilterType filterType, int index);
+
+    public abstract void filterProductsByPrice(String paramMin, String paramMax, String min, String max);
+
+    public abstract boolean verifyPriceLimits(String min, String max);
 }

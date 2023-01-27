@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,9 @@ public class PhonePage extends PhonePageBase {
 
     @FindBy(xpath = "//button[contains(@class,'slider-filter__button')]")
     private ExtendedWebElement okBtn;
+
+    @FindBy(xpath = "//span[@class='goods-tile__price-value']")
+    private List<ExtendedWebElement> priceList;
 
     public PhonePage(WebDriver driver) {
         super(driver);
@@ -60,4 +64,21 @@ public class PhonePage extends PhonePageBase {
     public boolean checkBrandInDescription(FilterType filterType, int index) {
         return descriptionList.get(index).getText().contains(filterType.getType());
     }
+
+    @Override
+    public void filterProductsByPrice(String paramMin, String paramMax, String min, String max) {
+        universalPriceInput.format(paramMin).type(min);
+        universalPriceInput.format(paramMax).type(max);
+        okBtn.click();
+    }
+
+    @Override
+    public boolean verifyPriceLimits(String min, String max) {
+        List<Integer> pricesList = new ArrayList<>();
+        for (ExtendedWebElement webElement : priceList) {
+            pricesList.add(Integer.valueOf(webElement.getText().replace(" ", "").replace("₴", "")));
+        }
+        return pricesList.stream().allMatch(price -> price >= Integer.parseInt(min) && price <= Integer.parseInt(max));
+    }
+
 }

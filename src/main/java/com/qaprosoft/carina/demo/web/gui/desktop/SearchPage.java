@@ -25,6 +25,9 @@ public class SearchPage extends SearchPageBase {
     @FindBy(xpath = "//h1[contains(@class,'catalog-heading')]")
     private ExtendedWebElement pageTitleText;
 
+    @FindBy(xpath = "//a[@class='ng-star-inserted' and contains(text(),'%s')]")
+    private ExtendedWebElement subcategoryTitleText;
+
     @FindBy(xpath = "//span[contains(@class, 'categories-filter__link-title') and contains(.,'%s')]")
     private ExtendedWebElement productNameFilter;
 
@@ -72,5 +75,10 @@ public class SearchPage extends SearchPageBase {
     @Override
     public void productNameFilterClick(FilterType filterType) {
         productNameFilter.format(filterType.getType()).click();
+    }
+
+    @Override
+    public boolean checkSubcategoryTitleText(String subcategory) {
+        return subcategoryTitleText.format(subcategory).getText().toLowerCase().contains(subcategory.toLowerCase());
     }
 }
