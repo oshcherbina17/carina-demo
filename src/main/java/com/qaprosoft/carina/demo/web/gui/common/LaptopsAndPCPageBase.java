@@ -1,4 +1,5 @@
 package com.qaprosoft.carina.demo.web.gui.common;
+
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
@@ -11,6 +12,9 @@ public abstract class LaptopsAndPCPageBase extends AbstractPage {
         super(driver);
     }
 
-
     public abstract AbstractPage clickOnCategoriesLink(Devices devices);
+
+    public abstract boolean getTitleText(String param);
+
+    public abstract String reverseWords(String str);
 }

@@ -14,4 +14,6 @@ public abstract class PhonesAndElectronicsPageBase extends AbstractPage {
     public abstract AbstractPage clickOnCategoriesLink(Devices devices);
 
     public abstract AppleBrandPage clickOnBrandLink();
+
+    public abstract String getTitleText();
 }

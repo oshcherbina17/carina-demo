@@ -18,6 +18,9 @@ public class PhonesAndElectronicsPage extends PhonesAndElectronicsPageBase {
     @FindBy(xpath = "//img[contains(@src, 'apple.jpg')]")
     private ExtendedWebElement appleBrandsLink;
 
+    @FindBy(xpath = "//h1[contains(@class, 'portal__heading')]")
+    private ExtendedWebElement titleText;
+
     public PhonesAndElectronicsPage(WebDriver driver) {
         super(driver);
         setPageURL("telefony-tv-i-ehlektronika/c4627949/");
@@ -33,5 +36,10 @@ public class PhonesAndElectronicsPage extends PhonesAndElectronicsPageBase {
     public AppleBrandPage clickOnBrandLink() {
         appleBrandsLink.click();
         return new AppleBrandPage(getDriver());
+    }
+
+    @Override
+    public String getTitleText() {
+        return titleText.getText().toLowerCase();
     }
 }

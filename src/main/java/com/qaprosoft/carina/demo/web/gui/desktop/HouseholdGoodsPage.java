@@ -16,6 +16,9 @@ public class HouseholdGoodsPage extends HouseholdGoodsPageBase {
     @FindBy(xpath = "//li[contains(@class, 'tile-cats__item') and contains(.,'%s')]")
     private ExtendedWebElement universalCategoryBtn;
 
+    @FindBy(xpath = "//h1[contains(@class, 'portal__heading')]")
+    private ExtendedWebElement titleText;
+
     public HouseholdGoodsPage(WebDriver driver) {
         super(driver);
         setPageURL("tovary-dlya-doma/c2394287/");
@@ -25,5 +28,10 @@ public class HouseholdGoodsPage extends HouseholdGoodsPageBase {
     public AbstractPage clickOnCategoriesLink(FurnitureSubcategory furniture) {
         universalCategoryBtn.format(furniture.getNamePage()).click();
         return initPage(getDriver(), furniture.getPageClass());
+    }
+
+    @Override
+    public String getTitleText() {
+        return titleText.getText().toLowerCase();
     }
 }

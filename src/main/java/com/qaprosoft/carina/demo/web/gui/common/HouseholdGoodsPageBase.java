@@ -11,4 +11,6 @@ public abstract class HouseholdGoodsPageBase extends AbstractPage {
     }
 
     public abstract AbstractPage clickOnCategoriesLink(FurnitureSubcategory furniture);
+
+    public abstract String getTitleText();
 }

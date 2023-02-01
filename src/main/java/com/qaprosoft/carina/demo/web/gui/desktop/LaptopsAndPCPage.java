@@ -1,5 +1,9 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
@@ -15,6 +19,9 @@ public class LaptopsAndPCPage extends LaptopsAndPCPageBase {
     @FindBy(xpath = "//a[contains(@class, 'tile-cats__heading_type_center') and contains(.,' %s ')]")
     private ExtendedWebElement universalCategoriesMenu;
 
+    @FindBy(xpath = "//h1[contains(@class, 'portal__heading')]")
+    private ExtendedWebElement titleText;
+
     public LaptopsAndPCPage(WebDriver driver) {
         super(driver);
         setPageURL("computers-notebooks/c80253/");
@@ -26,4 +33,17 @@ public class LaptopsAndPCPage extends LaptopsAndPCPageBase {
         return initPage(getDriver(), devices.getPageClass());
     }
 
+    @Override
+    public String reverseWords(String str) {
+        List words = Arrays.asList(str.split(" "));
+        Collections.reverse(words);
+        return String.join(" ", words).toLowerCase();
+    }
+
+    @Override
+    public boolean getTitleText(String param) {
+        String reverseTitle = reverseWords(titleText.getText().toLowerCase()).replace("'","");
+        String buffer = (param.toLowerCase()).replace("’","");
+        return reverseTitle.contains(buffer);
+    }
 }
