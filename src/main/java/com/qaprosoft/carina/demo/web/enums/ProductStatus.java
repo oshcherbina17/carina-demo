@@ -7,15 +7,15 @@ public enum ProductStatus {
     NOT_AVAILABLE("Немає в наявності"),
     EXPECTED("Очікується");
 
-    private String sortType;
+    private String statusType;
 
 
-    ProductStatus(String sortType) {
-        this.sortType = sortType;
+    ProductStatus(String statusType) {
+        this.statusType = statusType;
 
     }
 
-    public String getSortType() {
-        return sortType;
+    public String getStatusType() {
+        return statusType;
     }
 }

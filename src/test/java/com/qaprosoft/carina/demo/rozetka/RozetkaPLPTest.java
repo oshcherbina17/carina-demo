@@ -2,10 +2,10 @@ package com.qaprosoft.carina.demo.rozetka;
 
 import java.util.HashMap;
 
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
@@ -16,10 +16,11 @@ import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import com.qaprosoft.carina.demo.web.gui.common.HouseholdGoodsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopsAndPCPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.PhonePageBase;
 import com.qaprosoft.carina.demo.web.gui.common.PhonesAndElectronicsPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
+import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
 
 public class RozetkaPLPTest implements IAbstractTest {
@@ -32,12 +33,14 @@ public class RozetkaPLPTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
-        PhonePageBase phonePageBase = (PhonePageBase) phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.PHONES);
-        phonePageBase.selectBrand(FilterType.BRAND_SIGMA);
-        phonePageBase.setSortingPrice("max", 4000);
-        phonePageBase.selectStateCheckBox(ProductStatus.AVAILABLE);
-        Assert.assertTrue(phonePageBase.checkBrandInDescription(FilterType.BRAND_SIGMA, INDEX_ONE),
+        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
+                (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
+        ProductListPageBase productListPage = phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.PHONES);
+        ProductFilter productFilter = productListPage.getFilter();
+        productFilter.selectFilter(FilterType.BRAND_SIGMA);
+        productListPage.setSortingPrice("max", 4000);
+        productFilter.selectStateCheckBox(ProductStatus.AVAILABLE);
+        Assert.assertTrue(productListPage.checkBrandInDescription(FilterType.BRAND_SIGMA, INDEX_ONE),
                 "Brand name text not contains in description");
     }
 
@@ -101,13 +104,16 @@ public class RozetkaPLPTest implements IAbstractTest {
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         Assert.assertTrue(phonesAndElectronicsPageBase.isPageOpened(), "Category page is not opened");
-        PhonePageBase phonePageBase = (PhonePageBase) phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.PHONES);
-        Assert.assertTrue(phonePageBase.isPageOpened(), "Phone page is not opened");
-        Assert.assertTrue(Integer.parseInt(min_price) >= 123, "Minimum price is less than the minimum given price");
-        Assert.assertTrue(Integer.parseInt(max_price) <= 492408, "Maximum price is large than the maximum given price");
-        Assert.assertFalse(Integer.parseInt(min_price) > Integer.parseInt(max_price), "Incorrect min and max values");
-        phonePageBase.filterProductsByPrice("min", "max", min_price, max_price);
-        Assert.assertTrue(phonePageBase.verifyPriceLimits(min_price, max_price), "Products not filtered by price");
+        ProductListPageBase productListPage = phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.PHONES);
+        Assert.assertTrue(Integer.parseInt(min_price) >= 123,
+                "Minimum price is less than the minimum given price");
+        Assert.assertTrue(Integer.parseInt(max_price) <= 492408,
+                "Maximum price is large than the maximum given price");
+        Assert.assertFalse(Integer.parseInt(min_price) > Integer.parseInt(max_price),
+                "Incorrect min and max values");
+        productListPage.filterProductsByPrice("min", "max", min_price, max_price);
+        Assert.assertTrue(productListPage.verifyPriceLimits(min_price, max_price),
+                "Products not filtered by price");
     }
 
     @DataProvider(parallel = false, name = "searchBrands")

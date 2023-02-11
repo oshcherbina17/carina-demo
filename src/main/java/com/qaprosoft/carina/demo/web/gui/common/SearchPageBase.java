@@ -26,5 +26,10 @@ public abstract class SearchPageBase extends AbstractPage {
 
     public abstract void productNameFilterClick(FilterType filterType);
 
+    public abstract ProductListPageBase productTypeLinkClick(FilterType filterType);
+
     public abstract boolean checkSubcategoryTitleText(String subcategory);
+
+    public abstract boolean isTitleTextContainsProductType(FilterType filterType);
+
 }

@@ -9,9 +9,9 @@ import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.web.enums.Devices;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopsAndPCPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = LaptopsAndPCPageBase.class)
 public class LaptopsAndPCPage extends LaptopsAndPCPageBase {
@@ -28,9 +28,9 @@ public class LaptopsAndPCPage extends LaptopsAndPCPageBase {
     }
 
     @Override
-    public AbstractPage clickOnCategoriesLink(Devices devices) {
+    public ProductListPageBase clickOnCategoriesLink(Devices devices) {
         universalCategoriesMenu.format(devices.getNamePage()).click();
-        return initPage(getDriver(), devices.getPageClass());
+        return initPage(getDriver(), ProductListPageBase.class);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class LaptopsAndPCPage extends LaptopsAndPCPageBase {
 
     @Override
     public boolean getTitleText(String param) {
-        String reverseTitle = reverseWords(titleText.getText().toLowerCase()).replace("'","");
-        String buffer = (param.toLowerCase()).replace("’","");
+        String reverseTitle = reverseWords(titleText.getText().toLowerCase()).replace("'", "");
+        String buffer = (param.toLowerCase()).replace("’", "");
         return reverseTitle.contains(buffer);
     }
 }

@@ -62,7 +62,6 @@ public class LoginForm extends AbstractUIObject implements ICustomTypePageFactor
     public void clickOnRecaptchaButton() {
         waitUntil(ExpectedConditions.visibilityOfElementLocated(recaptchaBtn.getBy()), 2);
         recaptchaBtn.click();
-        System.out.println("fff");
     }
 
     public void loginBtnClick() {

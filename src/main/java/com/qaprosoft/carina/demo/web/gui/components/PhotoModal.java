@@ -1,5 +1,7 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
+import java.util.List;
+
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
@@ -7,9 +9,7 @@ import org.openqa.selenium.WebDriver;
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.web.gui.common.PhoneItemsPageBase;
-
-import java.util.List;
+import com.qaprosoft.carina.demo.web.gui.common.ProductDetailsPageBase;
 
 public class PhotoModal extends AbstractUIObject implements ICustomTypePageFactory {
 
@@ -36,9 +36,9 @@ public class PhotoModal extends AbstractUIObject implements ICustomTypePageFacto
         } while (rightArrowBtn.isElementPresent());
     }
 
-    public PhoneItemsPageBase clickOnModalCloseButton() {
+    public ProductDetailsPageBase clickOnModalCloseButton() {
         closeModalBtn.click();
-        return initPage(getDriver(), PhoneItemsPageBase.class);
+        return initPage(getDriver(), ProductDetailsPageBase.class);
     }
 }
 

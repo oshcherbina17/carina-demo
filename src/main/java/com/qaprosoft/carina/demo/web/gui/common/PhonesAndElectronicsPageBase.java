@@ -11,7 +11,7 @@ public abstract class PhonesAndElectronicsPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract AbstractPage clickOnCategoriesLink(Devices devices);
+    public abstract ProductListPageBase clickOnCategoriesLink(Devices devices);
 
     public abstract AppleBrandPage clickOnBrandLink();
 

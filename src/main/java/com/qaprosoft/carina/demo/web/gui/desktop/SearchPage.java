@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.web.gui.desktop;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
+import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.Basket;
 
@@ -28,14 +30,14 @@ public class SearchPage extends SearchPageBase {
     @FindBy(xpath = "//a[@class='ng-star-inserted' and contains(text(),'%s')]")
     private ExtendedWebElement subcategoryTitleText;
 
-    @FindBy(xpath = "//span[contains(@class, 'categories-filter__link-title') and contains(.,'%s')]")
+    @FindBy(xpath = "//span[contains(@class, 'categories-filter') and contains(.,'%s')]")
     private ExtendedWebElement productNameFilter;
 
     @FindBy(xpath = "//div[contains(@class, 'modal__holder--large')]")
     private Basket basket;
 
-    @FindBy(xpath = "//a[@class='goods-tile__heading ng-star-inserted']")
-    private List<ExtendedWebElement> productTitleText;
+    @FindBy(xpath = "//span[@class='goods-tile__title']")
+    private List<ExtendedWebElement> titleProductList;
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -66,7 +68,7 @@ public class SearchPage extends SearchPageBase {
     @Override
     public List<String> getProductsText() {
         List<String> productsText = new ArrayList<>();
-        for (ExtendedWebElement webElement : productTitleText) {
+        for (ExtendedWebElement webElement : titleProductList) {
             productsText.add(webElement.getText().toLowerCase());
         }
         return productsText;
@@ -78,7 +80,19 @@ public class SearchPage extends SearchPageBase {
     }
 
     @Override
+    public ProductListPageBase productTypeLinkClick(FilterType filterType) {
+        productNameFilter.format(filterType.getType()).click();
+        return initPage(getDriver(), ProductListPageBase.class);
+    }
+
+    @Override
     public boolean checkSubcategoryTitleText(String subcategory) {
         return subcategoryTitleText.format(subcategory).getText().toLowerCase().contains(subcategory.toLowerCase());
+    }
+
+    @Override
+    public boolean isTitleTextContainsProductType(FilterType filterType) {
+        return  titleProductList.stream().allMatch((type)->
+                StringUtils.containsIgnoreCase(type.getText(),filterType.getType()));
     }
 }

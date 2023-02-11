@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.web.enums.Devices;
 import com.qaprosoft.carina.demo.web.gui.common.PhonesAndElectronicsPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = PhonesAndElectronicsPageBase.class)
 public class PhonesAndElectronicsPage extends PhonesAndElectronicsPageBase {
@@ -27,9 +27,9 @@ public class PhonesAndElectronicsPage extends PhonesAndElectronicsPageBase {
     }
 
     @Override
-    public AbstractPage clickOnCategoriesLink(Devices devices) {
+    public ProductListPageBase clickOnCategoriesLink(Devices devices) {
         universalCategoriesMenu.format(devices.getNamePage()).click();
-        return initPage(getDriver(), devices.getPageClass());
+        return initPage(getDriver(), ProductListPageBase.class);
     }
 
     @Override

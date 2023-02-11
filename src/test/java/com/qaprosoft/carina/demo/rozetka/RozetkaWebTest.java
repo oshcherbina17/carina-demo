@@ -1,6 +1,5 @@
 package com.qaprosoft.carina.demo.rozetka;
 
-import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
@@ -12,26 +11,25 @@ import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.FooterLinks;
 import com.qaprosoft.carina.demo.web.enums.FurnitureSubcategory;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
+import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import com.qaprosoft.carina.demo.web.enums.ProductTabs;
 import com.qaprosoft.carina.demo.web.enums.SocialLinks;
 import com.qaprosoft.carina.demo.web.enums.SortDropdown;
 import com.qaprosoft.carina.demo.web.gui.common.AppleBrandPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.CoffeeMachinePageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ComparisonPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ContactsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.HouseholdGoodsPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.LaptopItemsPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopsAndPCPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.PCTablesPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.PhonesAndElectronicsPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.ProductDetailsPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.TableItemsPageBase;
-import com.qaprosoft.carina.demo.web.gui.common.TabletsPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.Basket;
 import com.qaprosoft.carina.demo.web.gui.components.FooterMenu;
 import com.qaprosoft.carina.demo.web.gui.components.HamburgerMenu;
 import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
+import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
 
 public class RozetkaWebTest implements IAbstractTest {
@@ -45,12 +43,14 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        LaptopsAndPCPageBase laptopsAndPCPageBase = (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
-        TabletsPageBase tabletsPageBase = (TabletsPageBase) laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
-        tabletsPageBase.selectBrand(FilterType.BRAND_APPLE);
-        tabletsPageBase.selectRAM(FilterType.RAM);
-        tabletsPageBase.selectStateCheckBox(ProductStatus.AVAILABLE);
-        Assert.assertTrue(tabletsPageBase.checkChosenBrand(INDEX_ZERO, FilterType.BRAND_APPLE.getType()));
+        LaptopsAndPCPageBase laptopsAndPCPageBase =
+                (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
+        ProductListPageBase productListPage = laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
+        ProductFilter productFilter = productListPage.getFilter();
+        productFilter.selectFilter(FilterType.BRAND_APPLE);
+        productFilter.selectFilter(FilterType.RAM);
+        productFilter.selectStateCheckBox(ProductStatus.AVAILABLE);
+        Assert.assertTrue(productListPage.checkChosenBrand(INDEX_ZERO, FilterType.BRAND_APPLE.getType()));
     }
 
     @Test(description = "User can sort dropdown menu and check if products add to basket.")
@@ -59,13 +59,15 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        LaptopsAndPCPageBase laptopsAndPCPageBase = (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
-        TabletsPageBase tabletsPageBase = (TabletsPageBase) laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
-        tabletsPageBase.selectBrand(FilterType.BRAND_APPLE);
-        tabletsPageBase.sortDropdownMenu(SortDropdown.LOW_TO_HIGH);
-        Assert.assertTrue(tabletsPageBase.sortLowToHighPrice(), "Price not sorted ");
-        tabletsPageBase.clickOnBasketIcon(INDEX_ONE);
-        Assert.assertTrue(tabletsPageBase.addedItemsCounterIsPresent(), "Added Items Counter not exist");
+        LaptopsAndPCPageBase laptopsAndPCPageBase =
+                (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
+        ProductListPageBase productListPage = laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
+        ProductFilter productFilter = productListPage.getFilter();
+        productFilter.selectFilter(FilterType.BRAND_APPLE);
+        productFilter.sortDropdownMenu(SortDropdown.LOW_TO_HIGH);
+        Assert.assertTrue(productListPage.sortLowToHighPrice(), "Price not sorted ");
+        productListPage.clickOnBasketIcon(INDEX_ONE);
+        Assert.assertTrue(productListPage.addedItemsCounterIsPresent(), "Added Items Counter not exist");
     }
 
     @Test(description = "User can add filters for products. Check if device title and sum equals chosen product.")
@@ -74,39 +76,46 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
-        TabletsPageBase tabletsPageBase = (TabletsPageBase) phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.TABLETS);
-        tabletsPageBase.selectBrand(FilterType.BRAND_LENOVO);
-        tabletsPageBase.sortDropdownMenu(SortDropdown.NEW);
-        String deviceTitleText = tabletsPageBase.getTabletTitleText(INDEX_ZERO);
-        LaptopItemsPageBase laptopItemsPageBase = tabletsPageBase.clickOnLaptopDevice(INDEX_ZERO);
-        laptopItemsPageBase.moveToTitleText();
-        String productTitleText = laptopItemsPageBase.getProductTitleText();
+        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
+                (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
+        ProductListPageBase productListPage = phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.TABLETS);
+        ProductFilter productFilter = productListPage.getFilter();
+        productFilter.selectFilter(FilterType.BRAND_LENOVO);
+        productFilter.sortDropdownMenu(SortDropdown.NEW);
+        String deviceTitleText = productListPage.getTabletTitleText(INDEX_ZERO);
+        ProductDetailsPageBase productDetailsPage = productListPage.clickOnDeviceTitle(INDEX_ZERO);
+        productDetailsPage.moveToTitleText();
+        String productTitleText = productDetailsPage.getProductTitleText();
         Assert.assertEquals(productTitleText, deviceTitleText, "Texts are not equals");
-        laptopItemsPageBase.clickOnBuyButton();
-        Basket basket = laptopItemsPageBase.getBasketMenu();
+        productDetailsPage.clickOnBuyButton();
+        Basket basket = productDetailsPage.getBasketMenu();
         String sumPrice = basket.getSumPriceText();
         String itemsSum = basket.getItemPriceText();
         Assert.assertEquals(itemsSum, sumPrice, "Sum are not equals");
     }
 
-    @Test(description = "User can type in search field name of products. Add filters and compare two different products.")
+    @Test(description = "User can type in search field name of products. " +
+            "Add filters and compare two different products.")
     @MethodOwner(owner = "oshcherbina")
     public void testCompareProducts() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
         HeaderMenu headerMenu = homePage.getHeader();
-        CoffeeMachinePageBase coffeeMachinePageBase = headerMenu.searchProductItems(FilterType.COFFEE_MACHINE);
-        coffeeMachinePageBase.productNameFilterClick(FilterType.FILTER_COFFEE_MACHINE);
-        Assert.assertTrue(coffeeMachinePageBase.isTitleTextContainsProductType(FilterType.COFFEE_MACHINE), "Title text don't contains this product");
-        coffeeMachinePageBase.selectBrand(FilterType.BRAND_DELONGHI);
-        coffeeMachinePageBase.clickOnCompareIcon(INDEX_ZERO);
-        coffeeMachinePageBase.clickOnCompareIcon(INDEX_TWO);
-        Assert.assertTrue(coffeeMachinePageBase.addedItemsCompareCounterIsPresent(), "Added Items Counter isn't present");
-        coffeeMachinePageBase.clickOnAddedCompareBtn();
-        ComparisonPageBase comparisonPageBase = coffeeMachinePageBase.clickOnProductType();
-        Assert.assertTrue(comparisonPageBase.allParameterBtnIsPresent(), "All Parameter button isn't present");
+        SearchPageBase searchPageBase= headerMenu.searchItems(FilterType.COFFEE_MACHINE);
+        ProductListPageBase productListPageBase = searchPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
+        Assert.assertTrue(searchPageBase.isTitleTextContainsProductType(FilterType.COFFEE_MACHINE),
+                "Title text don't contains this product");
+        ProductFilter productFilter = productListPageBase.getFilter();
+        productFilter.selectFilter(FilterType.BRAND_DELONGHI);
+        productListPageBase.clickOnCompareIcon(INDEX_ZERO);
+        productListPageBase.clickOnCompareIcon(INDEX_TWO);
+        Assert.assertTrue(productListPageBase.addedItemsCompareCounterIsPresent(),
+                "Added Items Counter isn't present");
+        productListPageBase.clickOnAddedCompareBtn();
+        ComparisonPageBase comparisonPageBase = productListPageBase.clickOnProductType();
+        Assert.assertTrue(comparisonPageBase.allParameterBtnIsPresent(),
+                "All Parameter button isn't present");
     }
 
     @Test(description = "User can add filters for products. And check reviews which sorted by date.")
@@ -118,29 +127,37 @@ public class RozetkaWebTest implements IAbstractTest {
         HeaderMenu headerMenu = homePage.getHeader();
         Assert.assertTrue(headerMenu.isCatalogButtonPresent(), "Catalog button isn't presented");
         headerMenu.clickOnCatalogButton();
-        HouseholdGoodsPageBase householdGoodsPageBase = (HouseholdGoodsPageBase) headerMenu.clickOnCategoryMenu(MenuCategory.HOUSEHOLD_GOODS);
-        PCTablesPageBase pcTablesPageBase = (PCTablesPageBase) householdGoodsPageBase.clickOnCategoriesLink(FurnitureSubcategory.PC_TABLES);
-        pcTablesPageBase.selectRegulate(FilterType.ELECTRIC_TYPE);
-        TableItemsPageBase tableItemsPageBase = pcTablesPageBase.clickOnProductTitle(INDEX_ONE);
-        tableItemsPageBase.clickOnTab(ProductTabs.REVIEWS);
-        tableItemsPageBase.selectDropdownOption(SortDropdown.DATE);
-        Assert.assertTrue(tableItemsPageBase.isOpinionsSortedByDate(), "List isn't sorted by date");
+        HouseholdGoodsPageBase householdGoodsPageBase =
+                (HouseholdGoodsPageBase) headerMenu.clickOnCategoryMenu(MenuCategory.HOUSEHOLD_GOODS);
+        ProductListPageBase productListPage =
+                (ProductListPageBase) householdGoodsPageBase.clickOnCategoriesLink(FurnitureSubcategory.PC_TABLES);
+        ProductFilter productFilter = productListPage.getFilter();
+        productFilter.selectFilter(FilterType.ELECTRIC_TYPE);
+        ProductDetailsPageBase productDetailsPageBase= productListPage.clickOnProductTitle(INDEX_ONE);
+        productDetailsPageBase.clickOnTab(ProductTabs.REVIEWS);
+        productDetailsPageBase.selectDropdownOption(SortDropdown.DATE);
+        Assert.assertTrue(productDetailsPageBase.isOpinionsSortedByDate(), "List isn't sorted by date");
     }
 
-    @Test(description = "User can check device type,check if footer menu contains social icon. Check delivery addresses.")
+    @Test(description = "User can check device type, if footer menu contains social icon. Check delivery addresses.")
     @MethodOwner(owner = "oshcherbina")
     public void testCheckDeviceTypeAndFooterMenu() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase = (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
+        PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
+                (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         AppleBrandPageBase appleBrandPageBase = phonesAndElectronicsPageBase.clickOnBrandLink();
-        Assert.assertTrue(appleBrandPageBase.isDeviceTypePresent(AppleDevices.STYLUS), "Device type isn't presented");
+        Assert.assertTrue(appleBrandPageBase.isDeviceTypePresent(AppleDevices.STYLUS),
+                "Device type isn't presented");
         FooterMenu footerMenu = appleBrandPageBase.getFooterMenu();
-        Assert.assertTrue(footerMenu.isSocialIconPresent(SocialLinks.TELEGRAM), "Social icon isn't presented");
-        Assert.assertTrue(footerMenu.isFooterLinksPresent(FooterLinks.CONTACTS), "Footer link isn't presented");
+        Assert.assertTrue(footerMenu.isSocialIconPresent(SocialLinks.TELEGRAM),
+                "Social icon isn't presented");
+        Assert.assertTrue(footerMenu.isFooterLinksPresent(FooterLinks.CONTACTS),
+                "Footer link isn't presented");
         ContactsPageBase contactsPageBase = footerMenu.clickOnFooterLink(FooterLinks.CONTACTS);
-        Assert.assertTrue(contactsPageBase.isAddressListPresent(INDEX_ZERO), "Address list aren't presented");
+        Assert.assertTrue(contactsPageBase.isAddressListPresent(INDEX_ZERO),
+                "Address list aren't presented");
     }
 
     @Test(description = "User can check if buttons present on Hamburger Menu. And compare the language that its are equals.")
@@ -178,7 +195,7 @@ public class RozetkaWebTest implements IAbstractTest {
         Assert.assertTrue(basket.getCardStatus(), "Basket isn't empty");
     }
 
-    @Test(description = "User can check if login form is opened and all input fields are presented.") //
+    @Test(description = "User can check if login form is opened and all input fields are presented.")
     @MethodOwner(owner = "oshcherbina")
     public void testVerifyLoginForm() {
         HomePage homePage = new HomePage(getDriver());

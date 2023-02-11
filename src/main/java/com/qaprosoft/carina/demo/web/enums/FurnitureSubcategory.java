@@ -1,11 +1,11 @@
 package com.qaprosoft.carina.demo.web.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.web.gui.common.PCTablesPageBase;
+import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 
 public enum FurnitureSubcategory {
 
-    PC_TABLES("Столи з регулюванням по висоті", PCTablesPageBase.class);
+    PC_TABLES("Столи з регулюванням по висоті", ProductListPageBase.class);
 
     private String namePage;
     private Class<? extends AbstractPage> pageClass;

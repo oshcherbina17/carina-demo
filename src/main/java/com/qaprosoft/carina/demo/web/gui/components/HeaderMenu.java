@@ -10,10 +10,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
-import com.qaprosoft.carina.demo.web.gui.common.CoffeeMachinePageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
-
-import java.util.List;
 
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
 
@@ -51,11 +48,11 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
         super(driver, searchContext);
     }
 
-    public CoffeeMachinePageBase searchProductItems(FilterType filterType) {
+   /* public CoffeeMachinePageBase searchProductItems(FilterType filterType) {
         searchInput.type(filterType.getType());
         searchBtn.click();
         return initPage(getDriver(), CoffeeMachinePageBase.class);
-    }
+    }*/
 
     public SearchPageBase searchItems(FilterType filterType) {
         searchInput.type(filterType.getType());
