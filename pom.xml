@@ -18,6 +18,7 @@
 		<zebrunner-agent.version>1.8.0</zebrunner-agent.version>
 		<suite>home-page-rozetka</suite>
 		<suite>pdp-rozetka</suite>
+		<suite>plp-rozetka</suite>
 		<suite>web-rozetka</suite>
 	</properties>
 
