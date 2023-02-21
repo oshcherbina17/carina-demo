@@ -19,6 +19,7 @@ import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
 public class RozetkaPDPTest implements IAbstractTest {
 
     final int INDEX_ZERO = 0;
+    final int INDEX_TWO = 2;
 
     @Test(description = "User can view product photo.")
     @MethodOwner(owner = "oshcherbina")
@@ -35,7 +36,7 @@ public class RozetkaPDPTest implements IAbstractTest {
         productDetailsPageBase.clickOnTab(ProductTabs.PHOTO);
         productDetailsPageBase.clickOnPhotoTab(INDEX_ZERO);
         PhotoModal photoModal = productDetailsPageBase.getPhotoModal();
-        Assert.assertTrue(photoModal.isPhotoSliderPresent(INDEX_ZERO), "Photo modal isn't presented");
+        Assert.assertTrue(photoModal.isPhotoSliderPresent(INDEX_TWO), "Photo modal isn't presented");
         photoModal.clickOnSlider();
         photoModal.clickOnModalCloseButton();
     }

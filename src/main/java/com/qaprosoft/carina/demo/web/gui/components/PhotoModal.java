@@ -16,7 +16,10 @@ public class PhotoModal extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(xpath = "//div[contains(@class, 'zoom-wrap')]//img")
     private List<ExtendedWebElement> photoSlider;
 
-    @FindBy(xpath = "//div[@class='simple-slider__holder']/following-sibling::button[contains(@class,'simple-slider__control--next')]")
+    @FindBy(xpath = "//span[contains(@class,'indicators__item')]")
+    private List<ExtendedWebElement> indicatorItems;
+
+    @FindBy(xpath = "//button[contains(@class,'control--next')]")
     private ExtendedWebElement rightArrowBtn;
 
     @FindBy(xpath = "//button[@class='modal__close']")
@@ -31,9 +34,11 @@ public class PhotoModal extends AbstractUIObject implements ICustomTypePageFacto
     }
 
     public void clickOnSlider() {
+        int count = 0;
         do {
             rightArrowBtn.click();
-        } while (rightArrowBtn.isElementPresent());
+            count++;
+        } while (count != indicatorItems.size()-1);
     }
 
     public ProductDetailsPageBase clickOnModalCloseButton() {

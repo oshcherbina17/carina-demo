@@ -50,7 +50,6 @@ public class RozetkaHomePageTest implements IAbstractTest {
         loginForm.typeEmailField(INCORRECT_EMAIL);
         loginForm.typePasswordField(PASSWORD_VALID);
         loginForm.loginBtnClick();
-        loginForm.loginBtnClick();
         Assert.assertTrue(loginForm.isLoginFailedTextPresent(), "Incorrect email.");
     }
 }
