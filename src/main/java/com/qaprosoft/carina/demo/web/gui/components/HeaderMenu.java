@@ -48,12 +48,6 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
         super(driver, searchContext);
     }
 
-   /* public CoffeeMachinePageBase searchProductItems(FilterType filterType) {
-        searchInput.type(filterType.getType());
-        searchBtn.click();
-        return initPage(getDriver(), CoffeeMachinePageBase.class);
-    }*/
-
     public SearchPageBase searchItems(FilterType filterType) {
         searchInput.type(filterType.getType());
         searchBtn.click();

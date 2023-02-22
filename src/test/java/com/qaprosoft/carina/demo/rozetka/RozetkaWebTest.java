@@ -75,6 +75,7 @@ public class RozetkaWebTest implements IAbstractTest {
     public void testVerifyBrandCheckTitleAndSum() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);

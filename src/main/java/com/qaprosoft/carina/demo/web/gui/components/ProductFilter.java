@@ -10,6 +10,7 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import com.qaprosoft.carina.demo.web.enums.SortDropdown;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductFilter extends AbstractUIObject implements ICustomTypePageFactory {
 
@@ -28,6 +29,7 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
     }
 
     public void selectStateCheckBox(ProductStatus productStatus) {
+        waitUntil(ExpectedConditions.titleContains("Статус товару"),3);
         universalCheckbox.format(productStatus.getStatusType()).click();
     }
 

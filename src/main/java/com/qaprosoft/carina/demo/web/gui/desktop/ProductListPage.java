@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
@@ -15,6 +17,7 @@ import com.qaprosoft.carina.demo.web.gui.common.ComparisonPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ProductDetailsPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = ProductListPageBase.class)
 public class ProductListPage extends ProductListPageBase {
@@ -28,7 +31,9 @@ public class ProductListPage extends ProductListPageBase {
     @FindBy(xpath = "//button[contains(@class, 'goods-tile__buy-button')]")
     private List<ExtendedWebElement> basketIcon;
 
-    @FindBy(xpath = "//span[contains(@class, 'badge--green ')]")
+    @FindBy(xpath = "//li[contains(@class, 'cart')]/*/button")
+    private WebElement basketBtn;
+    @FindBy(xpath = "//span[contains(@class, 'badge--green')]")
     private ExtendedWebElement addedItemsCounter;
 
     @FindBy(xpath = "//h1[contains(@class, 'catalog-heading')]")
@@ -83,6 +88,7 @@ public class ProductListPage extends ProductListPageBase {
 
     @Override
     public void clickOnBasketIcon(int index) {
+        waitUntil(ExpectedConditions.visibilityOf(basketBtn),4000);
         basketIcon.get(index).click();
     }
 
