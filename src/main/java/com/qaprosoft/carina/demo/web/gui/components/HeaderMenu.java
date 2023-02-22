@@ -14,7 +14,7 @@ import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
 
-    @FindBy(xpath = "//button[@class='header__button ng-tns-c94-1']")
+    @FindBy(xpath = "//button[contains(@class, 'header__button ng-tns')]")
     private ExtendedWebElement hamburgerMenuBtn;
 
     @FindBy(xpath = "//input[contains(@class, 'search-form__input')]")

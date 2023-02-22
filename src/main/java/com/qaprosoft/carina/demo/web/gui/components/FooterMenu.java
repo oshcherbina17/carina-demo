@@ -25,7 +25,7 @@ public class FooterMenu extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(xpath = "//a[(@title='%s')]")
     private ExtendedWebElement universalSocialIcon;
 
-    @FindBy(xpath = "//a[contains(@class, 'ng-tns-c91-0') and contains(.,'%s')]")
+    @FindBy(xpath = "//a[contains(@class, 'ng-tns') and contains(.,'%s')]")
     private ExtendedWebElement universalFooterLink;
 
     public FooterMenu(WebDriver driver, SearchContext searchContext) {
