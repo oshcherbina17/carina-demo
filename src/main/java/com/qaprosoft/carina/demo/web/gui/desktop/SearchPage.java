@@ -80,8 +80,9 @@ public class SearchPage extends SearchPageBase {
     }
 
     @Override
-    public ProductListPageBase productTypeLinkClick(FilterType filterType) {
+    public ProductListPageBase productTypeLinkClick(FilterType filterType) throws InterruptedException {
         productNameFilter.format(filterType.getType()).click();
+        wait(3000);
         return initPage(getDriver(), ProductListPageBase.class);
     }
 

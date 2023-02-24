@@ -33,7 +33,8 @@ public class FooterMenu extends AbstractUIObject implements ICustomTypePageFacto
     }
 
     public boolean isSocialIconPresent(SocialLinks socialLinks) {
-        universalSocialIcon.format(socialLinks.getIcon()).sendKeys(Keys.DOWN);
+       // universalSocialIcon.format(socialLinks.getIcon()).sendKeys(Keys.DOWN);
+        universalSocialIcon.format(socialLinks.getIcon()).sendKeys(Keys.PAGE_DOWN);
         return universalSocialIcon.format(socialLinks.getIcon()).isElementPresent();
     }
 

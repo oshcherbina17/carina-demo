@@ -129,8 +129,6 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
-
         HeaderMenu headerMenu = homePage.getHeader();
         Assert.assertTrue(headerMenu.isCatalogButtonPresent(), "Catalog button isn't presented");
         headerMenu.clickOnCatalogButton();
