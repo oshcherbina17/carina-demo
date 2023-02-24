@@ -67,8 +67,8 @@ public class RozetkaPLPTest implements IAbstractTest {
         final String BRAND_NAME = args.get("brand");
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase = headerMenu.searchBrand(BRAND_NAME);
         searchPageBase.productNameFilterClick(FilterType.FILTER_HEADPHONES);
@@ -77,21 +77,6 @@ public class RozetkaPLPTest implements IAbstractTest {
         Assert.assertEquals(searchPageBase.getPageTitleText().toLowerCase(), BRAND_NAME.toLowerCase(),
                 "Titles are not equals");
         Assert.assertTrue(searchPageBase.getProductsText().stream().allMatch(item -> item.contains(BRAND_NAME.toLowerCase())),
-                "Search result is not as required");
-    }
-
-    @Test(description = "Search brands with parallel threads.")
-    @Parameters({"phoneSearch"})
-    @MethodOwner(owner = "oshcherbina")
-    public void verifySearchingProcess(String search) {
-        HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        homePage.clickOnClosePopupButton();
-        HeaderMenu headerMenu = homePage.getHeader();
-        SearchPageBase searchPageBase = headerMenu.searchBrand(search);
-        Assert.assertEquals(searchPageBase.getPageTitleText().toLowerCase(), search.toLowerCase(),
-                "Titles are not equals");
-        Assert.assertTrue(searchPageBase.getProductsText().stream().allMatch(item -> item.contains(search.toLowerCase())),
                 "Search result is not as required");
     }
 
@@ -116,7 +101,7 @@ public class RozetkaPLPTest implements IAbstractTest {
                 "Products not filtered by price");
     }
 
-    @DataProvider(parallel = false, name = "searchBrands")
+    @DataProvider(parallel = true, name = "searchBrands")
     public static Object[][] dataprovider() {
         return new Object[][]{
                 {"TUID: id1", "Xiaomi"},
@@ -139,7 +124,7 @@ public class RozetkaPLPTest implements IAbstractTest {
                 "Search result is not as required");
     }
 
-    @DataProvider(parallel = false, name = "chooseCategory")
+    @DataProvider(parallel = true, name = "chooseCategory")
     public static Object[][] chooseCategory() {
         return new Object[][]{
                 {"TUID:01: Laptops_computer", "Ноутбуки та комп’ютери"},
