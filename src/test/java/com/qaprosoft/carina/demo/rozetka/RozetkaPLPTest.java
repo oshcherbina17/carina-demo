@@ -32,6 +32,7 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void testCheckFiltersBrandAndPrice() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
@@ -50,8 +51,8 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void verifySearchingBrandsTestWithXLS(String searchPhone) {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase = headerMenu.searchBrand(searchPhone);
         Assert.assertEquals(searchPageBase.getPageTitleText().toLowerCase(), searchPhone.toLowerCase(),
@@ -85,6 +86,7 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void testFilterPhonesByPrice(String min_price, String max_price) {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
@@ -114,6 +116,7 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void verifySearchingBrandsTest(String TUID, String searchPhone) {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
@@ -137,8 +140,8 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void verifyMenuCategory(String TUID, String categoryName) {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         switch (categoryName) {
             case "Ноутбуки та комп’ютери":
                 LaptopsAndPCPageBase laptopsAndPCPageBase = (LaptopsAndPCPageBase)
