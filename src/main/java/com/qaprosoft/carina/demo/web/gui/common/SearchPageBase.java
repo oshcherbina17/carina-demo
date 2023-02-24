@@ -26,7 +26,7 @@ public abstract class SearchPageBase extends AbstractPage {
 
     public abstract void productNameFilterClick(FilterType filterType);
 
-    public abstract ProductListPageBase productTypeLinkClick(FilterType filterType) throws InterruptedException;
+    public abstract ProductListPageBase productTypeLinkClick(FilterType filterType);
 
     public abstract boolean checkSubcategoryTitleText(String subcategory);
 

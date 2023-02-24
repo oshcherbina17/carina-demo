@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
@@ -38,6 +39,9 @@ public class SearchPage extends SearchPageBase {
 
     @FindBy(xpath = "//span[@class='goods-tile__title']")
     private List<ExtendedWebElement> titleProductList;
+
+    @FindBy(xpath = "//span[@class='goods-tile__title']")
+    private List<WebElement> titleProductList1;
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -80,9 +84,10 @@ public class SearchPage extends SearchPageBase {
     }
 
     @Override
-    public ProductListPageBase productTypeLinkClick(FilterType filterType) throws InterruptedException {
+    public ProductListPageBase productTypeLinkClick(FilterType filterType) {
         productNameFilter.format(filterType.getType()).click();
-        wait(3000);
+        waitUntil(ExpectedConditions.visibilityOfAllElements(titleProductList1), 3);
+        //new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector("span.DropDown__matched-option-chars"))));
         return initPage(getDriver(), ProductListPageBase.class);
     }
 
