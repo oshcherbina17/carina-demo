@@ -165,7 +165,7 @@ public class ProductListPage extends ProductListPageBase {
     public boolean verifyPriceLimits(String min, String max) {
         List<Integer> pricesList = new ArrayList<>();
         for (ExtendedWebElement webElement : priceList) {
-            pricesList.add(Integer.valueOf(webElement.getText().replace(" ", "").replace("₴", "")));
+            pricesList.add(Integer.valueOf(webElement.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", "")));
         }
         return pricesList.stream().allMatch(price -> price >= Integer.parseInt(min) && price <= Integer.parseInt(max));
     }
