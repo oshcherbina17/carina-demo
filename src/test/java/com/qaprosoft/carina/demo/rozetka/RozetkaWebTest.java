@@ -43,7 +43,7 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         LaptopsAndPCPageBase laptopsAndPCPageBase =
                 (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
         ProductListPageBase productListPage = laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
@@ -60,6 +60,7 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         LaptopsAndPCPageBase laptopsAndPCPageBase =
                 (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
         ProductListPageBase productListPage = laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
@@ -78,6 +79,7 @@ public class RozetkaWebTest implements IAbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         ProductListPageBase productListPage = phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.TABLETS);
@@ -103,6 +105,7 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase= headerMenu.searchItems(FilterType.COFFEE_MACHINE);
         ProductListPageBase productListPageBase = searchPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
@@ -126,6 +129,8 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
+
         HeaderMenu headerMenu = homePage.getHeader();
         Assert.assertTrue(headerMenu.isCatalogButtonPresent(), "Catalog button isn't presented");
         headerMenu.clickOnCatalogButton();
@@ -147,6 +152,8 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
+
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         AppleBrandPageBase appleBrandPageBase = phonesAndElectronicsPageBase.clickOnBrandLink();
@@ -168,6 +175,8 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
+
         HeaderMenu headerMenu = homePage.getHeader();
         String textLanguage = headerMenu.getLanguageText();
         Assert.assertTrue(headerMenu.isHamburgerMenuPresent(), "Hamburger Menu isn't presented");
@@ -186,6 +195,8 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
+
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase = headerMenu.searchItems(FilterType.SEARCH_BRIT);
         searchPageBase.clickAddToBagButton(INDEX_ONE);
@@ -203,6 +214,7 @@ public class RozetkaWebTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         homePage.clickOnClosePopupButton();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnLoginButton();
         LoginForm loginForm = homePage.getLoginForm();
         Assert.assertTrue(loginForm.isEmailInputPresent(), "Email input isn't presented");
