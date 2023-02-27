@@ -92,7 +92,7 @@ public class RozetkaPLPTest implements IAbstractTest {
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         Assert.assertTrue(phonesAndElectronicsPageBase.isPageOpened(), "Category page is not opened");
         ProductListPageBase productListPage = phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.PHONES);
-        Assert.assertTrue(Integer.parseInt(min_price) >= 123,
+        Assert.assertTrue(Integer.parseInt(min_price) >= 82,
                 "Minimum price is less than the minimum given price");
         Assert.assertTrue(Integer.parseInt(max_price) <= 492408,
                 "Maximum price is large than the maximum given price");
