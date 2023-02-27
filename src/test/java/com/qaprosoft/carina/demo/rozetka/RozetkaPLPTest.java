@@ -99,6 +99,8 @@ public class RozetkaPLPTest implements IAbstractTest {
         Assert.assertFalse(Integer.parseInt(min_price) > Integer.parseInt(max_price),
                 "Incorrect min and max values");
         productListPage.filterProductsByPrice("min", "max", min_price, max_price);
+        ProductFilter productFilter = productListPage.getFilter();
+        productFilter.selectStateCheckBox(ProductStatus.AVAILABLE);
         Assert.assertTrue(productListPage.verifyPriceLimits(min_price, max_price),
                 "Products not filtered by price");
     }
