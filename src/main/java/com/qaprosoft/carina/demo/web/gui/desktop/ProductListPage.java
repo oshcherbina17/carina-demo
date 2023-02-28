@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -62,6 +61,9 @@ public class ProductListPage extends ProductListPageBase {
 
     @FindBy(xpath = "//button[contains(@class,'slider-filter__button')]")
     private ExtendedWebElement okBtn;
+    ////////////
+    @FindBy(xpath = "//span[contains(@class, 'categories-filter') and contains(.,'%s')]")
+    private ExtendedWebElement productNameFilter;
 
     public ProductListPage(WebDriver driver) {
         super(driver);
@@ -168,5 +170,10 @@ public class ProductListPage extends ProductListPageBase {
             pricesList.add(Integer.valueOf(webElement.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", "")));
         }
         return pricesList.stream().allMatch(price -> price >= Integer.parseInt(min) && price <= Integer.parseInt(max));
+    }
+    ///////
+    @Override
+    public void productTypeLinkClick(FilterType filterType) {
+        productNameFilter.format(filterType.getType()).click();
     }
 }

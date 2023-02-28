@@ -17,7 +17,8 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
     @FindBy(xpath = "//a[@data-id='%s']")
     private ExtendedWebElement universalCheckbox;
 
-    @FindBy(xpath = "//option[@class='ng-star-inserted' and contains(.,'%s')]")
+    @FindBy(xpath = "//select[contains(@class,'select-css')]/option[contains(text(),'%s')]")
+    //@FindBy(xpath = "//option[@class='ng-star-inserted' and contains(.,'%s')]")
     private ExtendedWebElement universalDropdownMenu;
 
     public ProductFilter(WebDriver driver, SearchContext searchContext) {

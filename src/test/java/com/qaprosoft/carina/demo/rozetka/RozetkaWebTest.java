@@ -107,10 +107,12 @@ public class RozetkaWebTest implements IAbstractTest {
         homePage.clickOnClosePopupButton();
         Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
-        SearchPageBase searchPageBase= headerMenu.searchItems(FilterType.COFFEE_MACHINE);
-        ProductListPageBase productListPageBase = searchPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
+        //SearchPageBase searchPageBase= headerMenu.searchItems(FilterType.COFFEE_MACHINE);
+       // ProductListPageBase productListPageBase = searchPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
         /*Assert.assertTrue(searchPageBase.isTitleTextContainsProductType(FilterType.COFFEE_MACHINE),
                 "Title text don't contains this product");*/
+        ProductListPageBase productListPageBase  = headerMenu.searchItems2(FilterType.COFFEE_MACHINE);
+        productListPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
         ProductFilter productFilter = productListPageBase.getFilter();
         productFilter.selectFilter(FilterType.BRAND_DELONGHI);
         productListPageBase.clickOnCompareIcon(INDEX_ZERO);
