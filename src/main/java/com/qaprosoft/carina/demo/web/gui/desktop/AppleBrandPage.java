@@ -29,6 +29,7 @@ public class AppleBrandPage extends AppleBrandPageBase {
     @Override
     public boolean isDeviceTypePresent(AppleDevices appleDevices) {
         stylusTypeLink.sendKeys(Keys.PAGE_DOWN);
+        stylusTypeLink.sendKeys(Keys.DOWN);
         return universalDeviceTypeLink.format(appleDevices.getDevice()).isElementPresent();
     }
 
