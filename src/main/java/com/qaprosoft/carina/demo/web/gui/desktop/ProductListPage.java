@@ -65,6 +65,9 @@ public class ProductListPage extends ProductListPageBase {
     @FindBy(xpath = "//span[contains(@class, 'categories-filter') and contains(.,'%s')]")
     private ExtendedWebElement productNameFilter;
 
+    @FindBy(xpath = "//span[@class='show-more__text']")
+    private WebElement showMoreText;
+
     @FindBy(xpath = "//span[@class='goods-tile__title']")
     private List<WebElement> titleProductList1;
 
@@ -178,6 +181,6 @@ public class ProductListPage extends ProductListPageBase {
     @Override
     public void productTypeLinkClick(FilterType filterType) {
         productNameFilter.format(filterType.getType()).click();
-        waitUntil(ExpectedConditions.visibilityOfAllElements(titleProductList1), 3);
+        waitUntil(ExpectedConditions.visibilityOf(showMoreText), 5);
     }
 }
