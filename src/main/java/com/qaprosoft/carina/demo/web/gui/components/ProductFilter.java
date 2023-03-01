@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
 import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
@@ -17,6 +18,8 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
     @FindBy(xpath = "//a[@data-id='%s']")
     private ExtendedWebElement universalCheckbox;
 
+    @FindBy(xpath = "//option[contains(.,'За рейтингом')][1]")
+    private WebElement ratingDropdownMenuWeb;
     @FindBy(xpath = "//option[contains(.,'За рейтингом')][1]")
     private ExtendedWebElement ratingDropdownMenu;
 
@@ -37,6 +40,7 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
     }
 
     public void sortDropdownMenu(SortDropdown sortDropdown) {
+        waitUntil(ExpectedConditions.visibilityOfAllElements(ratingDropdownMenuWeb), 5);
         ratingDropdownMenu.click();
         universalDropdownMenu.format(sortDropdown.getSortType()).click();
     }
