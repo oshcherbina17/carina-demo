@@ -55,6 +55,8 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
 
     @FindBy(xpath = "//span[@class='show-more__text']")
     private WebElement showMoreText;
+    @FindBy(xpath = "//section[@class='content content_type_catalog']")
+    private WebElement catalog;
 
     public HeaderMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
@@ -69,7 +71,7 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     public ProductListPageBase searchItems2(FilterType filterType) {
         searchInput.type(filterType.getType());
         searchBtn.click();
-        waitUntil(ExpectedConditions.visibilityOfAllElements(showMoreText), 5);
+        waitUntil(ExpectedConditions.visibilityOfAllElements(catalog), 10);
         return initPage(getDriver(), ProductListPageBase.class);
     }
 
