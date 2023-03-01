@@ -65,6 +65,9 @@ public class ProductListPage extends ProductListPageBase {
     @FindBy(xpath = "//span[contains(@class, 'categories-filter') and contains(.,'%s')]")
     private ExtendedWebElement productNameFilter;
 
+    @FindBy(xpath = "//span[@class='goods-tile__title']")
+    private List<WebElement> titleProductList1;
+
     public ProductListPage(WebDriver driver) {
         super(driver);
     }
@@ -175,5 +178,6 @@ public class ProductListPage extends ProductListPageBase {
     @Override
     public void productTypeLinkClick(FilterType filterType) {
         productNameFilter.format(filterType.getType()).click();
+        waitUntil(ExpectedConditions.visibilityOfAllElements(titleProductList1), 3);
     }
 }
