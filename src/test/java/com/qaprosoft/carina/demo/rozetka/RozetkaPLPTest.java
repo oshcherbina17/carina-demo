@@ -32,6 +32,7 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void testCheckFiltersBrandAndPrice() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
@@ -50,8 +51,8 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void verifySearchingBrandsTestWithXLS(String searchPhone) {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase = headerMenu.searchBrand(searchPhone);
         Assert.assertEquals(searchPageBase.getPageTitleText().toLowerCase(), searchPhone.toLowerCase(),
@@ -67,8 +68,8 @@ public class RozetkaPLPTest implements IAbstractTest {
         final String BRAND_NAME = args.get("brand");
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
         SearchPageBase searchPageBase = headerMenu.searchBrand(BRAND_NAME);
         searchPageBase.productNameFilterClick(FilterType.FILTER_HEADPHONES);
@@ -80,43 +81,31 @@ public class RozetkaPLPTest implements IAbstractTest {
                 "Search result is not as required");
     }
 
-    @Test(description = "Search brands with parallel threads.")
-    @Parameters({"phoneSearch"})
-    @MethodOwner(owner = "oshcherbina")
-    public void verifySearchingProcess(String search) {
-        HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        homePage.clickOnClosePopupButton();
-        HeaderMenu headerMenu = homePage.getHeader();
-        SearchPageBase searchPageBase = headerMenu.searchBrand(search);
-        Assert.assertEquals(searchPageBase.getPageTitleText().toLowerCase(), search.toLowerCase(),
-                "Titles are not equals");
-        Assert.assertTrue(searchPageBase.getProductsText().stream().allMatch(item -> item.contains(search.toLowerCase())),
-                "Search result is not as required");
-    }
-
     @Test(dataProvider = "DataProvider")
     @XlsDataSourceParameters(path = "xls/price.xlsx", sheet = "price", dsUid = "TUID", dsArgs = "min_price, max_price")
     public void testFilterPhonesByPrice(String min_price, String max_price) {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         PhonesAndElectronicsPageBase phonesAndElectronicsPageBase =
                 (PhonesAndElectronicsPageBase) homePage.clickOnCategoryMenu(MenuCategory.PHONES_TV_ELECTRONICS);
         Assert.assertTrue(phonesAndElectronicsPageBase.isPageOpened(), "Category page is not opened");
         ProductListPageBase productListPage = phonesAndElectronicsPageBase.clickOnCategoriesLink(Devices.PHONES);
-        Assert.assertTrue(Integer.parseInt(min_price) >= 123,
+        Assert.assertTrue(Integer.parseInt(min_price) >= 82,
                 "Minimum price is less than the minimum given price");
         Assert.assertTrue(Integer.parseInt(max_price) <= 492408,
                 "Maximum price is large than the maximum given price");
         Assert.assertFalse(Integer.parseInt(min_price) > Integer.parseInt(max_price),
                 "Incorrect min and max values");
         productListPage.filterProductsByPrice("min", "max", min_price, max_price);
+        ProductFilter productFilter = productListPage.getFilter();
+        productFilter.selectStateCheckBox(ProductStatus.AVAILABLE);
         Assert.assertTrue(productListPage.verifyPriceLimits(min_price, max_price),
                 "Products not filtered by price");
     }
 
-    @DataProvider(parallel = false, name = "searchBrands")
+    @DataProvider(parallel = true, name = "searchBrands")
     public static Object[][] dataprovider() {
         return new Object[][]{
                 {"TUID: id1", "Xiaomi"},
@@ -129,6 +118,7 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void verifySearchingBrandsTest(String TUID, String searchPhone) {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
@@ -139,7 +129,7 @@ public class RozetkaPLPTest implements IAbstractTest {
                 "Search result is not as required");
     }
 
-    @DataProvider(parallel = false, name = "chooseCategory")
+    @DataProvider(parallel = true, name = "chooseCategory")
     public static Object[][] chooseCategory() {
         return new Object[][]{
                 {"TUID:01: Laptops_computer", "Ноутбуки та комп’ютери"},
@@ -152,8 +142,8 @@ public class RozetkaPLPTest implements IAbstractTest {
     public void verifyMenuCategory(String TUID, String categoryName) {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         switch (categoryName) {
             case "Ноутбуки та комп’ютери":
                 LaptopsAndPCPageBase laptopsAndPCPageBase = (LaptopsAndPCPageBase)

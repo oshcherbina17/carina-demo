@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
 import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
@@ -12,9 +13,11 @@ import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 
+import java.util.List;
+
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
 
-    @FindBy(xpath = "//button[@class='header__button ng-tns-c94-1']")
+    @FindBy(xpath = "//button[contains(@class, 'header__button ng-tns')]")
     private ExtendedWebElement hamburgerMenuBtn;
 
     @FindBy(xpath = "//input[contains(@class, 'search-form__input')]")
@@ -44,15 +47,18 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(xpath = "//div[contains(@class,'modal__holder modal__holder_show_animation')]")
     private LoginForm loginForm;
 
+    /////
+    @FindBy(xpath = "//span[@class='goods-tile__title']")
+    private List<WebElement> titleProductList1;
+
+    @FindBy(xpath = "//span[@class='show-more__text']")
+    private WebElement showMoreText;
+    @FindBy(xpath = "//section[@class='content content_type_catalog']")
+    private WebElement catalog;
+
     public HeaderMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
-
-   /* public CoffeeMachinePageBase searchProductItems(FilterType filterType) {
-        searchInput.type(filterType.getType());
-        searchBtn.click();
-        return initPage(getDriver(), CoffeeMachinePageBase.class);
-    }*/
 
     public SearchPageBase searchItems(FilterType filterType) {
         searchInput.type(filterType.getType());

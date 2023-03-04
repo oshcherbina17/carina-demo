@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
@@ -15,6 +16,7 @@ import com.qaprosoft.carina.demo.web.gui.common.ComparisonPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ProductDetailsPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = ProductListPageBase.class)
 public class ProductListPage extends ProductListPageBase {
@@ -28,7 +30,9 @@ public class ProductListPage extends ProductListPageBase {
     @FindBy(xpath = "//button[contains(@class, 'goods-tile__buy-button')]")
     private List<ExtendedWebElement> basketIcon;
 
-    @FindBy(xpath = "//span[contains(@class, 'badge--green ')]")
+    @FindBy(xpath = "//li[contains(@class, 'cart')]/*/button")
+    private WebElement basketBtn;
+    @FindBy(xpath = "//span[contains(@class, 'badge--green')]")
     private ExtendedWebElement addedItemsCounter;
 
     @FindBy(xpath = "//h1[contains(@class, 'catalog-heading')]")
@@ -58,6 +62,15 @@ public class ProductListPage extends ProductListPageBase {
     @FindBy(xpath = "//button[contains(@class,'slider-filter__button')]")
     private ExtendedWebElement okBtn;
 
+    @FindBy(xpath = "//span[contains(@class, 'categories-filter') and contains(.,'%s')]")
+    private ExtendedWebElement productNameFilter;
+
+    @FindBy(xpath = "//span[@class='show-more__text']")
+    private WebElement showMoreText;
+
+    @FindBy(xpath = "//span[@class='goods-tile__title']")
+    private List<WebElement> titleProductList1;
+
     public ProductListPage(WebDriver driver) {
         super(driver);
     }
@@ -83,6 +96,7 @@ public class ProductListPage extends ProductListPageBase {
 
     @Override
     public void clickOnBasketIcon(int index) {
+        waitUntil(ExpectedConditions.visibilityOf(basketBtn), 4000);
         basketIcon.get(index).click();
     }
 
@@ -159,8 +173,14 @@ public class ProductListPage extends ProductListPageBase {
     public boolean verifyPriceLimits(String min, String max) {
         List<Integer> pricesList = new ArrayList<>();
         for (ExtendedWebElement webElement : priceList) {
-            pricesList.add(Integer.valueOf(webElement.getText().replace(" ", "").replace("₴", "")));
+            pricesList.add(Integer.valueOf(webElement.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", "")));
         }
         return pricesList.stream().allMatch(price -> price >= Integer.parseInt(min) && price <= Integer.parseInt(max));
+    }
+
+    @Override
+    public void productTypeLinkClick(FilterType filterType) {
+        productNameFilter.format(filterType.getType()).click();
+        waitUntil(ExpectedConditions.visibilityOf(showMoreText), 5);
     }
 }

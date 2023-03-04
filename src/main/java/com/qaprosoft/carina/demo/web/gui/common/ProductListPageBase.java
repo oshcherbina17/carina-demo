@@ -36,7 +36,6 @@ public abstract class ProductListPageBase extends AbstractPage {
 
     public abstract ComparisonPageBase clickOnProductType();
 
-    ///////////////
     public abstract void setSortingPrice(String param, int price);
 
     public abstract boolean checkBrandInDescription(FilterType filterType, int index);
@@ -44,4 +43,6 @@ public abstract class ProductListPageBase extends AbstractPage {
     public abstract void filterProductsByPrice(String paramMin, String paramMax, String min, String max);
 
     public abstract boolean verifyPriceLimits(String min, String max);
+
+    public abstract void productTypeLinkClick(FilterType filterType);
 }

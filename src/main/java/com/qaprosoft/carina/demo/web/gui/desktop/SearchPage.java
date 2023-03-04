@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
@@ -38,6 +39,9 @@ public class SearchPage extends SearchPageBase {
 
     @FindBy(xpath = "//span[@class='goods-tile__title']")
     private List<ExtendedWebElement> titleProductList;
+
+    @FindBy(xpath = "//span[@class='goods-tile__title']")
+    private List<WebElement> titleProductList1;
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -82,6 +86,7 @@ public class SearchPage extends SearchPageBase {
     @Override
     public ProductListPageBase productTypeLinkClick(FilterType filterType) {
         productNameFilter.format(filterType.getType()).click();
+        waitUntil(ExpectedConditions.visibilityOfAllElements(titleProductList1), 3);
         return initPage(getDriver(), ProductListPageBase.class);
     }
 
@@ -92,7 +97,7 @@ public class SearchPage extends SearchPageBase {
 
     @Override
     public boolean isTitleTextContainsProductType(FilterType filterType) {
-        return  titleProductList.stream().allMatch((type)->
-                StringUtils.containsIgnoreCase(type.getText(),filterType.getType()));
+        return titleProductList.stream().allMatch((type) ->
+                StringUtils.containsIgnoreCase(type.getText(), filterType.getType()));
     }
 }
