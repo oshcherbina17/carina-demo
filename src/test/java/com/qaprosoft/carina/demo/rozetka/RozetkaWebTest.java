@@ -51,7 +51,8 @@ public class RozetkaWebTest implements IAbstractTest {
         productFilter.selectFilter(FilterType.BRAND_APPLE);
         productFilter.selectFilter(FilterType.RAM);
         productFilter.selectStateCheckBox(ProductStatus.AVAILABLE);
-        Assert.assertTrue(productListPage.checkChosenBrand(INDEX_ZERO, FilterType.BRAND_APPLE.getType()));
+        Assert.assertTrue(productListPage.checkChosenBrand(INDEX_ZERO, FilterType.BRAND_APPLE.getType()),
+                "Chosen brand isn't selected");
     }
 
     @Test(description = "User can sort dropdown menu and check if products add to basket.")
@@ -107,11 +108,11 @@ public class RozetkaWebTest implements IAbstractTest {
         homePage.clickOnClosePopupButton();
         Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         HeaderMenu headerMenu = homePage.getHeader();
-        //SearchPageBase searchPageBase= headerMenu.searchItems(FilterType.COFFEE_MACHINE);
-       // ProductListPageBase productListPageBase = searchPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
-        /*Assert.assertTrue(searchPageBase.isTitleTextContainsProductType(FilterType.COFFEE_MACHINE),
-                "Title text don't contains this product");*/
-        ProductListPageBase productListPageBase  = headerMenu.searchItems2(FilterType.COFFEE_MACHINE);
+        SearchPageBase searchPageBase= headerMenu.searchItems(FilterType.COFFEE_MACHINE);
+        ProductListPageBase productListPageBase = searchPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
+      //  Assert.assertTrue(searchPageBase.isTitleTextContainsProductType(FilterType.COFFEE_MACHINE),
+          //      "Title text don't contains this product");
+        //ProductListPageBase productListPageBase  = headerMenu.searchItems2(FilterType.COFFEE_MACHINE);
         productListPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
         ProductFilter productFilter = productListPageBase.getFilter();
         productFilter.selectFilter(FilterType.BRAND_DELONGHI);
