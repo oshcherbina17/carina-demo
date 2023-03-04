@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.web.gui.components;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
@@ -11,7 +12,6 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import com.qaprosoft.carina.demo.web.enums.SortDropdown;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductFilter extends AbstractUIObject implements ICustomTypePageFactory {
 
@@ -30,7 +30,7 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
         super(driver, searchContext);
     }
 
-    public void selectFilter(FilterType filterType) { //filter
+    public void selectFilter(FilterType filterType) {
         universalCheckbox.format(filterType.getType()).click();
     }
 

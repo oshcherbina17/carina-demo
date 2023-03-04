@@ -87,7 +87,6 @@ public class SearchPage extends SearchPageBase {
     public ProductListPageBase productTypeLinkClick(FilterType filterType) {
         productNameFilter.format(filterType.getType()).click();
         waitUntil(ExpectedConditions.visibilityOfAllElements(titleProductList1), 3);
-        //new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.cssSelector("span.DropDown__matched-option-chars"))));
         return initPage(getDriver(), ProductListPageBase.class);
     }
 
@@ -98,7 +97,7 @@ public class SearchPage extends SearchPageBase {
 
     @Override
     public boolean isTitleTextContainsProductType(FilterType filterType) {
-        return  titleProductList.stream().allMatch((type)->
-                StringUtils.containsIgnoreCase(type.getText(),filterType.getType()));
+        return titleProductList.stream().allMatch((type) ->
+                StringUtils.containsIgnoreCase(type.getText(), filterType.getType()));
     }
 }

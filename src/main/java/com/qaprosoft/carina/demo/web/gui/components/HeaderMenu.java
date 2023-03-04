@@ -1,6 +1,5 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
-import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +12,6 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -66,13 +64,6 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
         searchInput.type(filterType.getType());
         searchBtn.click();
         return initPage(getDriver(), SearchPageBase.class);
-    }
-
-    public ProductListPageBase searchItems2(FilterType filterType) {
-        searchInput.type(filterType.getType());
-        searchBtn.click();
-        waitUntil(ExpectedConditions.visibilityOfAllElements(catalog), 10);
-        return initPage(getDriver(), ProductListPageBase.class);
     }
 
     public SearchPageBase searchBrand(String param) {
