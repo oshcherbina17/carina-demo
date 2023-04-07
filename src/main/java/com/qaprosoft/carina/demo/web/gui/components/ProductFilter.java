@@ -41,7 +41,7 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
 
     public void sortDropdownMenu(SortDropdown sortDropdown) {
         waitUntil(ExpectedConditions.visibilityOfAllElements(ratingDropdownMenuWeb), 5);
-        //ratingDropdownMenu.click();
+        ratingDropdownMenu.click();
         universalDropdownMenu.format(sortDropdown.getSortType()).click();
     }
 }
