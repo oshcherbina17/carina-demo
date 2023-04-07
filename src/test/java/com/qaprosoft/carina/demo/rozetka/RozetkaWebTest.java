@@ -42,11 +42,13 @@ public class RozetkaWebTest implements IAbstractTest {
     public void testVerifyCheckBrand() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        getDriver().manage().window().fullscreen();
         homePage.clickOnClosePopupButton();
         Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         LaptopsAndPCPageBase laptopsAndPCPageBase =
                 (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
         ProductListPageBase productListPage = laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
+        getDriver().manage().window().fullscreen();
         ProductFilter productFilter = productListPage.getFilter();
         productFilter.selectFilter(FilterType.BRAND_APPLE);
         productFilter.selectFilter(FilterType.RAM);
@@ -60,11 +62,13 @@ public class RozetkaWebTest implements IAbstractTest {
     public void testSortLowToHigh() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        getDriver().manage().window().fullscreen();
         homePage.clickOnClosePopupButton();
         Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         LaptopsAndPCPageBase laptopsAndPCPageBase =
                 (LaptopsAndPCPageBase) homePage.clickOnCategoryMenu(MenuCategory.LAPTOPS_COMPUTERS);
         ProductListPageBase productListPage = laptopsAndPCPageBase.clickOnCategoriesLink(Devices.TABLETS);
+        getDriver().manage().window().fullscreen();
         ProductFilter productFilter = productListPage.getFilter();
         productFilter.selectFilter(FilterType.BRAND_APPLE);
         productFilter.sortDropdownMenu(SortDropdown.LOW_TO_HIGH);
