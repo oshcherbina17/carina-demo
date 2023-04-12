@@ -82,7 +82,6 @@ public class RozetkaWebTest implements IAbstractTest {
     public void testVerifyBrandCheckTitleAndSum() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        getDriver().manage().window().fullscreen();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
         homePage.clickOnClosePopupButton();
         Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
