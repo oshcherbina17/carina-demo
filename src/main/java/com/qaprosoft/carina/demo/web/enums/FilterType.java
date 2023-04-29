@@ -12,6 +12,7 @@ public enum FilterType {
     BRAND_LENOVO("Lenovo"),
     BRAND_SIGMA("Sigma"),
     BRAND_DELONGHI("Delonghi"),
+    BOOKS("Книги"),
 
     SEARCH_BRIT("brit");
 

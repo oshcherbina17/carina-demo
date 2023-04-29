@@ -15,5 +15,7 @@ public abstract class LaptopsAndPCPageBase extends AbstractPage {
 
     public abstract ProductListPageBase clickOnCategoriesLink(Devices devices);
 
+    public abstract ProductListPageBase clickOnCategoriesLinkWithL10N(Devices devices);
+
     public abstract String reverseWords(String str);
 }

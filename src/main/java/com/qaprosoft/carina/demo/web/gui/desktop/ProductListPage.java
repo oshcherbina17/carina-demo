@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
@@ -16,7 +17,6 @@ import com.qaprosoft.carina.demo.web.gui.common.ComparisonPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ProductDetailsPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = ProductListPageBase.class)
 public class ProductListPage extends ProductListPageBase {
@@ -182,5 +182,10 @@ public class ProductListPage extends ProductListPageBase {
     public void productTypeLinkClick(FilterType filterType) {
         productNameFilter.format(filterType.getType()).click();
         waitUntil(ExpectedConditions.visibilityOf(showMoreText), 5);
+    }
+
+    @Override
+    public String getDeviceTitleText() {
+       return deviceTitleText.getText();
     }
 }

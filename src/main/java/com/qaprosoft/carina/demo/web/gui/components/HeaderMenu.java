@@ -1,5 +1,9 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
+import java.util.List;
+import java.util.Locale;
+
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,8 +16,6 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
-
-import java.util.List;
 
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
 
@@ -32,6 +34,12 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(xpath = "//span[contains(@class,'lang__link--active') and contains(.,'UA')]")
     private ExtendedWebElement languageUA;
 
+    @FindBy(xpath = "//a[@class='lang__link ng-star-inserted']")
+    private ExtendedWebElement languageRU;
+
+    @FindBy(xpath = "//li[contains(@class, 'lang__item')]/a")
+    private ExtendedWebElement currentLanguageBtn;
+
     @FindBy(xpath = "//div[contains(@class, 'side-menu drawer-content')]")
     private HamburgerMenu hamburgerMenu;
 
@@ -47,14 +55,22 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(xpath = "//div[contains(@class,'modal__holder modal__holder_show_animation')]")
     private LoginForm loginForm;
 
-    /////
     @FindBy(xpath = "//span[@class='goods-tile__title']")
     private List<WebElement> titleProductList1;
 
     @FindBy(xpath = "//span[@class='show-more__text']")
     private WebElement showMoreText;
+
     @FindBy(xpath = "//section[@class='content content_type_catalog']")
     private WebElement catalog;
+
+    @FindBy(xpath = "//li[contains(@class, 'lang__item')]/a")
+    private static ExtendedWebElement languageBtn;
+
+    static String languageRu = "ru";
+    static String languageUk = "uk";
+    static String languageBtnRu = "RU";
+    static String languageBtnUa = "UA";
 
     public HeaderMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
@@ -112,5 +128,42 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
 
     public String getLanguageText() {
         return languageUA.getText().replace(" ", "");
+    }
+
+    public String getBtnText() {
+        return searchBtn.getText();
+    }
+
+    public void clickOnLanguageBtn(String language) {
+        switch (language) {
+            case "RU" :
+                languageRU.click();
+                break;
+            case "UA":
+                languageUA.click();
+                break;
+        }
+    }
+
+    private static Locale parseLocale(String localeToParse) {
+        String[] localeSettings = localeToParse.trim().split("_");
+        String lang, country = "";
+        lang = localeSettings[0];
+        if (localeSettings.length > 1) {
+            country = localeSettings[1];
+        }
+        return new Locale(lang, country);
+    }
+
+    public  void checkAndChangeLanguage() {
+        String localeConfig = Configuration.get(Configuration.Parameter.LOCALE);
+        Locale currentLocale = parseLocale(localeConfig);
+        String languageBtnText = languageBtn.getText().strip();
+
+        if (languageBtnText.equals(languageBtnRu) && currentLocale.getLanguage().equals(languageRu)) {
+            languageBtn.click();
+        } else if (languageBtnText.equals(languageBtnUa) && currentLocale.getLanguage().equals(languageUk)) {
+            languageBtn.click();
+        }
     }
 }

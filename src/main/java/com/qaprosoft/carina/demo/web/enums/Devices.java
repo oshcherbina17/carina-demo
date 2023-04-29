@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.web.enums;
 
 public enum Devices {
     TABLETS("Планшети"),
+    TABLET("ProductDetailsPageBase.Devices.TABLET"),
     PHONES("Мобільні телефони");
 
     private String namePage;
