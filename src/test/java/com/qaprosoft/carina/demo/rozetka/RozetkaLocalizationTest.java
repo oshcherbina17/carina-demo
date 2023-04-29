@@ -16,7 +16,7 @@ import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
 
-public class RozetkaLocalization implements IAbstractTest {
+public class RozetkaLocalizationTest implements IAbstractTest {
 
     @Test(description = "Check language UA.")
     @MethodOwner(owner = "oshcherbina")
