@@ -1,0 +1,76 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Carina Demo Tests - Rozetka PLP" parallel="tests" thread-count="4">
+
+    <parameter name="suiteOwner" value="oshcherbina"/>
+
+    <test name="Check Filters Brand And Price test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="testCheckFiltersBrandAndPrice"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Searching Brands With XLS test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="verifySearchingBrandsTestWithXLS"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Searching Process With XLS">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="verifySearchingProcessWithXLS"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify Searching Process test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="verifySearchingProcess"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Filter Phones By Price test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="testFilterPhonesByPrice"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify Searching Brands test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="verifySearchingBrandsTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Verify MenuCategory test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaPLPTest">
+                <methods>
+                    <include name="verifyMenuCategory"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

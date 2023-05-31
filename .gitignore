@@ -19,6 +19,7 @@
 !src/main/resources/carinademoexample.apk
 *.zip
 !src/main/resources/carinademoexample.zip
+src/main/resources/_config.properties
 .settings/*
 target/*
 test-output/*
@@ -32,3 +33,4 @@ reports/*
 /target/
 *new_custom_messages_*.properties
 /bin/
+.DS_Store
