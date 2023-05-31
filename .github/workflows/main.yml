@@ -1,0 +1,27 @@
+name: Rozetka on Chrome tests workFlow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  MavenBuildWithSelenoid:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull the project into the runner step
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 11 step
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Start selenoid step
+        uses: Xotabu4/selenoid-github-action@v2
+      
+      - name: Build and run tests step
+        run: mvn clean test -Dsuite=rozetka/pdp-rozetka -Dbrowser=chrome
+
+ 
