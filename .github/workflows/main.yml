@@ -1,4 +1,4 @@
-name: Rozetka on Chrome tests workFlow
+name: Rozetka on Chrome tests
 
 on:
   workflow_dispatch:
@@ -22,6 +22,6 @@ jobs:
         uses: Xotabu4/selenoid-github-action@v2
       
       - name: Build and run tests step
-        run: mvn clean test -Dsuite=rozetka/pdp-rozetka -Dbrowser=chrome
+        run: mvn clean test -Dsuite=pdp-rozetka -Dbrowser=chrome
 
  
