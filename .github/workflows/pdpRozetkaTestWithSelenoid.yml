@@ -1,4 +1,4 @@
-name: Rozetka on Chrome tests
+name: pdpRozetkaTestWithSelenoid
 
 on:
   workflow_dispatch:
