@@ -23,5 +23,22 @@ jobs:
       
       - name: Build and run tests step
         run: mvn clean test -Dsuite=pdp-rozetka -Dbrowser=chrome
+        
+      - name: Create artifacts directory
+        if: success() || failure()
+        run: mkdir artifacts && cp -r reports artifacts
 
+      - name: Upload artifacts
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifacts
+          path: artifacts
+          
+      - name: Download artifacts
+        if: success() || failure()
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifacts
+          path: downloaded-artifacts/
  
