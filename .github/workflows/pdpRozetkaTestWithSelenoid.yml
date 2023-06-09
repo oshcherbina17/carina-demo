@@ -2,6 +2,15 @@ name: pdpRozetkaTestWithSelenoid
 
 on:
   workflow_dispatch:
+   inputs:
+      browsers:
+        description: 'Browser for tests'
+        required: true
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - firefox
 
 jobs:
   MavenBuildWithSelenoid:
