@@ -36,7 +36,6 @@ public class HomePage extends HomePageBase {
     }
 
     public AbstractPage clickOnCategoryMenu(MenuCategory menuCategory) {
-        waitUntil(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//a[@class='menu-categories__link']")), 10);
         universalCategoryMenu.format(menuCategory.getNamePage()).click();
         return initPage(getDriver(), menuCategory.getPageClass());
     }
