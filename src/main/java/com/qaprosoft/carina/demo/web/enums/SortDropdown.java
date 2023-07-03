@@ -7,7 +7,7 @@ public enum SortDropdown {
     DATE("За датою"),
     BY_RATING("За рейтингом"),
     ASCENDING("ProductFilter.SortDropdown.Ascending"),
-    DESCENDING("ProductFilter.SortDropdown.Descending");;
+    DESCENDING("ProductFilter.SortDropdown.Descending");
 
 
     private String sortType;

@@ -1,6 +1,5 @@
 package com.qaprosoft.carina.demo.rozetka;
 
-import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
@@ -32,7 +31,6 @@ import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
 import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
-import org.testng.asserts.SoftAssert;
 
 public class RozetkaWebTest implements IAbstractTest {
     final int INDEX_ZERO = 0;

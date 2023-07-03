@@ -33,10 +33,10 @@ public class HomePage extends HomePageBase {
     private ExtendedWebElement header;
 
     @FindBy(xpath = "//div[@class='header-topline__language-item']")
-    private ExtendedWebElement languagesBtn; //
+    private ExtendedWebElement languagesBtn;
+  
     @FindBy(xpath = "//ul[@class='header-topline__language-dropdown']")
     private ExtendedWebElement languageList;
-    ////////////////////////////////////////////////////////////////////
 
     public HomePage(WebDriver driver) {
         super(driver);
