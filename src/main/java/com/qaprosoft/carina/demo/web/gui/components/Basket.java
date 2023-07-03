@@ -27,8 +27,9 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
     @FindBy(xpath = "//div[@class='cart-receipt__sum-price']//span[1]")
     private ExtendedWebElement sumPrice;
 
-    @FindBy(xpath = "//p[@data-testid='cost']")
+    @FindBy(xpath = "//p[contains(@class,'cart-product__price')]")
     private ExtendedWebElement itemPrice;
+  
     @FindBy(xpath = "//h4[@class='cart-dummy__heading']")
     private ExtendedWebElement cardStatus;
 

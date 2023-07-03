@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
+import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
@@ -31,7 +32,7 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
     }
 
     public void selectFilter(FilterType filterType) {
-        universalCheckbox.format(filterType.getType()).click();
+        universalCheckbox.format(filterType.getType()).click(2);
     }
 
     public void selectStateCheckBox(ProductStatus productStatus) {
@@ -43,5 +44,13 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
         waitUntil(ExpectedConditions.visibilityOfAllElements(ratingDropdownMenuWeb), 5);
         ratingDropdownMenu.click();
         universalDropdownMenu.format(sortDropdown.getSortType()).click();
+    }
+
+    public void sortDropdownMenuWithL10N(SortDropdown sortDropdown) {
+        universalDropdownMenu.format(L10N.getText(sortDropdown.getSortType())).click();
+    }
+
+    public String getMenuTitleText(SortDropdown sortDropdown) {
+        return universalDropdownMenu.format(L10N.getText(sortDropdown.getSortType())).getText();
     }
 }

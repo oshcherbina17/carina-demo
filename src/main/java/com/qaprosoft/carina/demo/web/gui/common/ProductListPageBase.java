@@ -45,4 +45,6 @@ public abstract class ProductListPageBase extends AbstractPage {
     public abstract boolean verifyPriceLimits(String min, String max);
 
     public abstract void productTypeLinkClick(FilterType filterType);
+
+    public abstract String getDeviceTitleText();
 }

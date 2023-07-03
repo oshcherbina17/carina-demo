@@ -39,11 +39,11 @@ public class WikipediaLocalePage extends AbstractPage {
     private ExtendedWebElement contribElem;
 
     @Localized
-    @FindBy(id = "pt-createaccount")
+    @FindBy(id = "pt-createaccount-2")
     private ExtendedWebElement createAccountElem;
 
     @Localized
-    @FindBy(id = "pt-anontalk")
+    @FindBy(id = "vector-user-links-dropdown")
     private ExtendedWebElement discussionElem;
 
     @FindBy(linkText = "{L10N:discussionElem}")

@@ -5,7 +5,9 @@ public enum SortDropdown {
     HIGH_TO_LOW("Від дорогих до дешевих"),
     NEW("Новинки"),
     DATE("За датою"),
-    BY_RATING("За рейтингом");
+    BY_RATING("За рейтингом"),
+    ASCENDING("ProductFilter.SortDropdown.Ascending"),
+    DESCENDING("ProductFilter.SortDropdown.Descending");
 
 
     private String sortType;

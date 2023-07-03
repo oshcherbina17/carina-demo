@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.foundation.utils.resources.L10N;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.web.enums.Devices;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopsAndPCPageBase;
@@ -30,6 +31,12 @@ public class LaptopsAndPCPage extends LaptopsAndPCPageBase {
     @Override
     public ProductListPageBase clickOnCategoriesLink(Devices devices) {
         universalCategoriesMenu.format(devices.getNamePage()).click();
+        return initPage(getDriver(), ProductListPageBase.class);
+    }
+
+    @Override
+    public ProductListPageBase clickOnCategoriesLinkWithL10N(Devices devices) {
+        universalCategoriesMenu.format(L10N.getText(devices.getNamePage())).click();
         return initPage(getDriver(), ProductListPageBase.class);
     }
 
