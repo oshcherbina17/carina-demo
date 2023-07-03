@@ -51,7 +51,6 @@ public class RozetkaLocalizationTest implements IAbstractTest {
     @MethodOwner(owner = "oshcherbina")
     public void testLocalizationWithResources() {
         SoftAssert softAssert = new SoftAssert();
-
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page isn't opened");
@@ -67,7 +66,6 @@ public class RozetkaLocalizationTest implements IAbstractTest {
         productFilter.sortDropdownMenuWithL10N(SortDropdown.ASCENDING);
         String expectedTitle = L10N.getText("ProductFilter.SortDropdown.Ascending");
         Assert.assertEquals(productFilter.getMenuTitleText(SortDropdown.ASCENDING), expectedTitle);
-
         softAssert.assertAll();
         L10N.assertAll();
     }
