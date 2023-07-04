@@ -100,4 +100,10 @@ public class SearchPage extends SearchPageBase {
         return titleProductList.stream().allMatch((type) ->
                 StringUtils.containsIgnoreCase(type.getText(), filterType.getType()));
     }
+
+    @Override
+    public boolean isTitleTextContainsProduct(String productName) {
+        return titleProductList.stream().allMatch((type) ->
+                StringUtils.containsIgnoreCase(type.getText(), productName));
+    }
 }
