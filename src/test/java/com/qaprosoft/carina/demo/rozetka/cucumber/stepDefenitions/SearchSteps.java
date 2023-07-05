@@ -40,8 +40,8 @@ public class SearchSteps extends CommonSteps implements IDriverPool {
     }
 
     @Then("^Search page should contains title result \"([^\"]*)\"$")
-    public void searchResultsAreDisplayed(String productName) {
-        Assert.assertTrue(searchPage.isTitleTextContainsProduct(productName),
+    public void searchResultsAreDisplayed(String resultName) {
+        Assert.assertTrue(searchPage.isTitleTextContainsProduct(resultName),
                 "Search Title is not present");
     }
 }
