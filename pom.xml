@@ -83,6 +83,36 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>7.11.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>7.11.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>gherkin</artifactId>
+			<version>26.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-gherkin</artifactId>
+			<version>7.11.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.qaprosoft</groupId>
+			<artifactId>carina-cucumber</artifactId>
+			<version>7.4.28</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

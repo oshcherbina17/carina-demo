@@ -32,4 +32,5 @@ public abstract class SearchPageBase extends AbstractPage {
 
     public abstract boolean isTitleTextContainsProductType(FilterType filterType);
 
+    public abstract boolean isTitleTextContainsProduct(String productName);
 }
