@@ -2,6 +2,7 @@
 <suite verbose="1" name="Carina Demo Tests - Cucumber Web Sample" parallel="tests" thread-count="4">
 
     <parameter name="suiteOwner" value="oshcherbina"/>
+    <parameter name="jenkinsJobName" value="Cucumber Web Sample"/>
 
     <test  verbose="1"
            name="Cucumber Test">
