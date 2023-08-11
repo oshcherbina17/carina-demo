@@ -1,5 +1,6 @@
 <img src="https://github.com/oshcherbina17/carina-demo/workflows/pdpRozetkaTestWithSelenoid/badge.svg?branch=master"><br>
 <img src="https://github.com/oshcherbina17/carina-demo/workflows/cucumberRozetkaTestWithSelenoid/badge.svg?branch=master"><br>
+<img src="https://github.com/oshcherbina17/carina-demo/workflows/rozetkaWebTestWithSelenoid/badge.svg?branch=master"><br>
 
 ### Getting started
 * Install and configure JDK 11
