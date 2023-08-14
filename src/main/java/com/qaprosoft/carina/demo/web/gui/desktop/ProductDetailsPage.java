@@ -23,7 +23,7 @@ import com.qaprosoft.carina.demo.web.gui.components.PhotoModal;
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = ProductDetailsPageBase.class)
 public class ProductDetailsPage extends ProductDetailsPageBase {
 
-    @FindBy(xpath = "//h1[@class='product__title']")
+    @FindBy(xpath = "//h1[contains(@class,'product__title')]")
     private ExtendedWebElement productTitleText;
 
     @FindBy(xpath = "//span[text()=' Купити ']")
@@ -81,8 +81,10 @@ public class ProductDetailsPage extends ProductDetailsPageBase {
 
     @Override
     public void moveToTitleText() {
-        productTitleText.hover();
-        waitUntil(ExpectedConditions.visibilityOfElementLocated(productTitleText.getBy()), 2);
+        buyBtn.hover();
+       // productTitleText.hover();
+      //  waitUntil(ExpectedConditions.visibilityOfElementLocated(productTitleText.getBy()), 2);
+        //waitUntil(ExpectedConditions.visibilityOfElementLocated(buyBtn.getBy()), 2);
     }
 
     @Override

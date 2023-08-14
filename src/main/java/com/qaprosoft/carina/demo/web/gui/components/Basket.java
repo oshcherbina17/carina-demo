@@ -46,7 +46,7 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
     }
 
     public String getSumPriceText() {
-        return sumPrice.getText();
+        return sumPrice.getText().replace(" ", "").replaceAll("[^0-9?!\\\\.]", "");
     }
 
     public String getItemPriceText() {

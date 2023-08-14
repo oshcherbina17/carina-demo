@@ -102,12 +102,13 @@ public class RozetkaWebTest implements IAbstractTest {
         homePage.open();
         homePage.clickOnClosePopupButton();
         HeaderMenu headerMenu = homePage.getHeader();
-        SearchPageBase searchPageBase= headerMenu.searchItems(FilterType.COFFEE_MACHINE);
-        ProductListPageBase productListPageBase = searchPageBase.productTypeLinkClick(FilterType.FILTER_COFFEE_MACHINE);
-        Assert.assertTrue(searchPageBase.isTitleTextContainsProductType(FilterType.COFFEE_MACHINE),
-                "Title text don't contains this product");
+        /////////////////////////////////////////////////////////////
+        ProductListPageBase productListPageBase = headerMenu.searchPLPItems(FilterType.COFFEE_MACHINE);
         ProductFilter productFilter = productListPageBase.getFilter();
         productFilter.selectFilter(FilterType.BRAND_DELONGHI);
+        productFilter.selectFilter(FilterType.COFFEE_MACHINE);
+        Assert.assertTrue(productListPageBase.isTitleTextContainsProductType(FilterType.BRAND_DELONGHI),
+                "Title text don't contains this product");
         productListPageBase.clickOnCompareIcon(INDEX_ZERO);
         productListPageBase.clickOnCompareIcon(INDEX_TWO);
         Assert.assertTrue(productListPageBase.addedItemsCompareCounterIsPresent(),
@@ -133,7 +134,7 @@ public class RozetkaWebTest implements IAbstractTest {
                 (ProductListPageBase) householdGoodsPageBase.clickOnCategoriesLink(FurnitureSubcategory.PC_TABLES);
         ProductFilter productFilter = productListPage.getFilter();
         productFilter.selectFilter(FilterType.ELECTRIC_TYPE);
-        ProductDetailsPageBase productDetailsPageBase= productListPage.clickOnProductTitle(INDEX_ONE);
+        ProductDetailsPageBase productDetailsPageBase = productListPage.clickOnProductTitle(INDEX_ONE);
         productDetailsPageBase.clickOnTab(ProductTabs.REVIEWS);
         productDetailsPageBase.selectDropdownOption(SortDropdown.DATE);
         Assert.assertTrue(productDetailsPageBase.isOpinionsSortedByDate(), "List isn't sorted by date");

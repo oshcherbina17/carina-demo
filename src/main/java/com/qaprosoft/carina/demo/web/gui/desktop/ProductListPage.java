@@ -163,4 +163,10 @@ public class ProductListPage extends ProductListPageBase {
         }
         return pricesList.stream().allMatch(price -> price >= Integer.parseInt(min) && price <= Integer.parseInt(max));
     }
+
+    @Override
+    public boolean isTitleTextContainsProductType(FilterType filterType) {
+        return  titleProductList.stream().allMatch((type)->
+                StringUtils.containsIgnoreCase(type.getText(),filterType.getType()));
+    }
 }

@@ -23,8 +23,8 @@ public class ProductFilter extends AbstractUIObject implements ICustomTypePageFa
         super(driver, searchContext);
     }
 
-    public void selectFilter(FilterType filterType) { //filter
-        universalCheckbox.format(filterType.getType()).click();
+    public void selectFilter(FilterType filterType) {
+        universalCheckbox.format(filterType.getType()).click(2);
     }
 
     public void selectStateCheckBox(ProductStatus productStatus) {

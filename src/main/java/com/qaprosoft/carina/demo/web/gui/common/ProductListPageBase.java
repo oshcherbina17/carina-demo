@@ -44,4 +44,6 @@ public abstract class ProductListPageBase extends AbstractPage {
     public abstract void filterProductsByPrice(String paramMin, String paramMax, String min, String max);
 
     public abstract boolean verifyPriceLimits(String min, String max);
+
+    public abstract boolean isTitleTextContainsProductType(FilterType filterType);
 }

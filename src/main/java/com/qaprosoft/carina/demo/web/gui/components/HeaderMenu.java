@@ -10,6 +10,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
+import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
@@ -23,7 +24,7 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(xpath = "//button[contains(@class, 'search-form__submit')]")
     private ExtendedWebElement searchBtn;
 
-    @FindBy(xpath = "//a[contains(@class, 'js-menu-categories__link') and contains(.,'Товари для дому')]")
+    @FindBy(xpath = "//a[contains(@class, 'js-menu-categories__link') and contains(.,'%s')]")
     private ExtendedWebElement universalCategoryMenu;
 
     @FindBy(xpath = "//span[contains(@class,'lang__link--active') and contains(.,'UA')]")
@@ -48,11 +49,11 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
         super(driver, searchContext);
     }
 
-   /* public CoffeeMachinePageBase searchProductItems(FilterType filterType) {
+    public ProductListPageBase searchPLPItems(FilterType filterType) {
         searchInput.type(filterType.getType());
         searchBtn.click();
-        return initPage(getDriver(), CoffeeMachinePageBase.class);
-    }*/
+        return initPage(getDriver(), ProductListPageBase.class);
+    }
 
     public SearchPageBase searchItems(FilterType filterType) {
         searchInput.type(filterType.getType());
