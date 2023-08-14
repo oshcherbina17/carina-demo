@@ -59,6 +59,4 @@ public class HomePage extends HomePageBase {
     public boolean isHeaderPresent() {
         return header.isPresent();
     }
-
-
 }

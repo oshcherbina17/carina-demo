@@ -82,9 +82,6 @@ public class ProductDetailsPage extends ProductDetailsPageBase {
     @Override
     public void moveToTitleText() {
         buyBtn.hover();
-       // productTitleText.hover();
-      //  waitUntil(ExpectedConditions.visibilityOfElementLocated(productTitleText.getBy()), 2);
-        //waitUntil(ExpectedConditions.visibilityOfElementLocated(buyBtn.getBy()), 2);
     }
 
     @Override

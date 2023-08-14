@@ -38,7 +38,7 @@ public class Basket extends AbstractUIObject implements ICustomTypePageFactory {
     @FindBy(xpath = "//button[contains(@class,'popup-menu__toggle--context')]")
     private ExtendedWebElement itemsOptionBtn;
 
-    @FindBy(xpath = "//button[contains(@class,'context-menu-actions__button')]")
+    @FindBy(xpath = "//button[contains(@class,'button--with-icon button--link')]")
     private ExtendedWebElement itemsDeleteBtn;
 
     public Basket(WebDriver driver, SearchContext searchContext) {
