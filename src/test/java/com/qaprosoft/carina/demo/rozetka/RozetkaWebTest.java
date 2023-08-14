@@ -102,7 +102,6 @@ public class RozetkaWebTest implements IAbstractTest {
         homePage.open();
         homePage.clickOnClosePopupButton();
         HeaderMenu headerMenu = homePage.getHeader();
-        /////////////////////////////////////////////////////////////
         ProductListPageBase productListPageBase = headerMenu.searchPLPItems(FilterType.COFFEE_MACHINE);
         ProductFilter productFilter = productListPageBase.getFilter();
         productFilter.selectFilter(FilterType.BRAND_DELONGHI);
