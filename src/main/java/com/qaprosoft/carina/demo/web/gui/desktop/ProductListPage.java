@@ -107,6 +107,7 @@ public class ProductListPage extends ProductListPageBase {
 
     @Override
     public ProductDetailsPageBase clickOnDeviceTitle(int index) {
+        basketIcon.get(index).sendKeys(Keys.PAGE_UP);
         titleProductList.get(index).click();
         return initPage(getDriver(), ProductDetailsPageBase.class);
     }
