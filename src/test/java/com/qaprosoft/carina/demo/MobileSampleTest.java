@@ -15,15 +15,11 @@
  */
 package com.qaprosoft.carina.demo;
 
-import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-
+import com.qaprosoft.carina.core.foundation.IAbstractTest;;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
@@ -32,7 +28,9 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
-
+import com.zebrunner.agent.core.annotation.TestLabel;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
 

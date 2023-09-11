@@ -7,12 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FooterLinks;
 import com.qaprosoft.carina.demo.web.enums.SocialLinks;
 import com.qaprosoft.carina.demo.web.gui.common.ContactsPageBase;
+import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 
 public class FooterMenu extends AbstractUIObject implements ICustomTypePageFactory {
 

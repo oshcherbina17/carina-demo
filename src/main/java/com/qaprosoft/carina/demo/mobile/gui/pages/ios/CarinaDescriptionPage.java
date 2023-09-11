@@ -1,14 +1,14 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.WebDriver;
+
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
+import com.zebrunner.carina.utils.factory.DeviceType;
 
-@DeviceType(pageType = Type.IOS_PHONE, parentClass = CarinaDescriptionPageBase.class)
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
     private static final String THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID = "This method is not yet implemented for iOS";

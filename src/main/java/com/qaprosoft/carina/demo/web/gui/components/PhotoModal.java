@@ -6,10 +6,10 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.gui.common.ProductDetailsPageBase;
+import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 
 public class PhotoModal extends AbstractUIObject implements ICustomTypePageFactory {
 

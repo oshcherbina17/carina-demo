@@ -1,10 +1,14 @@
 package com.qaprosoft.carina.demo.rozetka;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.web.enums.AppleDevices;
 import com.qaprosoft.carina.demo.web.enums.Devices;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
@@ -31,6 +35,7 @@ import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
 import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
 public class RozetkaWebTest implements IAbstractTest {
     final int INDEX_ZERO = 0;
@@ -186,6 +191,22 @@ public class RozetkaWebTest implements IAbstractTest {
         Assert.assertTrue(hamburgerMenu.isBasketButtonPresent(), "Basket Button isn't presented");
         String textLanguageFromHamburger = hamburgerMenu.getLanguageTextFromHamburgerMenu();
         Assert.assertEquals(textLanguageFromHamburger, textLanguage, "Language texts are not equals");
+    }
+
+    @Test(description = "User can check if buttons present on Hamburger Menu. And compare the language that its are equals.")
+    @MethodOwner(owner = "oshcherbina")
+    public void testVerify() {
+        Desktop d=Desktop.getDesktop();
+
+        // Browse a URL, say google.com
+        try {
+            d.browse(new URI("http://google.com"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Test(description = "User can add items to basket. Check if basket not empty. And can delete all items in basket.")

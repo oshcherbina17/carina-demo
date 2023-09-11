@@ -3,13 +3,11 @@ package com.qaprosoft.carina.demo.rozetka;
 import java.util.HashMap;
 
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.web.enums.Devices;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
@@ -22,6 +20,7 @@ import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.components.ProductFilter;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
 public class RozetkaPLPTest implements IAbstractTest {
 

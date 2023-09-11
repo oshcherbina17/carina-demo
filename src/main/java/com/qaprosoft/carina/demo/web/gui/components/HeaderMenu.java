@@ -1,11 +1,12 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
+import java.util.List;
+
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
@@ -13,8 +14,7 @@ import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.MenuCategory;
 import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.SearchPageBase;
-
-import java.util.List;
+import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 
 public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFactory {
 

@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.ProductTabs;
@@ -19,6 +18,7 @@ import com.qaprosoft.carina.demo.web.enums.SortDropdown;
 import com.qaprosoft.carina.demo.web.gui.common.ProductDetailsPageBase;
 import com.qaprosoft.carina.demo.web.gui.components.Basket;
 import com.qaprosoft.carina.demo.web.gui.components.PhotoModal;
+import com.zebrunner.carina.utils.factory.DeviceType;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = ProductDetailsPageBase.class)
 public class ProductDetailsPage extends ProductDetailsPageBase {

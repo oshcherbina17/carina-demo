@@ -3,12 +3,11 @@ package com.qaprosoft.carina.demo.web.gui.desktop;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.web.enums.FurnitureSubcategory;
 import com.qaprosoft.carina.demo.web.gui.common.HouseholdGoodsPageBase;
-
+import com.zebrunner.carina.utils.factory.DeviceType;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HouseholdGoodsPageBase.class)
 public class HouseholdGoodsPage extends HouseholdGoodsPageBase {

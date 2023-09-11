@@ -12,12 +12,12 @@ import org.testng.annotations.Test;
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.api.APIMethodPoller;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.api.reqres.DeleteUsersMethod;
 import com.qaprosoft.carina.demo.api.reqres.GetListUsersMethod;
 import com.qaprosoft.carina.demo.api.reqres.PostLoginMethod;
 import com.qaprosoft.carina.demo.api.reqres.PostRegisterMethod;
 import com.qaprosoft.carina.demo.api.reqres.PutUserMethod;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 
 public class ApiReqresUserTest implements IAbstractTest {
 

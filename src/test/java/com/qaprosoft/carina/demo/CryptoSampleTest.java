@@ -15,10 +15,11 @@
  *******************************************************************************/
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.R;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.Assert;
+
+import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.zebrunner.carina.utils.R;
 
 /**
  * This sample shows how use Crypto in tests.

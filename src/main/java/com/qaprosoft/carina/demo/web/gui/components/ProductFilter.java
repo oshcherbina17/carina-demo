@@ -6,12 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.web.enums.FilterType;
 import com.qaprosoft.carina.demo.web.enums.ProductStatus;
 import com.qaprosoft.carina.demo.web.enums.SortDropdown;
+
+import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 
 public class ProductFilter extends AbstractUIObject implements ICustomTypePageFactory {
 

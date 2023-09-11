@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
 import com.qaprosoft.carina.demo.web.gui.desktop.HomePage;

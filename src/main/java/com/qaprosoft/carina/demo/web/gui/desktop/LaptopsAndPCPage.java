@@ -7,11 +7,11 @@ import java.util.List;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.web.enums.Devices;
 import com.qaprosoft.carina.demo.web.gui.common.LaptopsAndPCPageBase;
 import com.qaprosoft.carina.demo.web.gui.common.ProductListPageBase;
+import com.zebrunner.carina.utils.factory.DeviceType;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = LaptopsAndPCPageBase.class)
 public class LaptopsAndPCPage extends LaptopsAndPCPageBase {
