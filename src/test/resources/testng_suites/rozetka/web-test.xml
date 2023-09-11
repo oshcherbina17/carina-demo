@@ -10,18 +10,4 @@
             </class>
         </classes>
     </test>
-
-<!--
-   <test name="Verify hamburger menu test">
-        <classes>
-            <class name="com.qaprosoft.carina.demo.rozetka.RozetkaWebTest">
-                <methods>
-                    <include name="testVerify"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
--->
-
-
 </suite>

@@ -193,22 +193,6 @@ public class RozetkaWebTest implements IAbstractTest {
         Assert.assertEquals(textLanguageFromHamburger, textLanguage, "Language texts are not equals");
     }
 
-    @Test(description = "User can check if buttons present on Hamburger Menu. And compare the language that its are equals.")
-    @MethodOwner(owner = "oshcherbina")
-    public void testVerify() {
-        Desktop d=Desktop.getDesktop();
-
-        // Browse a URL, say google.com
-        try {
-            d.browse(new URI("http://google.com"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
     @Test(description = "User can add items to basket. Check if basket not empty. And can delete all items in basket.")
     @MethodOwner(owner = "oshcherbina")
     public void testAddAndDeleteItemsFromBasket() {
