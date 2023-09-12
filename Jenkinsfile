@@ -9,13 +9,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Get some code from a GitHub repository
                git branch: 'rozetka', url: 'https://github.com/oshcherbina17/carina-demo.git'
-                // Run Maven on a Unix agent.
-                sh "mvn clean test -Dsuite=rozetka/web-test"
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh "mvn clean test -Dsuite=rozetka/web-rozetka"
+            }
+            steps {
+                git branch: 'cucumber', url: 'https://github.com/oshcherbina17/carina-demo.git'
+                sh "mvn clean test -Dsuite=rozetka/cucumber-rozetka"
             }
 
         }
