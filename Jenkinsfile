@@ -12,11 +12,13 @@ pipeline {
                git branch: 'rozetka', url: 'https://github.com/oshcherbina17/carina-demo.git'
                 sh "mvn clean test -Dsuite=rozetka/web-rozetka"
             }
+
+        }
+        stage('Run') {
             steps {
-                git branch: 'cucumber', url: 'https://github.com/oshcherbina17/carina-demo.git'
+               git branch: 'cucumber', url: 'https://github.com/oshcherbina17/carina-demo.git'
                 sh "mvn clean test -Dsuite=rozetka/cucumber-rozetka"
             }
-
         }
     }
 }
