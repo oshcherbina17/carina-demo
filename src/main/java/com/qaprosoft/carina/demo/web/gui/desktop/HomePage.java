@@ -1,5 +1,7 @@
 package com.qaprosoft.carina.demo.web.gui.desktop;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 
@@ -10,6 +12,10 @@ import com.qaprosoft.carina.demo.web.gui.components.HeaderMenu;
 import com.qaprosoft.carina.demo.web.gui.components.LoginForm;
 import com.qaprosoft.carina.demo.web.gui.common.HomePageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.sql.Time;
+import java.util.concurrent.TimeUnit;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
@@ -18,7 +24,12 @@ public class HomePage extends HomePageBase {
     private ExtendedWebElement universalCategoryMenu;
 
     @FindBy(xpath = "//span[@class='exponea-close-cross']")
+    private ExtendedWebElement closePopupBtn1;
+    @FindBy(xpath = "//span[contains(@class,'exponea-close ')]")
     private ExtendedWebElement closePopupBtn;
+
+    @FindBy(xpath = "//a[contains(@class,'exponea-banner')]")
+    private WebElement popup;
 
     @FindBy(xpath = "//button[contains(@class,'button--navy button--small')]")
     private ExtendedWebElement loginBtn;
@@ -49,7 +60,9 @@ public class HomePage extends HomePageBase {
     }
 
     public void clickOnClosePopupButton(){
-        closePopupBtn.clickIfPresent(3);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        getDriver().switchTo().activeElement().findElement(By.xpath("//a[contains(@class,'exponea-banner')]"));
+        closePopupBtn.click();
     }
 
     public void clickOnLoginButton(){

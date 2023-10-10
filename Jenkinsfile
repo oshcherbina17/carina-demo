@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+parameters {
+        choice(choices: ['chrome', 'firefox'], description: 'Select server to run tests on:', name: 'browser')
+    }
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "3.9.4"
@@ -10,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                git branch: 'rozetka', url: 'https://github.com/oshcherbina17/carina-demo.git'
-                sh "mvn clean test -Dsuite=rozetka/web-rozetka"
+                sh "mvn clean test -Dsuite=rozetka/web-rozetka -Dbrowser=${browser}"
             }
         }
     }

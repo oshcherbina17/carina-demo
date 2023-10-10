@@ -82,7 +82,7 @@
 		<dependency>
 			<groupId>com.zebrunner</groupId>
 			<artifactId>agent-testng</artifactId>
-			<version>1.8.1</version>
+			<version>1.9.3</version>
 			<scope>test</scope>
 		</dependency>
 

@@ -1,10 +1,5 @@
 package com.qaprosoft.carina.demo.rozetka;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
@@ -47,6 +42,7 @@ public class RozetkaWebTest implements IAbstractTest {
     public void testVerifyCheckBrand() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+
         homePage.clickOnClosePopupButton();
         Assert.assertTrue(homePage.isPageOpened(3), "Home page isn't opened");
         LaptopsAndPCPageBase laptopsAndPCPageBase =
@@ -116,7 +112,6 @@ public class RozetkaWebTest implements IAbstractTest {
         ProductListPageBase productListPageBase = headerMenu.searchPLPItems(FilterType.COFFEE_MACHINE);
         ProductFilter productFilter = productListPageBase.getFilter();
         productFilter.selectFilter(FilterType.BRAND_DELONGHI);
-        productFilter.selectFilter(FilterType.COFFEE_MACHINE);
         Assert.assertTrue(productListPageBase.isTitleTextContainsProductType(FilterType.BRAND_DELONGHI),
                 "Title text don't contains this product");
         productListPageBase.clickOnCompareIcon(INDEX_ZERO);

@@ -1,7 +1,5 @@
 package com.qaprosoft.carina.demo.web.gui.components;
 
-import java.util.List;
-
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,12 +46,9 @@ public class HeaderMenu extends AbstractUIObject implements ICustomTypePageFacto
     @FindBy(xpath = "//div[contains(@class,'modal__holder modal__holder_show_animation')]")
     private LoginForm loginForm;
 
-    /////
-    @FindBy(xpath = "//span[@class='goods-tile__title']")
-    private List<WebElement> titleProductList1;
-
     @FindBy(xpath = "//span[@class='show-more__text']")
     private WebElement showMoreText;
+
     @FindBy(xpath = "//section[@class='content content_type_catalog']")
     private WebElement catalog;
 
